@@ -1,0 +1,134 @@
+{
+  "event": "2004 Sumatra-Andaman",
+  "originTimeUTC": "2004-12-26T00:58:53Z",
+  "notes": "arrivalMinutes is measured from 00:58:53 UTC. Merrifield et al. (2005) give travel times from 00:59 UTC (whole minutes), so for those stations arrivalUTC = 00:59 + travel time and arrivalMinutes = travel time + 7 s. Coordinates are not given in Merrifield 2005 or Nagarajan 2006. They come from the present-day UHSLC station metadata (https://uhslc.soest.hawaii.edu/data/meta.geojson) or the PSMSL station list (https://psmsl.org/data/obtaining/rlr.monthly.data/filelist.txt), as named in coordSource. Thai coordinates are from Tsuji et al. 2006, Table 2. Hillarys (W. Australia, 115.74E) is excluded because it falls outside the 112.5E bound.",
+  "stations": [
+    {
+      "name": "Port Blair", "country": "India (Andaman Islands)", "lat": 11.683, "lon": 92.767,
+      "arrivalMinutes": 45.1, "arrivalUTC": "01:44", "kind": "tide gauge",
+      "source": "Bilham, R., Engdahl, E. R., Feldl, N., Satyabala, S. P. (2005), Partial and complete rupture of the Indo-Andaman plate boundary 1847-2004, Seismological Research Letters (author draft, 4 March 2005)",
+      "url": "https://cires1.colorado.edu/~bilham/IndonesiAndaman2004_files/AndamanSRL4Mar.pdf",
+      "coordSource": "PSMSL station 206 PORT BLAIR",
+      "note": "UNCERTAIN. Source: the Port Blair gauge 'is reported to have recorded initial subsidence of the harbor (or rise in sea level) at 07:14 Indian time' (IST = UTC+5:30, so 01:44 UTC). Eyewitnesses reported a tsunami 15-30 min after 5 min of shaking. The authors say they are 'uncertain ... whether the initial rise ... signifies the first arrival of the tsunami or subsidence of the harbor'. Nagarajan et al. 2006 say the SOI Port Blair gauge was under repair, so this preliminary report is unpublished data. Use only as a soft check."
+    },
+    {
+      "name": "Cocos Islands", "country": "Australia (Cocos (Keeling) Islands)", "lat": -12.1167, "lon": 96.8917,
+      "arrivalMinutes": 138.1, "arrivalUTC": "03:17", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Tide gauge observations of the Indian Ocean tsunami, December 26, 2004, Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 171 Cocos",
+      "note": "Travel time 02:18 from 00:59 UTC to the first water-level change. First crest 0.33 m. 1-min sampling. Atoll, inner lagoon."
+    },
+    {
+      "name": "Kuraburi", "country": "Thailand", "lat": 9.2251, "lon": 98.3769,
+      "arrivalMinutes": 153.1, "arrivalUTC": "03:32", "kind": "tide gauge",
+      "source": "Tsuji, Y., et al. (2006), The 2004 Indian tsunami in Thailand: Surveyed runup heights and tide gauge records, Earth Planets Space, 58, 223-232, doi:10.1186/BF03353382 (Section 5, Fig. 3a, Table 2)",
+      "url": "https://www.jstage.jst.go.jp/article/eps1998/58/2/58_2_223/_pdf/-char/en",
+      "coordSource": "Tsuji et al. 2006 Table 2: 98 deg 22.613' E, 9 deg 13.503' N",
+      "note": "Source: 'the first wave withdrew at 10:32' local Thai time (UTC+7, per the paper's '00:58:53 UTC (07:58 in Thai local time)'). First arrival is a withdrawal (trough), with the minimum at 10:58 and the crest at 11:12. Timing caveat: on the same chart the recorded tide was 'delayed by 12 minutes' against the predicted tide, so the true arrival may differ by about 12 min. Paper-chart float gauge."
+    },
+    {
+      "name": "Chennai", "country": "India", "lat": 13.1, "lon": 80.3,
+      "arrivalMinutes": 156.1, "arrivalUTC": "03:35", "kind": "tide gauge",
+      "source": "Nagarajan, B., et al. (2006), The Great Tsunami of 26 December 2004: A description based on tide-gauge data from the Indian subcontinent and surrounding areas, Earth Planets Space, 58, 211-215, doi:10.1186/BF03353380 (Table 2)",
+      "url": "https://link.springer.com/content/pdf/10.1186/BF03353380.pdf",
+      "coordSource": "PSMSL station 205 CHENNAI",
+      "note": "Table 2 arrival time (AT, UTC). First-wave amplitude 64 cm. Float gauge, digitised at 5-6 min. Bilham et al. 2005 independently give 09:06 local (IST), which is 03:36 UTC."
+    },
+    {
+      "name": "Visakhapatnam", "country": "India", "lat": 17.683, "lon": 83.283,
+      "arrivalMinutes": 161.1, "arrivalUTC": "03:40", "kind": "tide gauge",
+      "source": "Nagarajan, B., et al. (2006), Earth Planets Space, 58, 211-215, doi:10.1186/BF03353380 (Table 2)",
+      "url": "https://link.springer.com/content/pdf/10.1186/BF03353380.pdf",
+      "coordSource": "PSMSL station 414 VISAKHAPATNAM",
+      "note": "Table 2 arrival time (AT, UTC). First-wave amplitude 65 cm. Bilham et al. 2005 give 09:05 local (03:35 UTC), so the two sources differ by about 5 min."
+    },
+    {
+      "name": "Colombo", "country": "Sri Lanka", "lat": 6.9401, "lon": 79.8501,
+      "arrivalMinutes": 173.1, "arrivalUTC": "03:52", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 115 Colombo",
+      "note": "Travel time 02:53 from 00:59 UTC to the first water-level change. First crest 2.17 m. 2-min sampling. Harbor on the west side of the island. Nagarajan et al. 2006 also give 0352 UTC."
+    },
+    {
+      "name": "Male (Hulule)", "country": "Maldives", "lat": 4.1875, "lon": 73.5252,
+      "arrivalMinutes": 197.1, "arrivalUTC": "04:16", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 108 Male",
+      "note": "Travel time 03:17 to the first water-level change. First crest 1.46 m. 4-min sampling. Nagarajan et al. 2006 also give 0416 UTC."
+    },
+    {
+      "name": "Gan", "country": "Maldives", "lat": -0.6878, "lon": 73.152,
+      "arrivalMinutes": 201.1, "arrivalUTC": "04:20", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 109 Gan",
+      "note": "Travel time 03:21 to the first water-level change. First crest 0.88 m. 4-min sampling. Nagarajan et al. 2006 also give 0420 UTC."
+    },
+    {
+      "name": "Tuticorin", "country": "India", "lat": 8.75, "lon": 78.2,
+      "arrivalMinutes": 204.1, "arrivalUTC": "04:23", "kind": "tide gauge",
+      "source": "Nagarajan, B., et al. (2006), Earth Planets Space, 58, 211-215, doi:10.1186/BF03353380 (Table 2)",
+      "url": "https://link.springer.com/content/pdf/10.1186/BF03353380.pdf",
+      "coordSource": "PSMSL station 1072 TUTICORIN",
+      "note": "Table 2 arrival time (AT, UTC). First wave 100 cm, which was also the maximum. Gulf of Mannar, sheltered by Sri Lanka."
+    },
+    {
+      "name": "Hanimaadhoo", "country": "Maldives", "lat": 6.7644, "lon": 73.1725,
+      "arrivalMinutes": 213.1, "arrivalUTC": "04:32", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 117 Hanimaadhoo",
+      "note": "Travel time 03:33 to the first water-level change. First crest 1.71 m. 2-min sampling. Nagarajan et al. 2006 also give 0432 UTC."
+    },
+    {
+      "name": "Kochi (Cochin)", "country": "India", "lat": 9.967, "lon": 76.267,
+      "arrivalMinutes": 282.1, "arrivalUTC": "05:41", "kind": "tide gauge",
+      "source": "Nagarajan, B., et al. (2006), Earth Planets Space, 58, 211-215, doi:10.1186/BF03353380 (Table 2)",
+      "url": "https://link.springer.com/content/pdf/10.1186/BF03353380.pdf",
+      "coordSource": "UHSLC station 174 Cochin / PSMSL 438",
+      "note": "Table 2 arrival time (AT, UTC). First wave 64 cm. Indian west coast, reached after the wave wrapped around Sri Lanka and the Maldives."
+    },
+    {
+      "name": "Salalah", "country": "Oman", "lat": 16.935, "lon": 54.0067,
+      "arrivalMinutes": 433.1, "arrivalUTC": "08:12", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 114 Salalah",
+      "note": "Travel time 07:13 to the first water-level change. First crest 0.28 m. 4-min sampling. Nagarajan et al. 2006 also give 0812 UTC. The second or third wave was the largest."
+    },
+    {
+      "name": "Pointe La Rue", "country": "Seychelles", "lat": -4.6762, "lon": 55.5294,
+      "arrivalMinutes": 437.1, "arrivalUTC": "08:16", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 121 Pointe La Rue",
+      "note": "Travel time 07:17 to the first water-level change. First crest 1.09 m. 4-min sampling. Mahe, bay on the NE side. The second or third wave was the largest."
+    },
+    {
+      "name": "Lamu", "country": "Kenya", "lat": -2.2676, "lon": 40.9027,
+      "arrivalMinutes": 537.1, "arrivalUTC": "09:56", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 149 Lamu",
+      "note": "Travel time 08:57 to the first water-level change. First crest 0.28 m. 4-min sampling. West side of a NW-SE channel between islands."
+    },
+    {
+      "name": "Zanzibar", "country": "Tanzania", "lat": -6.1567, "lon": 39.192,
+      "arrivalMinutes": 585.1, "arrivalUTC": "10:44", "kind": "tide gauge",
+      "source": "Merrifield, M. A., et al. (2005), Geophys. Res. Lett., 32, L09603, doi:10.1029/2005GL022610 (Table 1)",
+      "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf",
+      "coordSource": "UHSLC station 151 Zanzibar",
+      "note": "Travel time 09:45 to the first water-level change. First crest 0.29 m. 4-min sampling. West side of the island. The largest waves came 6-8 h after the first arrival."
+    }
+  ],
+  "missing": [
+    "Somalia: no tide gauge record found in the sources read.",
+    "Mauritius: at Port Louis the 'travel time' 06:43-07:47 is a data gap and at Rodrigues 05:41+ is the last transmitted data before the station was destroyed (Merrifield 2005), so neither is a usable arrival. Reunion: no open-access arrival time found (Rabinovich & Thomson 2007, PAGEOPH, is paywalled and was not read).",
+    "Western Australia: Hillarys (Merrifield 2005, 06:29 travel time) is at 115.74E, outside the lon bound.",
+    "Ko Taphao Noi (Phuket): the gauge record exists (Tsuji 2006) but no arrival time is stated in the text. The chart clock was 11 min off when visited.",
+    "Not included but available in the same tables: Diego Garcia (Merrifield 04:49 travel time, i.e. 05:48 UTC; Nagarajan's table says 0448 UTC, which looks like a transcription of the travel time), Sibolga (01:21 travel time), Belawan (00:41), Paradip (0330 UTC), Mormugao (0654 UTC), Okha (0906 UTC)."
+  ]
+}

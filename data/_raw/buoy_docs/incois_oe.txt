@@ -1,0 +1,213 @@
+                                 India Sea Level Network
+
+                    GLOSS Experts 18th Meeting, Panama, 2025
+
+                                         Date of Report: 01-03-2025
+
+                                              Dr. Venkat Shesu R.
+                            Scientist 'F', Ocean Data Management Division,
+                 Indian National Centre for Ocean Information Services (INCOIS)
+              Ministry of Earth Sciences, Govt. of India, Hyderabad - 500 090, India
+                   Phone: +91 - 40 ­ 23886069; E-mail : venkat@incois.gov.in
+
+Introduction:
+
+Indian National Centre for Ocean Information Services (INCOIS) under the Ministry of Earth
+Sciences (MoES) works towards accomplishing "Science to Society". Its mandate is to
+provide multi-hazard early warnings, ocean data, information and advisory services to
+society, industry, the government and the scientific community through systematic and
+focused research by using the latest trends in ICT and marine science to emerge as a
+Knowledge and Information Technology Enterprise for the Oceanic realm.
+
+After the deadly Indian Ocean tsunami on 26 December 2004, the Indian Tsunami Early
+Warning Centre (ITEWC) was established after the deadly Tsunami on 26 December 2004 at
+Indian National Centre for Ocean Information Sciences (INCOIS) Hyderabad. The centre
+provides tsunami advisories to India and the Indian Ocean Rim countries.
+
+As part of the tsunami warning network, a real-time seismic monitoring facility to detect
+tsunamigenic earthquakes and a real-time sea-level network consisting of tide gauges and
+tsunami buoys were established.
+
+Tide gauges Network:
+
+INCOIS has established a network of state-of-the-art 36 tidal gaugestations along strategic
+locations of the Indian coastline to monitor the progress of tsunami waves and validate the
+model results. The data are transmitted in real-time through different modes of
+communication like INSAT and GPRS simultaneously for processing and interpretation. Tide
+gauges are critical to monitor the progress of tsunamis and changes in coastal sea levels.
+INCOIS installed three types of tide gauge sensors i.e. Radar (RAD), Pressure (PRS), and
+Shaft Encoders (ENC) at 21 locations (established in 2010-11) and one sensor (RAD) at 15
+locations (established in 2015-16) to measurethe water level heights. The details of INCOIS
+established tide gauges are given in Annexure-1. Data can be visualized through the link
+https://tsunami.incois.gov.in/TEWS/TGMap.jsp.
+All sensors are connected to a data logger, which provides data logging, storageand control
+functions for the sensors as well as the data transmission to the tsunami warning centre.
+Each tide gaugemeasures the sea level by sampling for every one minuteand transmits it for
+every 5 minutes (Islands stations every 3 minutes). The data are transmitted in real-time
+through different modes of communication like INSAT and GPRS simultaneously for
+processing and interpretation. INCOIS is equipped with an INSAT satellite communication
+hub, state-of-the-art computing hardware, and real-time data processing and visualization
+facilities for the reception, display, and archiving of tide gauge data.
+
+                         Figure 1: Schematic diagram of Tide gauge sensors
+                    Figure 2: Indian Tide Gauges stations established by INCOIS
+
+In India, the Survey of India (SOI) is a nodal agency for Tide gauge Observations,
+Benchmarking and datum corrections, etc. It is one of the oldest departments in the world,
+having expertise of more than 140 years in the field of tidal data collection. Since 1877, tidal
+data has been collected through a vast network of tie gauge stations along the Indian
+coastline.
+
+Most tide gauge data is collected offline from the stations and related research by the
+National Tidal Data Centre, Geodetic & Research Branch, SOI, Dehradun. Survey of India is
+also responsible for the annual tide table publication from Suez to Singapore in the Indian
+Ocean region (it is a prediction of 76 ports around the world).
+Tsunami Buoys Network:
+
+As part of the Indian Tsunami Early Warning System, a real-time network of Tsunami Buoys
+(consisting of Bottom Pressure Recording BPR and Surface buoy) has been established by
+INCOIS and the National Institute of Ocean Technology (NIOT). The network is designed to
+detect, measure and monitor tsunamis. The network comprises 7 Tsunami Buoys (4
+Indigenous Tsunami Buoys by NIOT and 3 SAIC Tsunami buoys by INCOIS) transmitting real-
+time data through satellite communication to INCOIS at Hyderabad and NIOT at Chennai
+simultaneously for processing and interpretation. Each BPR is strategically placed in the
+open ocean near the tsunamigenicsource zones in the Andaman & Nicobar Islands and the
+Makran subduction zone. At the sametime, they are far enough from the earthquake zone so
+that the tsunami wave signal can be clearly distinguished from the seismic Rayleigh wave.
+The details of NIOT and INCOIS established Tsunami buoys are given in Annexure-2. Data
+can be visualized through the link https://tsunami.incois.gov.in/TEWS/BprMap_include.jsp.
+
+The Tsunami buoy system consists of a Bottom Pressure Recorder (BPR) placed on the
+seafloor to measure the water level height and a Surface Buoy placed on the sea surface to
+communicate between the BPR & satellite. The BPR collects (records) temperature and
+pressure values at 15-second intervals, the pressure values are corrected for temperature
+effects and are converted to an estimated sea-surface height by using a constant 670
+mm/psia. An acoustic link transmits data from the BPR to the surface buoy. The system has
+two data reporting modes: normal and event mode. The system operates routinely in normal
+mode, in which four values are recorded at 15-minute intervals. When the internal detection
+software detects any changes in the water level from the expected value, the system
+automatically switches into event/Tsunami response mode transmission, where15-second
+values are transmitted during the initial few minutes, followed by updates every 1 minute.
+The buoys remain in the tsunami response mode for 3 hours and automatically return to
+normal mode. The tsunami buoys are capable of detecting minor water-level changes of
+even 1 cm at water depths up to 6 km (Meinig et al).
+
+The BPR uses a piezoelectric pressure transducer to make 15 seconds-averaged
+measurements of the pressure exerted on it by the overlying water column. The tsunami
+detection algorithm predicts the next value of each 15-second measurement by a Newton
+cubic extrapolation of previous observations and is triggered when measured and predicted
+values differ by more than the 30 mm threshold. The tsunami buoy system has a two-way
+communication link and is thus able to send and receive data from the Tsunami Warning
+Centre. The INCOIS and NIOT were equipped with computing hardware for data reception,
+communication hubs, data processing, visualization and dissemination facilities.
+      Figure 3: Schematic diagram of Tsunami Buoy System
+Figure 4: Tsunami Buoy network established by NIOT and INCOIS
+Tide gauges and Tsunami buoys Data sharing to International Community:
+INCOIS, India is sharing 8 No. of stations Tide gauge stations data, i.e. Chennai, Cochin,
+Nancowry, Port Blair, Visakhapatnam, Minicoy, Marmagao and Veraval, with IOC Sea level
+stations monitoring facility. INCOIS also shares all Tsunami buoy data deployed by India in
+the Bay of Bengal and Arabian Sea, a total of 7 No. of stations, i.e. ITB05, ITB06, ITB09,ITB12,
+STB01, STB02 and STB03 (WMO IDs 23218, 23220, 23223, 23226, 23227, 23228 and 23217,
+respectively) with NDBC NOAA, the same data also available at the IOC Sea level website.
+Survey of India also collaborates with the international community by providing Monthly and
+Annual Mean Sea level data to the Permanent Service for Mean Sea Level (PSMSL), U.K. and
+GLOSS. It has been contributing tide gauge data to PSMSL since its inception.
+
+Figure 5: INCOIS, Indian Tide gauges and Tsunami Buoys real-time data sharing to IOC Sea
+                                                  level website
+Table 1: Indian Tide gauges and Tsunami Buoys real-time data sharing to IOC Sea level
+                            website and NOAA NDBC (Tsunami Buoys)
+
+     Figure 6: Indian Tsunami Buoys real time data sharing to NDBC, NOAA website
+                                                                     Annexure-1
+
+                List of Tide gauges stations established by INCOIS
+
+S. No. Station Name Latitude (N)    Longitude (E)     Establishment      Sensors
+                                                              in
+1   Aerial Bay    13° 17' 0.01"     93° 1' 31.238"                   RAD, PRS, ENC
+                                    93° 55' 53.915"       Aug 2010   RAD, PRS, ENC
+2   Campbell Bay  7° 0' 1.39"       80° 17' 7.138"        Oct 2010   RAD, PRS, ENC
+                                                          July 2010  RAD, PRS, ENC
+3   Chennai       13° 4' 16.536"      76° 15' 29''        Mar 2011   RAD, PRS, ENC
+                                     80° 19' 58.8"        Jul 2010   RAD, PRS, ENC
+4   Cochin        9° 58' 11''       88° 19' 5.142"        Jul 2010   RAD, PRS, ENC
+                                     72° 56' 47.6''      Nov 2010    RAD, PRS, ENC
+5   Ennore        13° 15' 0"        82° 16' 9.372''       Oct 2011   RAD, PRS, ENC
+                                    70° 13' 15.254''      Aug 2010   RAD, PRS, ENC
+6   Garden Reach 22° 32' 54.287"    74° 6' 51.696"        Aug 2010   RAD, PRS, ENC
+                                     72° 37' 58.8"        Sep 2010   RAD, PRS, ENC
+7   JNPT          18° 57' 07.3''    80° 6' 40.129"        Aug 2010   RAD, PRS, ENC
+                                                          Sep 2010   RAD, PRS, ENC
+8   Kakinada      16° 56' 28.644''      73° 3' 0"         Jul 2010   RAD, PRS, ENC
+                                      79° 50' 57''        Sep 2010   RAD, PRS, ENC
+9   Kandla        23° 1' 6.812''    93° 32' 35.844"       Aug 2010   RAD, PRS, ENC
+                                    74° 48' 54.148"       Aug 2010   RAD, PRS, ENC
+10  Karwar        14° 48' 10.685"     69° 04' 58''        Jul 2010   RAD, PRS, ENC
+                                    86° 40' 0.059"        Aug 2010   RAD, PRS, ENC
+11  Kavaratti     10° 34 '1.2"      92° 43' 19.902"       Jul 2010   RAD, PRS, ENC
+                                       78° 12' 3''        Jul 2010   RAD
+12  Krishnapatnam 14° 15' 18.032"   83° 17' 16.775''     Dec 2015    RAD
+                                     72° 36' 57.6"       Dec 2015    RAD
+13  Minicoy       8° 16' 58.8"       75° 48' 28.8"       Dec 2015    RAD
+                                     92° 46' 33.6"       Dec 2015    RAD
+14  Nagapattinam 10° 45' 42''        92° 33' 43.2"       Dec 2015    RAD
+                                     73° 12' 28.8"       Dec 2015    RAD
+15  Nancowry      8° 2' 9.265"       81° 10' 40.8"       Dec 2015    RAD
+                                       73° 48' 0"        Dec 2015    RAD
+16  New Mangalore 12° 54' 58.928"    92° 57' 21.6"        Jan 2016   RAD
+                                     70° 24' 28.8"        Jul 2016   RAD
+17  Okha          22° 28' 1.2''     84° 56' 54.13"       Dec 2016    RAD
+                                       79° 50' 6"         Feb 2017   RAD
+18  Paradip       20°16'6.017"       76° 36' 10.8"        Apr 2017   RAD
+                                     69° 31' 19.2"        Jun 2017   RAD
+19  Port Blair    11° 41' 18.622"    68° 36' 21.6"        Feb 2019
+                                    86° 57' 20.16"
+20  Tuticorin     8° 45' 1.8'' N
+
+21  Visakhapatnam 17° 41' 18.622''
+
+22  Adani Hazira  21° 6' 0"
+
+23  Beypore       11° 10' 15.6"
+
+24  Car Nicobar   9° 14' 2.4"
+
+25  Hutbay        10° 35' 27.6"
+
+26  Jaigarh       17° 16' 51.6"
+
+27  Machilipatnam 16° 8' 42"
+
+28  Marmagao      15° 24' 32.4"
+
+29  Rangatbay     12° 29' 16.8"
+
+30  Veraval       20° 54' 43.2"
+
+31  Gopalpur      19° 17' 20.1"
+
+32  Puducherry    11° 55' 48"
+
+33  Kollam        8° 51' 50.4"
+
+34  Porbandar     21° 37' 15.6"
+
+35  Jakhau        23° 14' 34.8"
+
+36  Dhamra        20° 47' 6.36"
+                                                            Annexure-2
+
+      List of Tsunami Buoys established by NIOT and INCOIS
+
+  S.   Station Name  Latitude  Longitude Location      Maintained
+ No.                    (N°)       (E°)                      by
+1     STB01            06.2       88.8 Bay of Bengal
+2     STB02            20.8       65.3 Arabian Sea    INCOIS
+3     STB03            03.8       91.7 Bay of Bengal  INCOIS
+4     ITB05            10.2       88.5 Bay of Bengal  INCOIS
+5     ITB06            13.5       89.0 Bay of Bengal  NIOT
+6     ITB09            17.7       89.6 Bay of Bengal  NIOT
+7     ITB12            19.9       67.0 Arabian Sea    NIOT
+                                                      NIOT
+

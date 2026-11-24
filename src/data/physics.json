@@ -1,0 +1,101 @@
+{
+  "strasser2010": {
+    "citation": "Strasser, F. O., Arango, M. C., Bommer, J. J. (2010), Scaling of the source dimensions of interface and intraslab subduction-zone earthquakes with moment magnitude, Seismological Research Letters, 81(6), 941-950, doi:10.1785/gssrl.81.6.941",
+    "readNote": "The original paper is paywalled (GeoScienceWorld returned 403) and was NOT read. The length and width coefficients below come second-hand from Salah, Sasaki & Soltanpour (arXiv:2010.01284v2, Eq. 4), which cites 'Strasser et al., 2010, Table 1'. Verify against the original if possible.",
+    "lengthInterface": {
+      "a": { "value": -2.477, "unit": "log10(km)", "source": "Salah, Sasaki & Soltanpour (2021), Comprehensive Probabilistic Tsunami Hazard Assessment in the Makran Subduction Zone, arXiv:2010.01284v2, Eq. (4), citing Strasser et al. 2010 Table 1", "url": "https://arxiv.org/pdf/2010.01284" },
+      "b": { "value": 0.585, "unit": "log10(km) per Mw", "source": "Salah et al., arXiv:2010.01284v2, Eq. (4)", "url": "https://arxiv.org/pdf/2010.01284" },
+      "sigma": { "value": 0.18, "unit": "log10(km)", "source": "Salah et al., arXiv:2010.01284v2, Eq. (4). Caveat: the same paper's Section 2.1 text gives 0.173 for length and 0.180 for width (swapped relative to Eq. 4).", "url": "https://arxiv.org/pdf/2010.01284" },
+      "stdErrA": { "value": null, "unit": "", "source": "MISSING: original Table 1 not accessible", "url": "https://doi.org/10.1785/gssrl.81.6.941" },
+      "stdErrB": { "value": null, "unit": "", "source": "MISSING: original Table 1 not accessible", "url": "https://doi.org/10.1785/gssrl.81.6.941" },
+      "validMwRange": { "value": null, "unit": "Mw", "source": "MISSING: not stated in any source read. Salah et al. apply it for Mw 7.7-9.5, but that is their usage range, not Strasser's validity range.", "url": "https://doi.org/10.1785/gssrl.81.6.941" }
+    },
+    "widthInterface": {
+      "a": { "value": -0.882, "unit": "log10(km)", "source": "Salah et al., arXiv:2010.01284v2, Eq. (4), citing Strasser et al. 2010 Table 1", "url": "https://arxiv.org/pdf/2010.01284" },
+      "b": { "value": 0.351, "unit": "log10(km) per Mw", "source": "Salah et al., arXiv:2010.01284v2, Eq. (4)", "url": "https://arxiv.org/pdf/2010.01284" },
+      "sigma": { "value": 0.173, "unit": "log10(km)", "source": "Salah et al., arXiv:2010.01284v2, Eq. (4) (see caveat on length sigma)", "url": "https://arxiv.org/pdf/2010.01284" },
+      "stdErrA": { "value": null, "unit": "", "source": "MISSING", "url": "https://doi.org/10.1785/gssrl.81.6.941" },
+      "stdErrB": { "value": null, "unit": "", "source": "MISSING", "url": "https://doi.org/10.1785/gssrl.81.6.941" },
+      "validMwRange": { "value": null, "unit": "Mw", "source": "MISSING", "url": "https://doi.org/10.1785/gssrl.81.6.941" }
+    },
+    "areaInterface": {
+      "a": { "value": -3.476, "unit": "log10(km^2)", "source": "OpenQuake hazardlib StrasserInterface.get_median_area: 10 ** (-3.476 + 0.952 * mag)", "url": "https://docs.openquake.org/oq-engine/3.9/_modules/openquake/hazardlib/scalerel/strasser2010.html" },
+      "b": { "value": 0.952, "unit": "log10(km^2) per Mw", "source": "OpenQuake hazardlib StrasserInterface", "url": "https://docs.openquake.org/oq-engine/3.9/_modules/openquake/hazardlib/scalerel/strasser2010.html" },
+      "sigma": { "value": 0.304, "unit": "log10(km^2)", "source": "OpenQuake hazardlib StrasserInterface.get_std_dev_area", "url": "https://docs.openquake.org/oq-engine/3.9/_modules/openquake/hazardlib/scalerel/strasser2010.html" }
+    },
+    "sanityCheck": "Our own computation (not from a source): at Mw 9.1 the relations give L = 10^(-2.477+0.585*9.1), about 700 km, and W, about 205 km. That is well short of the observed ~1300 km length, so the 2004 event is longer than the scaling predicts. Use the published rupture2004 dimensions for the validation case."
+  },
+
+  "rupture2004": {
+    "MwUSGS": { "value": 9.1, "unit": "Mw", "source": "USGS ComCat event official20041226005853450_30 (official magnitude reference: Duputel et al. 2012, W phase)", "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20041226005853450_30" },
+    "MwLay2005": { "value": "9.1-9.3", "unit": "Mw", "source": "Lay, T., et al. (2005), The Great Sumatra-Andaman Earthquake of 26 December 2004, Science, 308, 1127-1133, doi:10.1126/science.1112250 (abstract). Read via a full-text copy hosted at CSULB.", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "MwChlieh2007": { "value": 9.15, "unit": "Mw", "source": "Chlieh, M., et al. (2007), Coseismic slip and afterslip of the great Mw 9.15 Sumatra-Andaman earthquake of 2004, BSSA, 97(1A), S152-S173, doi:10.1785/0120050631 (abstract: M0 6.7-7.0e22 N m)", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+    "originTimeUTC": { "value": "2004-12-26T00:58:53.45Z", "unit": "UTC", "source": "USGS ComCat event official20041226005853450_30", "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=official20041226005853450_30&format=geojson" },
+    "epicenterUSGS": { "value": { "lat": 3.295, "lon": 95.982, "depthKm": 30 }, "unit": "deg, km", "source": "USGS ComCat event official20041226005853450_30 (geojson)", "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=official20041226005853450_30&format=geojson" },
+    "epicenterAlt": { "value": { "lat": 3.307, "lon": 95.947 }, "unit": "deg", "source": "Merrifield et al. 2005 GRL and Nagarajan et al. 2006 EPS, both quoting the USGS 2005 location. Wikipedia's infobox gives 3.316N 95.854E (cited to USGS).", "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf" },
+    "ruptureLengthKm": { "value": "1200-1300", "unit": "km", "source": "Lay et al. 2005, Science: 'ruptured 1200 to 1300 km of a curved plate boundary'", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "ruptureLengthKmGeodetic": { "value": 1500, "unit": "km", "source": "Chlieh et al. 2007 BSSA abstract: 'ruptured over a distance of about 1500 km' (measured along the trench to Preparis Island, 15N)", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+    "widthKm": { "value": "240 (NW Sumatra) to 160-170 (Nicobar/Andaman)", "unit": "km", "source": "Lay et al. 2005, Science: megathrust 'about 240 km wide along northwestern Sumatra' and 'no more than 160 to 170 km wide' along the Nicobar and Andaman Islands", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "widthKmGeodetic": { "value": "<150", "unit": "km", "source": "Chlieh et al. 2007 BSSA abstract: 'a width of less than 150 km'", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+    "averageSlipM": { "value": 5.0, "unit": "m", "source": "Lay et al. 2005, Science: 'Uniform slip of about 5.0 m over a 1300-km-long fault' matches the CMT moment", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "peakSlipM": { "value": "15-20", "unit": "m", "source": "Lay et al. 2005, Science: abstract 'up to 15 meters' near Banda Aceh. Fig. 8 caption: 'as great as 20 m during the first 230 s'. Chlieh et al. 2007 geodetic model G-M9.12: 'Fault slip reaches 10-15 m in two patches'.", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "peakSlipUSGSFFM": { "value": 9.99, "unit": "m", "source": "USGS finite-fault model (properties: maximum-slip 9.9908 m, model strike 308, dip 16, length 360 km x width 330 km). This is a low-resolution teleseismic model.", "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20041226005853450_30/finite-fault" },
+    "dipDeg": { "value": 8, "unit": "deg", "source": "Lay et al. 2005, Science: 'a shallowly (8 deg) dipping plane' (CMT/long-period solution)", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "dipDegAlt": { "value": "12-17.5 (increasing south to north)", "unit": "deg", "source": "Chlieh et al. 2007 BSSA Table 1 (Ammon-III geometry). Grilli et al. 2007 use 12 deg for all segments. The USGS FFM uses 16 deg.", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+    "ruptureDurationS": { "value": "about 500-515", "unit": "s", "source": "Lay et al. 2005: short-period radiation 'for at least 500 s'. Chlieh et al. 2007: 'completion of the seismic rupture took about 515 sec'. Wikipedia and UCSC: at least 10 minutes.", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+    "ruptureVelocityKmS": { "value": "2.0-3.0 (about 2 km/s for the first 745 km, then about 0.75 km/s)", "unit": "km/s", "source": "Lay et al. 2005, Science (text and Fig. 7 caption)", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "strike": {
+      "value": {
+        "CMT_overall": 329,
+        "northernSumatra_Chlieh2007_seg1": 315,
+        "Nicobar_Chlieh2007_seg2": 342,
+        "Andaman_Chlieh2007_seg3": 5,
+        "Nicobars_Bilham2005": "N20W (about 340)",
+        "Andamans_Bilham2005": "N10E (about 10)"
+      },
+      "unit": "deg clockwise from N",
+      "source": "Lay et al. 2005 ('a strike of 329 deg'; 'the strike of the fault rotates progressively clockwise' to the north). Chlieh et al. 2007 Table 1. Bilham et al. 2005 SRL draft ('approximately N20W strike of the Nicobars ... N10E trend of the Andaman Islands').",
+      "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf"
+    },
+    "tsunamiSourceExtent": { "value": "600-800 km NNW of the epicenter", "unit": "km", "source": "Lay et al. 2005: the tsunami source 'appears to extend only 600 to 800 km north-northwest from the epicenter'. The northern third produced no rapid sea-floor uplift. Bilham et al. 2005 similarly say tsunami generation was weak north of about 7-8N.", "url": "https://home.csulb.edu/~rodrigue/quake/sumatrascience05.html" },
+    "segments": [
+      { "name": "Grilli-1 (N Sumatra / epicentral)", "centroid": [3.83, 94.57], "start": [3.04, 95.17], "end": [4.62, 93.97], "strikeDeg": 323, "lengthKm": 220, "widthKm": 130, "slipM": 18, "dipDeg": 12, "rakeDeg": 90, "triggerTimeS": 0, "topDepthKm": 11.49,
+        "source": "Grilli, S. T., Ioualalen, M., Asavanant, J., Shi, F., Kirby, J., Watts, P. (2007), Source constraints and model simulation of the December 26, 2004 Indian Ocean tsunami, J. Waterway Port Coastal Ocean Eng., 133(6), 414-428, Table 1, as transcribed in the Gerris tsunami example. In Gerris, x,y = 'coordinates of the fault's centroid' and depth = 'depth of the top edge'.",
+        "url": "https://gerris.dalembert.upmc.fr/gerris/examples/tsunami/tsunami.gfs.html" },
+      { "name": "Grilli-2", "centroid": [5.22, 93.90], "start": [4.56, 94.04], "end": [5.88, 93.76], "strikeDeg": 348, "lengthKm": 150, "widthKm": 130, "slipM": 23, "dipDeg": 12, "rakeDeg": 90, "triggerTimeS": 212, "topDepthKm": 11.49,
+        "source": "Grilli et al. 2007 Table 1 via Gerris example", "url": "https://gerris.dalembert.upmc.fr/gerris/examples/tsunami/tsunami.gfs.html" },
+      { "name": "Grilli-3 (Nicobar)", "centroid": [7.41, 93.21], "start": [5.78, 93.87], "end": [9.04, 92.54], "strikeDeg": 338, "lengthKm": 390, "widthKm": 120, "slipM": 12, "dipDeg": 12, "rakeDeg": 90, "triggerTimeS": 528, "topDepthKm": 12.53,
+        "source": "Grilli et al. 2007 Table 1 via Gerris example", "url": "https://gerris.dalembert.upmc.fr/gerris/examples/tsunami/tsunami.gfs.html" },
+      { "name": "Grilli-4", "centroid": [9.70, 92.60], "start": [9.03, 92.65], "end": [10.37, 92.55], "strikeDeg": 356, "lengthKm": 150, "widthKm": 95, "slipM": 12, "dipDeg": 12, "rakeDeg": 90, "triggerTimeS": 853, "topDepthKm": 15.12,
+        "source": "Grilli et al. 2007 Table 1 via Gerris example", "url": "https://gerris.dalembert.upmc.fr/gerris/examples/tsunami/tsunami.gfs.html" },
+      { "name": "Grilli-5 (Andaman)", "centroid": [11.70, 92.87], "start": [10.15, 92.59], "end": [13.25, 93.15], "strikeDeg": 10, "lengthKm": 350, "widthKm": 95, "slipM": 12, "dipDeg": 12, "rakeDeg": 90, "triggerTimeS": 1213, "topDepthKm": 15.12,
+        "source": "Grilli et al. 2007 Table 1 via Gerris example", "url": "https://gerris.dalembert.upmc.fr/gerris/examples/tsunami/tsunami.gfs.html" }
+    ],
+    "segmentsNote": "Grilli segments: centroid, strike, length, width, slip, dip, rake and depth are as published (via Gerris). triggerTimeS is the start of each Gerris event window (Grilli's abstract: triggering spans about 1200 s). start/end are NOT in the source: we derived them as centroid +/- L/2 along strike on a sphere (R = 6371 km), rounded to 0.01 deg. The original Grilli paper (ASCE, paywalled) and its open copies on personal.egr.uri.edu were unreachable, so the table was read through the Gerris transcription only.",
+    "segmentsChlieh2007": [
+      { "name": "Chlieh-1 (N Sumatra)", "start": [1.85, 95.25], "end": [3.63, 93.47], "strikeDeg": 315, "lengthKm": 280, "widthKm": null, "slipM": null, "dipDeg": 12,
+        "source": "Chlieh et al. 2007, BSSA 97(1A) S152-S173, Table 1 (Ammon-III three-segment geometry). start = 'Location of Southwest Corner'.", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+      { "name": "Chlieh-2 (Nicobar)", "start": [3.76, 93.34], "end": [9.57, 91.43], "strikeDeg": 342, "lengthKm": 680, "widthKm": null, "slipM": null, "dipDeg": 15,
+        "source": "Chlieh et al. 2007 Table 1", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" },
+      { "name": "Chlieh-3 (Andaman)", "start": [9.59, 91.46], "end": [13.89, 91.85], "strikeDeg": 5, "lengthKm": 480, "widthKm": null, "slipM": null, "dipDeg": 17.5,
+        "source": "Chlieh et al. 2007 Table 1", "url": "https://tectonics.caltech.edu/publications/pdf/chliehBSSA2006.pdf" }
+    ],
+    "segmentsChlieh2007Note": "start (SW corner) is published. end is derived by us as start + length along strike. The derived ends match the next segment's published SW corner to within about 0.15 deg, which checks the derivation. Slip in this model is distributed on 20 x 16 km cells, not uniform per segment, so slipM is null. Width per segment is not tabulated (the abstract gives <150 km overall)."
+  },
+
+  "facts": {
+    "deathToll": { "value": "more than 283,100 killed, 14,100 missing, 1,126,900 displaced, in 10 countries (USGS); Wikipedia gives 227,898 dead in 14 countries", "unit": "people", "source": "USGS ComCat impact-text for event official20041226005853450_30. Wikipedia, '2004 Indian Ocean earthquake and tsunami' (infobox/lead, refs [6],[7]). Lay et al. 2005 abstract: 'more than 283,000 deaths'.", "url": "https://earthquake.usgs.gov/earthquakes/eventpage/official20041226005853450_30/impact" },
+    "noWarningSystem2004": { "value": "There was no tsunami warning system in the Indian Ocean at the time of the December 26, 2004 tsunami.", "unit": "", "source": "Merrifield et al. 2005, GRL 32, L09603, para [3] (verbatim). Wikipedia says the same: 'There were no tsunami warning systems in the Indian Ocean to detect tsunamis' (ref [68]).", "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf" },
+    "iotwmsTimeline": { "value": "ICG/IOTWS set up after 2004. The system 'became partially operational in 2005', with interim bulletins from JMA and PTWC. On 12 October 2011 (Exercise IOWave11) the Regional Tsunami Service Providers of Australia, India and Indonesia 'became operational'. Interim JMA/PTWC service was to continue until the end of 2012.", "unit": "date", "source": "IOC-UNESCO Tsunami Programme (legacy site): 'Exercise Indian Ocean Wave 2011 heralds the commencement of Regional Tsunami Service Providers operations in the Indian Ocean' and 'Full scale test of Indian Ocean Tsunami Warning System - 12 October 2011'", "url": "https://legacy.ioc-tsunami.org/legacy.ioc-tsunami.org/indexa4bf.html" },
+    "incoisITEWC": { "value": "Indian Tsunami Early Warning System at INCOIS, Hyderabad, 'inaugurated on October 15, 2007', after 'two-and-half years to establish'", "unit": "date", "source": "INCOIS / ESSO Tsunami Early Warning page", "url": "https://tsunami.incois.gov.in/TEWS/searlywarnings.jsp" },
+    "smongSimeulue": { "value": "Of Simeulue's population of 78,128, only 7 died on 26 December 2004 as a direct result of the tsunami (UN HIC reported 35 deaths from the earthquake and tsunami). Oral histories ('smong') recount a massive 1907 tsunami and advise running to the hills after significant shaking (>1 min). Waves >10 m hit Langi, 40 km from the epicenter, <10 min after shaking stopped.", "unit": "people", "source": "McAdoo, B. G., Dengler, L., Prasetya, G., Titov, V. (2006), Smong: How an oral history saved thousands on Indonesia's Simeulue Island during the December 2004 and March 2005 tsunamis, Earthquake Spectra, 22(S3), S661-S669, doi:10.1193/1.2204966", "url": "https://rctwg.humboldt.edu/sites/default/files/smong_eqspectra_0.pdf" },
+    "dartHowItWorks": { "value": "An anchored seafloor bottom pressure recorder (BPR) plus a moored surface buoy. An acoustic link sends data from the BPR to the buoy, which relays it by satellite (Iridium; formerly GOES West) to the Tsunami Warning Centers. The BPR samples temperature and pressure every 15 s and converts pressure to sea-surface height.", "unit": "", "source": "NOAA NDBC, 'Deep-ocean Assessment and Reporting of Tsunamis (DART) Description'", "url": "https://www.ndbc.noaa.gov/dart/dart.shtml" },
+    "dartDepth": { "value": 6000, "unit": "m", "source": "NOAA NDBC DART bottom package page: 'deployable for 24 months at depths of 6000 m'", "url": "https://www.ndbc.noaa.gov/dart/bottom.shtml" },
+    "dartResolution": { "value": "sensitive to <1 mm equivalent sea-level change; has measured tsunamis <1 cm amplitude in the deep ocean", "unit": "mm", "source": "NOAA NDBC DART bottom package page. Also NOAA NCEI: BPR 'capable of detecting tsunamis as small as 1 centimeter'. PMEL: '<1 mm' for periods > about 1 min at 5000 m.", "url": "https://www.ndbc.noaa.gov/dart/bottom.shtml" },
+    "dartReportingModes": { "value": "standard mode: every 15 min. Event mode: 15-s data for several minutes, then 1-min averages for 4 h", "unit": "", "source": "Wikipedia, 'Deep-ocean Assessment and Reporting of Tsunamis' (citing Bureau of Meteorology, Eble & Gonzalez)", "url": "https://en.wikipedia.org/wiki/Deep-ocean_Assessment_and_Reporting_of_Tsunamis" },
+    "deepOceanSpeed": { "value": "over 500 mph (as fast as a jet plane); 500-600 mph in deep water; slows to about 20-30 mph near land", "unit": "mph", "source": "NOAA National Weather Service, 'Tsunami Safety: About' and tsunami.gov FAQ (Sections 3.2, 3.7)", "url": "https://www.weather.gov/safety/tsunami-about" },
+    "deepOceanSpeedObserved2004": { "value": 187, "unit": "m/s", "source": "Merrifield et al. 2005, para [10]: 'a typical speed for the tsunami was about 187 m/s' (excluding Indonesian and Mauritius stations). Near Indonesia the average was 160 m/s.", "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf" },
+    "warningCentreProcess": { "value": "Warning centers 'base their initial tsunami messages on the preliminary earthquake information', since that is all that is available in the first few minutes. In dense seismic networks they 'can issue messages within five minutes'. Coastal gauges and DART water-level data are then used 'to confirm tsunami arrival time and height', and forecast models using seismic and water-level data guide 'an updated or cancellation message'.", "unit": "", "source": "NOAA/NWS U.S. Tsunami Warning Centers, tsunami.gov FAQ (Sections 4.2-4.5, 5.6, 5.7)", "url": "https://www.tsunami.gov/?page=tsunamiFAQ" },
+    "earlyIOTideGaugeLesson": { "value": "With hourly transmission, confirmation of the tsunami at Cocos Islands could have given advance warning to the Maldives and farther west, had a warning system been in place.", "unit": "", "source": "Merrifield et al. 2005, para [11]", "url": "https://archimer.ifremer.fr/doc/00232/34356/32771.pdf" }
+  }
+}

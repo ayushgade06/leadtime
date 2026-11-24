@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="DC.title" content="NDBC Station Page">
+<meta name="DC.description" content="National Data Buoy Center - Recent observations from tsunami station 23223 (17.333N 89.483E) - Bay of Bengal.">
+<meta name="description" content="National Data Buoy Center - Recent observations from tsunami station 23223 (17.333N 89.483E) - Bay of Bengal.">
+<meta name="DC.subject" content="weather, buoy, weather buoy, marine, forecast, hurricane, wind, wave, offshore, surfing, temperature, meteorology, climate, ocean">
+<meta name="DC.creator" content="US Department of Commerce, National Oceanic and Atmospheric Administration, National Weather Service, National Data Buoy Center">
+<meta name="DC.language" content="EN-US">
+<meta name="DC.format" content="text/html;charset=iso-8859-1">
+<meta name="DC.date.created" content="1996-11-08">
+<title>NDBC - Station 23223 Recent Data</title>
+
+	<script src="/js/dart_data.js">
+	</script>
+	<script>
+	<!--
+	var seriestime = "2014 Nov 14 12:15:00 to 2026 Nov 24 09:00:00";
+	var event_date_array = new Array(
+		"20250328062415;tt: 2025 Mar 28 06:24:15, ts: 2025 Mar 28 06:23:30 to 2025 Mar 28 08:39:00",
+		"20250308045030;tt: 2025 Mar 08 04:50:30, ts: 2025 Mar 08 04:49:45 to 2025 Mar 08 05:29:00",
+		"20230704054100;tt: 2023 Jul 04 05:41:00, ts: 2023 Jul 03 05:41:00 to 2023 Jul 04 07:40:00",
+		"20230704051800;tt: 2023 Jul 04 05:18:00, ts: 2023 Jul 03 05:18:00 to 2023 Jul 04 05:25:00"
+	);
+	// -->
+	</script>
+<link rel="canonical" href="https://www.ndbc.noaa.gov/station_page.php?station=23223">
+<link rel="alternate" type="application/rss+xml" title="NDBC - Station Observations near 17.333N 89.483E" href="/rss/ndbc_obs_search.php?lat=17.333N&lon=89.483E">
+<link rel="stylesheet" href="/style/ndbc2022a.css" type="text/css">
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" type="text/css">
+  <style>
+.flex-break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.station-photo {
+	border-radius: 0.5em;
+	border: none;
+}
+.ndbcmapfooter {
+	display:flex;
+	font-size:smaller;
+}
+.ndbcmapfooter>* {
+	text-align:left;
+}
+table.currentobs {
+	background-color: #f0f8fe;
+}
+table.currentobs td,
+table.currentobs th {
+	padding: 0.1em;
+	margin: 0;
+}
+.parmform {
+	background-color: white;
+}
+
+ #stn_info {
+    margin:0;
+    padding:0;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+  }
+
+.dart-data-form {
+        display: flex;
+        flex-wrap:wrap;
+        gap: 1em;
+}
+.dart-data-form>* {
+        height: 100%;
+	max-width: 100%;
+}
+.dart-data-form label {
+	font-weight: 500;
+}
+#seriestime {
+	overflow: auto;
+	max-width: 100%;
+	min-width: 38ch;
+}
+.dart-data-form>[type="submit"] {
+	align-self: flex-end;
+}
+
+table.dataTable > tbody th {
+	white-space: normal;
+}
+	
+@media (min-width:40em) {
+  #stn_info {
+     width: 90%;
+     flex-wrap: nowrap;
+     flex-direction: row;
+  }
+}
+
+#stn_metadata {
+  flex: 1 1 100%;
+}
+#stnmap {
+  height:175px;
+  width:250px;
+  border:1px solid #ccc;
+  margin:2px 0px;
+  text-align:left;
+}
+#stn_img_map {
+  flex: 1 1 content;
+  text-align: center;
+  width: fit-content;
+}
+.esri-popup__main-container {
+	max-width: 5.5em;
+	padding: .5em;
+	margin: 0em;
+}
+.esri-popup__content {
+	padding: .1em;
+	margin: 0em;
+	text-align: center;
+}
+.buoycam-footer { font-size:smaller; }
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script defer src="/js/ndbc_utils.js"></script>
+<script async id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA"></script>
+<script src="https://touchpoints.app.cloud.gov/touchpoints/b5347857.js" defer></script>
+
+
+<script>
+	const currentstnid = '23223';
+  	const currentstnlat = '17.333';
+  	const currentstnlng = '89.483';
+  	const currentstnname = 'Bay of Bengal';
+  	const currentstndata = 'y';
+</script>
+<script defer src="/js/reload.js"></script>
+<script defer src="https://js.arcgis.com/4.26/"></script>
+<script defer src="/js/esri_stationmap.js"></script>
+</head>
+<body class="claro">
+  <a href="#contents" class="skip-nav-link usa-skipnav">Skip Navigation</a>
+
+    <div class="web-page">
+    <!-- Header Section -->
+    <header class="header">
+      <div class="banner">
+        <a href="https://www.noaa.gov/" class="header-noaa-link"><img src="/images/noaa-logo.png" width="53" height="59" alt="NOAA Logo" class="header-noaa-icon responsive"></a>
+        <a href="https://www.weather.gov/" class="header-nws-link"><img src="/images/nws-logo.png" width="53" height="59" alt="NWS Logo" class="header-nws-icon responsive"></a>
+	<a href="/" class="header-ndbc-link"><img src="/images/ndbcheader.png" width="554" height="60" alt="National Data Buoy Center" class="header-ndbc-icon responsive"></a>
+        <a href="https://www.commerce.gov/" class="header-doc-link"><img src="/images/header_doc.png" width="135" height="60" alt="United States Department of Commerce" class="header-doc responsive"></a>
+      </div>
+<!-- Top Menu Content -->
+	<div class="nav-container">
+          <button class="mobile-nav-toggle" aria-controls="topnavbar" aria-expanded="false"><span class="visually-hidden">Menu</span><span class="bar1"></span><span class="bar2"></span><span class="bar3"></span></button>
+        <nav class="topnav" id="topnavbar">
+          <ul id="topnav">
+  
+    <!-- Home Link -->
+            <li>
+              <div class="section-link">
+                <a href="/">Home</a>
+              </div>
+            </li>
+ 
+    <!-- Observations Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/observations.shtml">Observations</a>
+              </div>
+              <div class="drop drop-left">
+                <ul>
+                  <li><a href="/obs.shtml">All Stations (Map)</a></li>
+                  <li><a href="/os.shtml">Observation Search</a></li>
+                  <li><a href="/histsearch.php">Historical Observation Search</a></li>
+                  <li><a href="/ship_obs.php">Ship Obs Report</a></li>
+                  <li><a href="/buoycams.shtml">BuoyCAMs</a></li>
+                  <li><a href="/faq/rss_access.shtml">RSS Feeds <img src="/images/feed-icon-14x14.png" alt="Image indicating link to RSS feed access page" width="14" height="14"></a></li>
+                  <li><a href="/widgets/">Web Widget</a></li>
+                </ul>
+              </div>
+            </li>
+
+    <!-- Information Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/information.shtml">Information</a>
+              </div>
+              <div class="drop drop-left">
+                <ul>
+                  <li><a href="https://tao.ndbc.noaa.gov/pgm-info/">TAO Program Info</a></li>
+                  <li><a href="/dart/dart.shtml">DART&reg; Program Info</a></li>
+                  <li><a href="https://ioos.noaa.gov/">IOOS&reg; Program Info</a></li>
+                  <li><a href="https://vos.noaa.gov/">Voluntary Observing Ship</a></li>
+                  <li><a href="/docs/ndbc_web_data_guide.pdf">Web Data Guide</a></li>
+                  <li><a href="/ops.shtml">Maintenance Schedule</a></li>
+                  <li><a href="/wstat.shtml">Station Status</a></li>
+                  <li><a href="/publications/">Publications</a></li>
+                </ul>
+              </div>
+            </li>
+
+    <!-- Education Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/education.shtml">Education</a>
+              </div>
+              <div class="drop drop-left">
+                <ul>
+                  <li><a href="/education/">Education</a></li>
+                  <li><a href="/faq/">Frequently Asked Questions</a></li>
+                </ul>
+              </div>
+            </li>
+
+    <!-- News Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/news.shtml">News</a>
+              </div>
+              <div class="drop drop-left">
+                <ul>
+                  <li><a href="/news/">News @ NDBC</a></li>
+                  <li><a href="/ndbcexit.php?url=https://www.facebook.com/NWSNDBC"><img src="/images/f_logo.png" alt="Follow the National Data Buoy Center on Facebook" width="16" height="16"> &nbsp; NDBC on Facebook</a></li>
+                  <li><a href="/ndbcexit.php?url=https://www.x.com/databuoycenter"><img src="/images/x.png" alt="Follow the National Data Buoy Center on X" width="16" height="16"> &nbsp; NDBC on X</a></li>
+                  <li><a href="/ndbcexit.php?url=https://www.linkedin.com/company/noaa"><img src="/images/linkedin_logo.png" alt="Follow the National Data Buoy Center on LinkedIn" width="19" height="16"> &nbsp; NOAA on LinkedIn</a></li>
+                </ul>
+              </div>
+            </li>
+
+    <!-- Search Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/search.shtml">Search</a>
+              </div>
+              <div class="dropsearch drop-right">
+                <div class="site-search">
+		  <p><b>Site Search</b></p>
+                  <form method="get" action="https://search.usa.gov/search" role="search" aria-label="Sitewide">
+                    <input type="hidden" name="v:project" value="firstgov">
+                    <label for="query">Search For</label>
+                    <input type="search" name="query" id="query" size="12" autocomplete="off" enterkeyhint="search">
+                    <input type="submit" value="Go">
+                    <p>
+                      <input type="radio" name="affiliate" checked="checked" value="ndbc.noaa.gov" id="ndbc">
+                      <label for="ndbc" class="search-scope">NDBC</label>
+                      <input type="radio" name="affiliate" value="noaa.gov" id="noaa">
+                      <label for="noaa" class="search-scope">All NOAA</label>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </li>
+
+    <!-- About Menu -->
+            <li>
+              <div class="section-link has-dropdown">
+                <a href="/about.shtml">About</a>
+              </div>
+              <div class="drop drop-right">
+                <ul>
+                  <li><a href="/faq/ndbc.shtml">About Us</a></li>
+		  <li><a href="/ndbc-history.shtml">NDBC History</a></li>
+                  <li><a href="/visitorinfo.shtml">Visitor Information</a></li>
+                  <li><a href="/contact_us.shtml">Contact Us</a></li>
+                </ul>
+              </div>
+            </li>
+
+          </ul><!-- End of top nav ul -->
+        </nav><!-- End of topnav content div -->
+	</div>
+    </header>
+
+        <!-- START OF CONTENT -->
+		<main class="main-content" id="contents">
+			<div class="station-search"><form id="station_form" method="get" action="/station_page.php" role="search" aria-label="Station ID">
+			<label for="station">Station ID Search</label>
+			<span class="searchinput"><input name="station" id="station" class="station-input" type="search" required pattern="[0-9a-zA-z]{4,7}" title="4 to 7 letters or digits" value="" size="8" maxlength="7">
+			<input type="submit" value="Go"></span></form>
+			<a href="/to_station.shtml" title="View a list of available stations ordered by owner" class="nav">Station List</a>
+			</div>
+			<div class="notices">
+			
+			
+			</div>
+			<h1>Station 23223  - Bay of Bengal</h1>
+			
+
+
+	<section id="stationmetadata" class="metadata">
+		<div id="stn_info">
+		<div id="stn_metadata">
+		<p><b>Owned and maintained by <a href="/ndbcexit.php?url=https://www.niot.res.in/">National Institute for Ocean Technology INDIA</a></b><br>
+		<b>Indian Tsunami Buoy</b><br>
+		<b>ITB payload</b><br>
+		<b>17.333 N 89.483 E (17&#176;20'0" N 89&#176;29'0" E)</b><br>
+		<br>
+		</p>
+<div role="note" aria-label="Station Notice" class="station-notice">Data are not quality controlled by NDBC.</div>
+		<p><a href="/radial_search.php?lat1=17.333N&lon1=89.483E&uom=E&dist=250">Meteorological Observations from Nearby Stations and Ships</a>
+		<a href="/rss/ndbc_obs_search.php?lat=17.333N&lon=89.483E" title="RSS feed of recent meteorological observations near station 23223">
+			<img src="/images/feed-icon-14x14.png" alt="Image indicating link to RSS feed of recent meteorological observations near station 23223" width="14" height="14">
+		</a></p>
+		<p><a href="/dart/dart.shtml">DART&reg; Program Description</a></p>
+		<p><a href="https://www.tsunami.gov/">U.S. Tsunami Warning Centers</a></p>
+		</div>
+		<div id="stn_img_map">
+	<div id="stnmapcontainer">
+  <div id="switch-basemap-container">
+    <div id="basemap-selection-form" title="Choose a Basemap">
+        <label for="basemap-selected">Map Type: </label>
+     	<select name="basemap-selected" id="basemap-selected" title="Basemap Dropdown Menu">
+        <option value="none">Select Basemap</option>
+       	<option value="oceans">Oceans</option>
+       	<option value="satellite">Satellite</option>
+       	<option value="streets">Streets</option>
+       	<option value="topo">Topographic</option>
+     	</select>
+   	</div>
+  </div>
+  <div id="stnmap"></div>
+  <div class="ndbcmapfooter">
+	<div>
+      Large icon indicates selected station.<br>
+      <img src="/images/maps/markers/tiny_active_marker.png" width="11" height="11" alt="yellow diamond" class="middle"> Stations with recent data<br>
+      <img src="/images/maps/markers/tiny_inactive_marker.png" width="11" height="11" alt="red diamond" class=":middle"> Stations with no data in last 8 hours<br>(24 hours for tsunami stations)
+    </div>
+    <div>
+      <a href="https://www.weather.gov/disclaimer#esri" target="_blank" rel="noopener noreferrer">Disclaimer</a><br>
+      <!--<a href="javascript:alert('Reserved for future KML option');">Download in KML/KMZ</a>-->
+    </div>
+  </div>
+</div>
+	</div></div>
+<p class="toggle-container"><label for="reloadToggle">Refresh page every 10 minutes:</label> <input id="reloadToggle" class="toggle" type="checkbox" ></p>
+</section>
+<hr>
+<section id="dartdata" class="data" data-nosnippet><p><img src="/plot?station=23223&meas=hght&uom=M&width=500&height=275&start=20261120000000&end=20261124235959" width="500" height="275" alt="Plot of Water Column Height Data for Station 23223" class="responsive"></p>
+<hr>
+	<p><b>Data Access</b></p>
+	<form name="dart_data_select" class="dart-data-form" action="/station_page.php" method="get" onsubmit="return checkform(this);">
+	<input type="hidden" name="station" value="23223">
+	<label for="type"> Data Type<br><select name="type" id="type" onchange="updateSeries(this)" size="1">
+	<option selected="selected" value="0">Data Type</option>
+	<option value="1">Heights</option>
+	<option value="2">Events</option>
+	<!-- <option value=3>Unparsed p</option> -->
+	<!-- <option value=4>Unparsed s</option> -->
+	</select></label>
+	<label for="seriestime">Available series<br>
+	<select name="seriestime" id="seriestime" size="4">
+		<option value="">&nbsp;</option>
+	</select></label>
+	<div class="flex-break"></div>
+	<label>Start Date<br>
+	<input name="startdate" id="startdate" type="date">
+	</label>
+	<label>End Date<br>
+	<input name="enddate" id="enddate" type="date">
+	</label>
+	<input type="submit" value="Select">
+	</form>
+	<form name="dart_data" action="/station_page.php" method="get">
+<p>Water Column Heights:<br>11/20/2026 00:00:00 to 11/24/2026 23:59:59</p>
+<p>The data are recorded in pounds per square inch absolute (PSIA), but are displayed in meters of water after applying a constant 670.0 mm of water/PSIA conversion factor.</p>
+<label for="data">Water Column Heights:<br><textarea name="data" id="data" rows="30" cols="35">#YY  MM DD hh mm ss T   HEIGHT
+#yr  mo dy hr mn  s -      m
+2026 11 24 09 00 00 1 2339.221
+2026 11 24 08 45 00 1 2339.167
+2026 11 24 08 30 00 1 2339.128
+2026 11 24 08 15 00 1 2339.109
+2026 11 24 08 00 00 1 2339.106
+2026 11 24 07 45 00 1 2339.111
+2026 11 24 07 30 00 1 2339.135
+2026 11 24 07 15 00 1 2339.172
+2026 11 24 07 00 00 1 2339.222
+2026 11 24 06 45 00 1 2339.289
+2026 11 24 06 30 00 1 2339.361
+2026 11 24 06 15 00 1 2339.451
+2026 11 24 06 00 00 1 2339.544
+2026 11 24 05 45 00 1 2339.645
+2026 11 24 05 30 00 1 2339.748
+2026 11 24 05 15 00 1 2339.862
+2026 11 24 05 00 00 1 2339.973
+2026 11 24 04 45 00 1 2340.080
+2026 11 24 04 30 00 1 2340.190
+2026 11 24 04 15 00 1 2340.294
+2026 11 24 04 00 00 1 2340.394
+2026 11 24 03 45 00 1 2340.480
+2026 11 24 03 30 00 1 2340.564
+2026 11 24 03 15 00 1 2340.635
+2026 11 24 03 00 00 1 2340.692
+2026 11 24 02 45 00 1 2340.744
+2026 11 24 02 30 00 1 2340.781
+2026 11 24 02 15 00 1 2340.805
+2026 11 24 02 00 00 1 2340.817
+2026 11 24 01 45 00 1 2340.805
+2026 11 24 01 30 00 1 2340.788
+2026 11 24 01 15 00 1 2340.762
+2026 11 24 01 00 00 1 2340.720
+2026 11 24 00 45 00 1 2340.663
+2026 11 24 00 30 00 1 2340.600
+2026 11 24 00 15 00 1 2340.525
+2026 11 24 00 00 00 1 2340.441
+2026 11 23 23 45 00 1 2340.349
+2026 11 23 23 30 00 1 2340.250
+2026 11 23 23 15 00 1 2340.158
+2026 11 23 23 00 00 1 2340.049
+2026 11 23 22 45 00 1 2339.947
+2026 11 23 22 30 00 1 2339.849
+2026 11 23 22 15 00 1 2339.761
+2026 11 23 22 00 00 1 2339.672
+2026 11 23 21 45 00 1 2339.596
+2026 11 23 21 30 00 1 2339.523
+2026 11 23 21 15 00 1 2339.462
+2026 11 23 21 00 00 1 2339.407
+2026 11 23 20 45 00 1 2339.368
+2026 11 23 20 30 00 1 2339.340
+2026 11 23 20 15 00 1 2339.324
+2026 11 23 20 00 00 1 2339.323
+2026 11 23 19 45 00 1 2339.336
+2026 11 23 19 30 00 1 2339.360
+2026 11 23 19 15 00 1 2339.397
+2026 11 23 19 00 00 1 2339.449
+2026 11 23 18 45 00 1 2339.512
+2026 11 23 18 30 00 1 2339.592
+2026 11 23 18 15 00 1 2339.679
+2026 11 23 18 00 00 1 2339.771
+2026 11 23 17 45 00 1 2339.875
+2026 11 23 17 30 00 1 2339.981
+2026 11 23 17 15 00 1 2340.090
+2026 11 23 17 00 00 1 2340.198
+2026 11 23 16 45 00 1 2340.312
+2026 11 23 16 30 00 1 2340.423
+2026 11 23 16 15 00 1 2340.535
+2026 11 23 16 00 00 1 2340.632
+2026 11 23 15 45 00 1 2340.730
+2026 11 23 15 30 00 1 2340.815
+2026 11 23 15 15 00 1 2340.895
+2026 11 23 15 00 00 1 2340.963
+2026 11 23 14 45 00 1 2341.024
+2026 11 23 14 30 00 1 2341.070
+2026 11 23 14 15 00 1 2341.105
+2026 11 23 14 00 00 1 2341.128
+2026 11 23 13 45 00 1 2341.128
+2026 11 23 13 30 00 1 2341.117
+2026 11 23 13 15 00 1 2341.094
+2026 11 23 13 00 00 1 2341.061
+2026 11 23 12 45 00 1 2341.006
+2026 11 23 12 30 00 1 2340.939
+2026 11 23 12 15 00 1 2340.864
+2026 11 23 12 00 00 1 2340.778
+2026 11 23 11 45 00 1 2340.675
+2026 11 23 11 30 00 1 2340.574
+2026 11 23 11 15 00 1 2340.469
+2026 11 23 11 00 00 1 2340.351
+2026 11 23 10 45 00 1 2340.231
+2026 11 23 10 30 00 1 2340.115
+2026 11 23 10 15 00 1 2339.996
+2026 11 23 10 00 00 1 2339.880
+2026 11 23 09 45 00 1 2339.775
+2026 11 23 09 30 00 1 2339.665
+2026 11 23 09 15 00 1 2339.566
+2026 11 23 09 00 00 1 2339.483
+2026 11 23 08 45 00 1 2339.404
+2026 11 23 08 30 00 1 2339.341
+2026 11 23 08 15 00 1 2339.286
+2026 11 23 08 00 00 1 2339.245
+2026 11 23 07 45 00 1 2339.221
+2026 11 23 07 30 00 1 2339.206
+2026 11 23 07 15 00 1 2339.206
+2026 11 23 07 00 00 1 2339.218
+2026 11 23 06 45 00 1 2339.245
+2026 11 23 06 30 00 1 2339.281
+2026 11 23 06 15 00 1 2339.339
+2026 11 23 06 00 00 1 2339.401
+2026 11 23 05 45 00 1 2339.473
+2026 11 23 05 30 00 1 2339.559
+2026 11 23 05 15 00 1 2339.647
+2026 11 23 05 00 00 1 2339.741
+2026 11 23 04 45 00 1 2339.838
+2026 11 23 04 30 00 1 2339.936
+2026 11 23 04 15 00 1 2340.042
+2026 11 23 04 00 00 1 2340.140
+2026 11 23 03 45 00 1 2340.236
+2026 11 23 03 30 00 1 2340.330
+2026 11 23 03 15 00 1 2340.415
+2026 11 23 03 00 00 1 2340.498
+2026 11 23 02 45 00 1 2340.564
+2026 11 23 02 30 00 1 2340.631
+2026 11 23 02 15 00 1 2340.681
+2026 11 23 02 00 00 1 2340.725
+2026 11 23 01 45 00 1 2340.751
+2026 11 23 01 30 00 1 2340.765
+2026 11 23 01 15 00 1 2340.780
+2026 11 23 01 00 00 1 2340.769
+2026 11 23 00 45 00 1 2340.749
+2026 11 23 00 30 00 1 2340.718
+2026 11 23 00 15 00 1 2340.680
+2026 11 23 00 00 00 1 2340.624
+2026 11 22 23 45 00 1 2340.568
+2026 11 22 23 30 00 1 2340.493
+2026 11 22 23 15 00 1 2340.414
+2026 11 22 23 00 00 1 2340.338
+2026 11 22 22 45 00 1 2340.254
+2026 11 22 22 30 00 1 2340.168
+2026 11 22 22 15 00 1 2340.074
+2026 11 22 22 00 00 1 2339.987
+2026 11 22 21 45 00 1 2339.897
+2026 11 22 21 30 00 1 2339.816
+2026 11 22 21 15 00 1 2339.737
+2026 11 22 21 00 00 1 2339.668
+2026 11 22 20 45 00 1 2339.600
+2026 11 22 20 30 00 1 2339.548
+2026 11 22 20 15 00 1 2339.503
+2026 11 22 20 00 00 1 2339.470
+2026 11 22 19 45 00 1 2339.444
+2026 11 22 19 30 00 1 2339.434
+2026 11 22 19 15 00 1 2339.433
+2026 11 22 19 00 00 1 2339.451
+2026 11 22 18 45 00 1 2339.473
+2026 11 22 18 30 00 1 2339.511
+2026 11 22 18 15 00 1 2339.559
+2026 11 22 18 00 00 1 2339.619
+2026 11 22 17 45 00 1 2339.687
+2026 11 22 17 30 00 1 2339.763
+2026 11 22 17 15 00 1 2339.849
+2026 11 22 17 00 00 1 2339.946
+2026 11 22 16 45 00 1 2340.038
+2026 11 22 16 30 00 1 2340.139
+2026 11 22 16 15 00 1 2340.236
+2026 11 22 16 00 00 1 2340.333
+2026 11 22 15 45 00 1 2340.432
+2026 11 22 15 30 00 1 2340.531
+2026 11 22 15 15 00 1 2340.616
+2026 11 22 15 00 00 1 2340.702
+2026 11 22 14 45 00 1 2340.775
+2026 11 22 14 30 00 1 2340.843
+2026 11 22 14 15 00 1 2340.900
+2026 11 22 14 00 00 1 2340.944
+2026 11 22 13 45 00 1 2340.981
+2026 11 22 13 30 00 1 2341.003
+2026 11 22 13 15 00 1 2341.015
+2026 11 22 13 00 00 1 2341.011
+2026 11 22 12 45 00 1 2340.992
+2026 11 22 12 30 00 1 2340.963
+2026 11 22 12 15 00 1 2340.927
+2026 11 22 12 00 00 1 2340.871
+2026 11 22 11 45 00 1 2340.812
+2026 11 22 11 30 00 1 2340.744
+2026 11 22 11 15 00 1 2340.662
+2026 11 22 11 00 00 1 2340.570
+2026 11 22 10 45 00 1 2340.477
+2026 11 22 10 30 00 1 2340.378
+2026 11 22 10 15 00 1 2340.270
+2026 11 22 10 00 00 1 2340.172
+2026 11 22 09 45 00 1 2340.065
+2026 11 22 09 30 00 1 2339.964
+2026 11 22 09 15 00 1 2339.859
+2026 11 22 09 00 00 1 2339.757
+2026 11 22 08 45 00 1 2339.670
+2026 11 22 08 30 00 1 2339.589
+2026 11 22 08 15 00 1 2339.511
+2026 11 22 08 00 00 1 2339.450
+2026 11 22 07 45 00 1 2339.394
+2026 11 22 07 30 00 1 2339.349
+2026 11 22 07 15 00 1 2339.313
+2026 11 22 07 00 00 1 2339.295
+2026 11 22 06 45 00 1 2339.287
+2026 11 22 06 30 00 1 2339.294
+2026 11 22 06 15 00 1 2339.305
+2026 11 22 06 00 00 1 2339.337
+2026 11 22 05 45 00 1 2339.378
+2026 11 22 05 30 00 1 2339.428
+2026 11 22 05 15 00 1 2339.486
+2026 11 22 05 00 00 1 2339.553
+2026 11 22 04 45 00 1 2339.632
+2026 11 22 04 30 00 1 2339.713
+2026 11 22 04 15 00 1 2339.797
+2026 11 22 04 00 00 1 2339.883
+2026 11 22 03 45 00 1 2339.972
+2026 11 22 03 30 00 1 2340.061
+2026 11 22 03 15 00 1 2340.149
+2026 11 22 03 00 00 1 2340.233
+2026 11 22 02 45 00 1 2340.314
+2026 11 22 02 30 00 1 2340.392
+2026 11 22 02 15 00 1 2340.463
+2026 11 22 02 00 00 1 2340.524
+2026 11 22 01 45 00 1 2340.582
+2026 11 22 01 30 00 1 2340.621
+2026 11 22 01 15 00 1 2340.657
+2026 11 22 01 00 00 1 2340.680
+2026 11 22 00 45 00 1 2340.696
+2026 11 22 00 30 00 1 2340.704
+2026 11 22 00 15 00 1 2340.696
+2026 11 22 00 00 00 1 2340.678
+2026 11 21 23 45 00 1 2340.652
+2026 11 21 23 30 00 1 2340.616
+2026 11 21 23 15 00 1 2340.573
+2026 11 21 23 00 00 1 2340.519
+2026 11 21 22 45 00 1 2340.461
+2026 11 21 22 30 00 1 2340.396
+2026 11 21 22 15 00 1 2340.328
+2026 11 21 22 00 00 1 2340.254
+2026 11 21 21 45 00 1 2340.181
+2026 11 21 21 30 00 1 2340.097
+2026 11 21 21 15 00 1 2340.022
+2026 11 21 21 00 00 1 2339.951
+2026 11 21 20 45 00 1 2339.882
+2026 11 21 20 30 00 1 2339.815
+2026 11 21 20 15 00 1 2339.754
+2026 11 21 20 00 00 1 2339.703
+2026 11 21 19 45 00 1 2339.656
+2026 11 21 19 30 00 1 2339.618
+2026 11 21 19 15 00 1 2339.590
+2026 11 21 19 00 00 1 2339.574
+2026 11 21 18 45 00 1 2339.563
+2026 11 21 18 30 00 1 2339.567
+2026 11 21 18 15 00 1 2339.580
+2026 11 21 18 00 00 1 2339.600
+2026 11 21 17 45 00 1 2339.637
+2026 11 21 17 30 00 1 2339.677
+2026 11 21 17 15 00 1 2339.731
+2026 11 21 17 00 00 1 2339.789
+2026 11 21 16 45 00 1 2339.860
+2026 11 21 16 30 00 1 2339.932
+2026 11 21 16 15 00 1 2340.011
+2026 11 21 16 00 00 1 2340.087
+2026 11 21 15 45 00 1 2340.165
+2026 11 21 15 30 00 1 2340.251
+2026 11 21 15 15 00 1 2340.336
+2026 11 21 15 00 00 1 2340.409
+2026 11 21 14 45 00 1 2340.487
+2026 11 21 14 30 00 1 2340.555
+2026 11 21 14 15 00 1 2340.623
+2026 11 21 14 00 00 1 2340.685
+2026 11 21 13 45 00 1 2340.733
+2026 11 21 13 30 00 1 2340.775
+2026 11 21 13 15 00 1 2340.813
+2026 11 21 13 00 00 1 2340.838
+2026 11 21 12 45 00 1 2340.847
+2026 11 21 12 30 00 1 2340.848
+2026 11 21 12 15 00 1 2340.847
+2026 11 21 12 00 00 1 2340.830
+2026 11 21 11 45 00 1 2340.798
+2026 11 21 11 30 00 1 2340.762
+2026 11 21 11 15 00 1 2340.719
+2026 11 21 11 00 00 1 2340.657
+2026 11 21 10 45 00 1 2340.596
+2026 11 21 10 30 00 1 2340.529
+2026 11 21 10 15 00 1 2340.447
+2026 11 21 10 00 00 1 2340.367
+2026 11 21 09 45 00 1 2340.283
+2026 11 21 09 30 00 1 2340.192
+2026 11 21 09 15 00 1 2340.108
+2026 11 21 09 00 00 1 2340.024
+2026 11 21 08 45 00 1 2339.937
+2026 11 21 08 30 00 1 2339.854
+2026 11 21 08 15 00 1 2339.783
+2026 11 21 08 00 00 1 2339.709
+2026 11 21 07 45 00 1 2339.649
+2026 11 21 07 30 00 1 2339.592
+2026 11 21 07 15 00 1 2339.540
+2026 11 21 07 00 00 1 2339.500
+2026 11 21 06 45 00 1 2339.474
+2026 11 21 06 30 00 1 2339.450
+2026 11 21 06 15 00 1 2339.437
+2026 11 21 06 00 00 1 2339.437
+2026 11 21 05 45 00 1 2339.448
+2026 11 21 05 30 00 1 2339.466
+2026 11 21 05 15 00 1 2339.495
+2026 11 21 05 00 00 1 2339.529
+2026 11 21 04 45 00 1 2339.573
+2026 11 21 04 30 00 1 2339.627
+2026 11 21 04 15 00 1 2339.685
+2026 11 21 04 00 00 1 2339.750
+2026 11 21 03 45 00 1 2339.817
+2026 11 21 03 30 00 1 2339.885
+2026 11 21 03 15 00 1 2339.962
+2026 11 21 03 00 00 1 2340.036
+2026 11 21 02 45 00 1 2340.111
+2026 11 21 02 30 00 1 2340.180
+2026 11 21 02 15 00 1 2340.255
+2026 11 21 02 00 00 1 2340.321
+2026 11 21 01 45 00 1 2340.383
+2026 11 21 01 30 00 1 2340.442
+2026 11 21 01 15 00 1 2340.497
+2026 11 21 01 00 00 1 2340.536
+2026 11 21 00 45 00 1 2340.574
+2026 11 21 00 30 00 1 2340.604
+2026 11 21 00 15 00 1 2340.622
+2026 11 21 00 00 00 1 2340.629
+2026 11 20 23 45 00 1 2340.633
+2026 11 20 23 30 00 1 2340.629
+2026 11 20 23 15 00 1 2340.617
+2026 11 20 23 00 00 1 2340.598
+2026 11 20 22 45 00 1 2340.567
+2026 11 20 22 30 00 1 2340.530
+2026 11 20 22 15 00 1 2340.489
+2026 11 20 22 00 00 1 2340.442
+2026 11 20 21 45 00 1 2340.389
+2026 11 20 21 30 00 1 2340.331
+2026 11 20 21 15 00 1 2340.271
+2026 11 20 21 00 00 1 2340.211
+2026 11 20 20 45 00 1 2340.156
+2026 11 20 20 30 00 1 2340.088
+2026 11 20 20 15 00 1 2340.036
+2026 11 20 20 00 00 1 2339.976
+2026 11 20 19 45 00 1 2339.926
+2026 11 20 19 30 00 1 2339.873
+2026 11 20 19 15 00 1 2339.834
+2026 11 20 19 00 00 1 2339.792
+2026 11 20 18 45 00 1 2339.766
+2026 11 20 18 30 00 1 2339.741
+2026 11 20 18 15 00 1 2339.728
+2026 11 20 18 00 00 1 2339.717
+2026 11 20 17 45 00 1 2339.719
+2026 11 20 17 30 00 1 2339.728
+2026 11 20 17 15 00 1 2339.748
+2026 11 20 17 00 00 1 2339.775
+2026 11 20 16 45 00 1 2339.804
+2026 11 20 16 30 00 1 2339.847
+2026 11 20 16 15 00 1 2339.890
+2026 11 20 16 00 00 1 2339.940
+2026 11 20 15 45 00 1 2339.999
+2026 11 20 15 30 00 1 2340.055
+2026 11 20 15 15 00 1 2340.117
+2026 11 20 15 00 00 1 2340.179
+2026 11 20 14 45 00 1 2340.242
+2026 11 20 14 30 00 1 2340.306
+2026 11 20 14 15 00 1 2340.363
+2026 11 20 14 00 00 1 2340.421
+2026 11 20 13 45 00 1 2340.475
+2026 11 20 13 30 00 1 2340.523
+2026 11 20 13 15 00 1 2340.572
+2026 11 20 13 00 00 1 2340.608
+2026 11 20 12 45 00 1 2340.633
+2026 11 20 12 30 00 1 2340.658
+2026 11 20 12 15 00 1 2340.672
+2026 11 20 12 00 00 1 2340.675
+2026 11 20 11 45 00 1 2340.678
+2026 11 20 11 30 00 1 2340.666
+2026 11 20 11 15 00 1 2340.648
+2026 11 20 11 00 00 1 2340.622
+2026 11 20 10 45 00 1 2340.586
+2026 11 20 10 30 00 1 2340.549
+2026 11 20 10 15 00 1 2340.505
+2026 11 20 10 00 00 1 2340.450
+2026 11 20 09 45 00 1 2340.400
+2026 11 20 09 30 00 1 2340.339
+2026 11 20 09 15 00 1 2340.271
+2026 11 20 09 00 00 1 2340.209
+2026 11 20 08 45 00 1 2340.138
+2026 11 20 08 30 00 1 2340.073
+2026 11 20 08 15 00 1 2340.002
+2026 11 20 08 00 00 1 2339.939
+2026 11 20 07 45 00 1 2339.877
+2026 11 20 07 30 00 1 2339.819
+2026 11 20 07 15 00 1 2339.767
+2026 11 20 07 00 00 1 2339.719
+2026 11 20 06 45 00 1 2339.675
+2026 11 20 06 30 00 1 2339.641
+2026 11 20 06 15 00 1 2339.608
+2026 11 20 06 00 00 1 2339.584
+2026 11 20 05 45 00 1 2339.573
+2026 11 20 05 30 00 1 2339.570
+2026 11 20 05 15 00 1 2339.570
+2026 11 20 05 00 00 1 2339.579
+2026 11 20 04 45 00 1 2339.594
+2026 11 20 04 30 00 1 2339.613
+2026 11 20 04 15 00 1 2339.644
+2026 11 20 04 00 00 1 2339.680
+2026 11 20 03 45 00 1 2339.725
+2026 11 20 03 30 00 1 2339.767
+2026 11 20 03 15 00 1 2339.817
+2026 11 20 03 00 00 1 2339.869
+2026 11 20 02 45 00 1 2339.926
+2026 11 20 02 30 00 1 2339.981
+2026 11 20 02 15 00 1 2340.044
+2026 11 20 02 00 00 1 2340.104
+2026 11 20 01 45 00 1 2340.160
+2026 11 20 01 30 00 1 2340.217
+2026 11 20 01 15 00 1 2340.271
+2026 11 20 01 00 00 1 2340.321
+2026 11 20 00 45 00 1 2340.363
+2026 11 20 00 30 00 1 2340.405
+2026 11 20 00 15 00 1 2340.442
+2026 11 20 00 00 00 1 2340.480
+</textarea></label>
+<input type="button" value="Highlight Data" onclick="javascript:this.form.data.focus(); this.form.data.select();">
+<p>T = Measurement Type;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where 1 = 15-minute measurement; 2 = 1-minute measurement; 3 = 15-second measurement</p>
+</form>
+</section>
+<hr>
+<section id="datalinks">
+<p><a href="/faq/measdes.shtml">Description of Measurements</a></p>
+<p>Links which are specific to this station are listed below:</p>
+<p><a href="/station_realtime.php?station=23223">Real Time Data</a> in tabular form for the last forty-five days.</p>
+<p><a href="/station_history.php?station=23223">Historical Data &#38; Climatic Summaries</a> for quality controlled data for prior months and years.</p>
+</section>
+			<hr><div class="socialMediaContainer">
+				<a class="socialMediaLink" href="/ndbcexit.php?url=https://www.facebook.com/NWSNDBC"><img src="/images/facebook_logo.png" class="socialMediaLogo" height="21" width="21" alt="Facebook Logo" title="NDBC on Facebook">&nbsp;NDBC on Facebook</a>
+				<a class="socialMediaLink" href="/ndbcexit.php?url=https://www.linkedin.com/company/noaa"><img src="/images/linkedin_logo.png" class="socialMediaLogo" height="21" width="25" alt="LinkedIn Logo" title="NDBC on LinkedIn">&nbsp;NOAA on LinkedIn</a>
+				<a class="socialMediaLink" href="/ndbcexit.php?url=https://www.x.com/databuoycenter"><img src="/images/x.png" class="socialMediaLogo" height="21" width="21" alt="X Logo" title="NDBC on X">&nbsp;NDBC on X</a>
+			</div>
+
+		</main>
+
+        <!-- END OF CONTENT -->
+        <footer class="footer">
+          <div class="footer-content">
+
+            <div class="footer-column">
+              <a class="footer-column-head">Observations</a><br>
+              <a href="/obs.shtml">All Stations (Map)</a><br>
+              <a href="/os.shtml">Observation Search</a><br>
+              <a href="/histsearch.php">Historical Observation Search</a><br>
+              <a href="/ship_obs.php">Ship Obs Report</a><br>
+              <a href="/buoycams.shtml">BuoyCAMs</a><br>
+              <a href="/faq/rss_access.shtml">RSS Feeds <img src="/images/feed-icon-14x14.png" alt="Image indicating link to RSS feed access page" width="14" height="14"></a><br>
+              <a href="/widgets/">Web Widget</a><br>
+            </div>
+
+            <div class="footer-column">
+              <a class="footer-column-head">Information</a><br>
+              <a href="https://tao.ndbc.noaa.gov/pgm-info/">TAO Program Info</a><br>
+              <a href="/dart/dart.shtml">DART&reg; Program Info</a><br>
+              <a href="https://ioos.noaa.gov/">IOOS&reg; Program Info</a><br>
+              <a href="https://vos.noaa.gov/">Voluntary Observing Ship</a><br>
+              <a href="/docs/ndbc_web_data_guide.pdf">Web Data Guide</a><br>
+              <a href="/ops.shtml">Station Maintenance Schedule</a><br>
+              <a href="/wstat.shtml">Station Status</a><br>
+              <a href="/publications/">Publications</a>
+            </div>
+
+            <div>
+            <div class="footer-column">
+              <a class="footer-column-head">Education</a><br>
+              <a href="/education/">Education</a><br>
+            </div>
+
+            <div class="footer-column">
+              <a class="footer-column-head">News</a><br>
+              <a href="/news/">News @ NDBC</a><br>
+              <a href="/ndbcexit.php?url=https://www.facebook.com/NWSNDBC"><img src="/images/f_logo.png" alt="Follow the National Data Buoy Center on Facebook" width="16" height="16"> &nbsp; NDBC on Facebook</a><br>
+              <a href="/ndbcexit.php?url=https://www.x.com/databuoycenter"><img src="/images/x.png" alt="Follow the National Data Buoy Center on X" width="16" height="16"> &nbsp; NDBC on X</a><br>
+              <a href="/ndbcexit.php?url=https://www.linkedin.com/company/noaa"><img src="/images/linkedin_logo.png" alt="Follow the National Data Buoy Center on LinkedIn" width="19" height="16"> &nbsp; NOAA on LinkedIn</a>
+            </div>
+            </div>
+
+            <div>
+            <div class="footer-column">
+              <a class="footer-column-head">Other NDBC Websites</a><br>
+              <a href="/mobile/">Low Bandwidth Website</a><br>
+              <a href="https://dods.ndbc.noaa.gov/">NDBC Data via NetCDF (THREDDS)</a><br>
+              <a href="https://hfradar.ndbc.noaa.gov/">Surface Currents via High Frequency Radar</a><br>
+              <a href="https://tao.ndbc.noaa.gov/">Tropical Atmosphere Ocean (TAO)</a><br>
+              <a href="https://dods.ndbc.noaa.gov/oceansites/">OceanSITES</a><br>
+              <a href="https://viz.pmel.noaa.gov/osmc/">OSMC</a><br>
+            </div>
+
+            <div class="footer-column">
+              <a class="footer-column-head">About Us</a><br>
+              <a href="/faq/ndbc.shtml">About Us</a><br>
+	      <a href="/ndbc-history.shtml">NDBC History</a><br>
+              <a href="/visitorinfo.shtml">Visitor Information</a><br>
+              <a href="/contact_us.shtml">Contact Us</a>
+            </div>
+            </div>
+
+          </div>
+
+<!-- legal footer area -->
+          <div class="footer-legal-content">
+            <div class="footer-legal-gov">
+              <a href="https://www.usa.gov/"><img src="/images/usa_gov.png" alt="usa.gov" width="110" height="30"></a>
+            </div> 
+            <div class="footer-legal-column">
+              <p> 
+                  <a href="https://www.commerce.gov/">US Dept of Commerce</a><br>
+                  <a href="https://www.noaa.gov/">National Oceanic and Atmospheric Administration</a><br>
+                  <a href="https://www.weather.gov/">National Weather Service</a><br>
+                  National Data Buoy Center<br>
+                  Building 3205<br>
+                  Stennis Space Center, MS, 39529<br>
+                  <a href="mailto:webmaster.ndbc@noaa.gov">webmaster.ndbc@noaa.gov</a>
+              </p>
+            </div>
+
+ 	    <div class="footer-legal-column2">
+            <p>
+              <a href="https://www.weather.gov/disclaimer">Disclaimer</a><br>
+              <a href="https://www.cio.noaa.gov/services_programs/info_quality.html">Information Quality</a><br>
+              <a href="https://www.weather.gov/help">Help</a><br>
+              <a href="https://www.weather.gov/glossary">Glossary</a>
+            </p>
+            </div>
+
+   	    <div class="footer-legal-column3">
+            <p>
+              <a href="https://www.weather.gov/privacy">Privacy Policy</a><br>
+              <a href="https://www.noaa.gov/information-technology/foia">Freedom of Information Act (FOIA)</a><br>
+	      <a href="https://www.noaa.gov/accessibility">Accessibility</a><br>
+              <a href="https://www.weather.gov/careers">Career Opportunities</a>
+            </p>
+          </div>
+	
+        </div><!-- end of footer-legal-content div  -->
+
+    </footer><!-- End of center div -->
+</div> <!-- End of web page div -->
+
+
+</body>
+</html>

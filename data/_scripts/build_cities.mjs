@@ -1,0 +1,95 @@
+// Builds D:\gsic\data\cities.json from figures read off Wikipedia infoboxes (raw wikitext via API) / cited pages.
+import fs from 'node:fs';
+const W = t => 'https://en.wikipedia.org/wiki/' + encodeURI(t.replace(/ /g, '_'));
+const T = {
+  main: W('2004 Indian Ocean earthquake and tsunami'),
+  ctry: W('Countries affected by the 2004 Indian Ocean earthquake and tsunami'),
+  lk: W('Effect of the 2004 Indian Ocean earthquake on Sri Lanka'),
+  th: W('Effect of the 2004 Indian Ocean earthquake on Thailand'),
+  id: W('Effect of the 2004 Indian Ocean earthquake on Indonesia'),
+  so: W('Effect of the 2004 Indian Ocean earthquake on Somalia'),
+  mv: W('Effect of the 2004 Indian Ocean earthquake on the Maldives'),
+  my: W('Effect of the 2004 Indian Ocean earthquake on Malaysia'),
+  in: W('Effect of the 2004 Indian Ocean earthquake on India'),
+};
+// [name, country, lat, lon, population, popYear, popKind, popBasis, faces, hit2004Source|null, article, sourceNote, note?]
+const rows = [
+  ['Mumbai', 'India', 19.0761, 72.8775, 12442373, 2011, 'city proper', 'census', true, null, 'Mumbai', '2011 Census of India (provisional, cities 1 lakh+)'],
+  ['Chennai', 'India', 13.0825, 80.275, 6748026, 2011, 'city proper', 'census', true, T.main, 'Chennai', '2011 Census of India (cities 1 lakh+ table)', 'Figure appears to be for the expanded Greater Chennai Corporation area'],
+  ['Karachi', 'Pakistan', 24.86, 67.01, 18868021, 2023, 'city proper', 'census', true, null, 'Karachi', '2023 Pakistani census (PBS)'],
+  ['Colombo', 'Sri Lanka', 6.9344, 79.8428, 752993, 2011, 'city proper', 'census', true, null, 'Colombo', 'Sri Lanka Census of Population & Housing 2011 (Dept. of Census & Statistics)'],
+  ['Chittagong', 'Bangladesh', 22.335, 91.8325, 3230507, 2022, 'city proper', 'census', true, null, 'Chittagong', '2022 Bangladeshi census (city corporation; ref citypopulation.de)'],
+  ['Yangon', 'Myanmar', 16.795, 96.16, 5160512, 2014, 'urban', 'census', false, null, 'Yangon', '2014 Myanmar census (urban population)', 'On the Yangon River ~30 km from the Gulf of Martaban (per Wikipedia Geography section)'],
+  ['Jakarta', 'Indonesia', -6.18, 106.83, 11010514, 2025, 'city proper', 'registry', false, null, 'Jakarta', 'Jakarta Population and Civil Registration Office, mid-2025', 'North coast of Java faces the Java Sea, not the open Indian Ocean'],
+  ['Durban', 'South Africa', -29.8833, 31.05, 595061, 2011, 'city proper', 'census', true, T.ctry, 'Durban', '2011 South African census (main place); eThekwini metro 4,239,901 per 2022 census', 'Harbour closed 27 Dec 2004 due to tsunami surges'],
+  ['Maputo', 'Mozambique', -25.9689, 32.5733, 1088449, 2017, 'city proper', 'census', true, null, 'Maputo', '2017 Mozambique census'],
+  ['Dar es Salaam', 'Tanzania', -6.8161, 39.2803, 7776000, 2023, 'urban', 'estimate', true, T.ctry, 'Dar es Salaam', '2023 estimate, CIA World Factbook'],
+  ['Mombasa', 'Kenya', -4.05, 39.6667, 1311860, 2020, 'city proper', 'estimate', true, null, 'Mombasa', '2020 figure citing citypopulation.de (footnote also cites 2019 Kenya census, KNBS)'],
+  ['Mogadishu', 'Somalia', 2.0392, 45.3419, 3262129, 2025, 'city proper', 'estimate', true, null, 'Mogadishu', '2025, OCHA Somalia subnational population statistics'],
+  ['Muscat', 'Oman', 23.5889, 58.4083, 1720000, 2023, 'urban', 'estimate', true, null, 'Muscat, Oman', '2023 urban area, National Centre for Statistics and Information'],
+  ['Aden', 'Yemen', 12.8, 45.0333, 863000, 2017, 'city proper', 'estimate', true, null, 'Aden', 'Yemen Statistical Yearbook 2017 (Central Statistical Organisation)'],
+  ['Djibouti City', 'Djibouti', 11.5944, 43.1481, 776966, 2024, 'city proper', 'census', true, null, 'Djibouti (city)', '2024 census'],
+  ['Banda Aceh', 'Indonesia', 5.55, 95.3175, 267962, 2025, 'city proper', 'estimate', true, T.main, 'Banda Aceh', 'BPS mid-2025 estimate (Kota Banda Aceh Dalam Angka 2026)'],
+  ['Meulaboh', 'Indonesia', 4.1333, 96.1167, 67148, 2023, 'city proper', 'estimate', true, T.id, 'Meulaboh', 'BPS mid-2023 estimate'],
+  ['Phuket City', 'Thailand', 7.8881, 98.3975, 71284, 2024, 'city proper', 'registry', true, T.main, 'Phuket (city)', '2024 (infobox, no footnote); urban 252,515'],
+  ['Takua Pa District (incl. Khao Lak)', 'Thailand', 8.6889, 98.25, 48004, 2002, 'district', 'registry', true, T.th, 'Takua Pa district', 'Takua Pa District population as of 6 Nov 2002 (infobox)', 'Coordinates are Khao Lak (from Wikipedia: Khao Lak); Khao Lak has no population figure of its own'],
+  ['Port Blair (Sri Vijaya Puram)', 'India', 11.6683, 92.7378, 140572, 2011, 'city proper', 'census', true, T.main, 'Port Blair', '2011 Census of India (municipal council)'],
+  ['Car Nicobar', 'India', 9.17, 92.78, 17841, 2011, 'island', 'census', true, T.main, 'Car Nicobar', '2011 Census of India (article demographics table; infobox labels it 2014)'],
+  ['Nagapattinam', 'India', 10.7672, 79.8449, 102905, 2011, 'city proper', 'census', true, W('Nagapattinam'), 'Nagapattinam', '2011 Census of India'],
+  ['Cuddalore', 'India', 11.75, 79.75, 173636, 2011, 'city proper', 'census', true, W('Cuddalore'), 'Cuddalore', '2011 Census of India (article Demographics section)', 'Infobox shows 308,781 labelled 2021 (lead says 2011, corporation area); census figure used instead'],
+  ['Kanyakumari', 'India', 8.0883, 77.5385, 29761, 2011, 'city proper', 'census', true, T.main, 'Kanyakumari', '2011 Census of India'],
+  ['Galle', 'Sri Lanka', 6.0328, 80.2156, 112252, 2022, 'city proper', 'estimate', true, T.main, 'Galle', '2022 (infobox, no footnote)'],
+  ['Batticaloa', 'Sri Lanka', 7.7167, 81.7, 86227, 2012, 'city proper', 'census', true, T.main, 'Batticaloa', '2012 (Sri Lanka census, via citypopulation.de)'],
+  ['Trincomalee', 'Sri Lanka', 8.5667, 81.2333, 99135, 2012, 'city proper', 'census', true, T.lk, 'Trincomalee', '2012 (Sri Lanka census year; infobox, no footnote)'],
+  ['Hambantota', 'Sri Lanka', 6.1244, 81.1225, 57264, 2012, 'city proper', 'census', true, T.main, 'Hambantota', '2012 (Sri Lanka census year; infobox, no footnote)'],
+  ['Malé', 'Maldives', 4.1753, 73.5089, 211908, 2022, 'city proper', 'census', true, T.mv, 'Malé', '2022 census, Maldives Bureau of Statistics'],
+  ['Hafun', 'Somalia', 10.4167, 51.2667, 13200, 2000, 'city proper', 'estimate', true, T.main, 'Hafun', 'Infobox "2000 HH" (source not specified)'],
+  ['George Town (Penang Island)', 'Malaysia', 5.4144, 100.3292, 794313, 2020, 'city proper', 'census', true, T.my, 'George Town, Penang', '2020 Malaysian census (City of Penang Island)'],
+  ['Kollam', 'India', 8.8932, 76.6141, 397419, 2011, 'city proper', 'census', true, null, 'Kollam', '2011 Census of India (via citypopulation.de)', '2004 tsunami article names Kollam district (not the city) as damaged'],
+  ['Thiruvananthapuram', 'India', 8.5241, 76.9366, 957730, 2011, 'city proper', 'census', true, null, 'Thiruvananthapuram', '2011 Census of India provisional (municipal corporation)', '2004 tsunami article says Thiruvananthapuram district had negligible impact'],
+  ['Visakhapatnam', 'India', 17.6939, 83.2922, 2091811, 2011, 'city proper', 'census', true, null, 'Visakhapatnam', '2011 Census of India (infobox cites PIB million-plus cities list; scope unclear)'],
+  ['Puducherry', 'India', 11.934, 79.829, 244377, 2011, 'city proper', 'census', true, T.main, 'Pondicherry', '2011 Census of India (infobox, no footnote)'],
+  ['Victoria', 'Seychelles', -4.6231, 55.4525, 30145, 2022, 'city proper', 'census', true, T.ctry, 'Victoria, Seychelles', 'Seychelles Population and Housing Census 2022 (NBS)'],
+  ['Port Louis', 'Mauritius', -20.1644, 57.5042, 140403, 2022, 'city proper', 'census', true, null, 'Port Louis', '2022 (via citypopulation.de)'],
+  ['Saint-Denis', 'Réunion (France)', -20.8789, 55.4481, 155634, 2023, 'city proper', 'census', true, null, 'Saint-Denis, Réunion', 'INSEE populations de référence 2023 (commune); metro 326,743'],
+  ['Toamasina', 'Madagascar', -18.155, 49.41, 325857, 2018, 'city proper', 'census', true, null, 'Toamasina', '2018 Madagascar census'],
+  ['Mahajanga', 'Madagascar', -15.7167, 46.3167, 246022, 2018, 'city proper', 'census', true, null, 'Mahajanga', '2018 Madagascar census'],
+  ['West Island (Cocos Islands)', 'Australia', -12.1869, 96.8283, 120, null, 'island', 'unknown', true, null, 'West Island, Cocos (Keeling) Islands', 'Infobox population 120, no year or source given'],
+  ['Padang', 'Indonesia', -0.95, 100.3531, 965050, 2025, 'city proper', 'estimate', true, null, 'Padang', 'BPS mid-2025 estimate (Kota Padang Dalam Angka 2026)'],
+  ['Bengkulu', 'Indonesia', -3.7956, 102.2592, 407843, 2025, 'city proper', 'estimate', true, null, 'Bengkulu (city)', 'BPS mid-2025 estimate (Kota Bengkulu Dalam Angka 2026)'],
+  ['Sibolga', 'Indonesia', 1.74, 98.78, 92244, 2025, 'city proper', 'estimate', true, W('Sibolga'), 'Sibolga', 'BPS mid-2025 estimate'],
+  ["Cox's Bazar", 'Bangladesh', 21.4272, 92.005, 196374, 2022, 'city proper', 'census', true, null, "Cox's Bazar", '2022 (Bangladesh census year; infobox)'],
+  ['Gwadar', 'Pakistan', 25.1264, 62.3225, 70852, 2023, 'city proper', 'census', true, null, 'Gwadar', '2023 Census of Pakistan'],
+  ['Chabahar', 'Iran', 25.2928, 60.6497, 106739, 2016, 'city proper', 'census', true, null, 'Chabahar', '2016 Iranian census'],
+  ['Salalah', 'Oman', 17.0197, 54.0897, 331949, 2020, 'city proper', 'census', true, null, 'Salalah', 'Oman 2020 census, wilayat of Salalah (NCSI via citypopulation.de; also quoted in Wikipedia body)', 'Wikipedia infobox has no city total, only an unsourced metro 440,000'],
+  ['Mangaluru (Mangalore)', 'India', 12.8717, 74.8425, 619664, 2011, 'urban', 'census', true, null, 'Mangalore', '2011 Census of India, urban agglomeration (article text)', 'Infobox shows 724,159 for 2021 from Statistics Times (non-census estimate), not used'],
+  ['Kochi', 'India', 9.9312, 76.2673, 677381, 2011, 'city proper', 'census', true, null, 'Kochi', '2011 Census of India (corporation); UA 2,119,724', '2004 tsunami article names Ernakulam district (not the city) as damaged'],
+  ['Panaji', 'India', 15.4989, 73.8278, 40017, 2011, 'city proper', 'census', true, null, 'Panaji', '2011 Census of India; metro 114,759'],
+  ['Veraval', 'India', 20.9159, 70.3629, 185797, 2011, 'city proper', 'census', true, null, 'Veraval', '2011 Census of India (cities 1 lakh+)'],
+  ['Lamu', 'Kenya', -2.2694, 40.9022, 25385, 2019, 'city proper', 'census', true, null, 'Lamu', '2019 Kenya Population and Housing Census'],
+  ['Zanzibar City', 'Tanzania', -6.165, 39.199, 219007, 2022, 'city proper', 'census', true, null, 'Zanzibar City', '2022 (Mjini Municipal, via citypopulation.de)'],
+  ['Beira', 'Mozambique', -19.8333, 34.85, 592090, 2017, 'city proper', 'census', true, null, 'Beira, Mozambique', '2017 Mozambique census'],
+  ['Nacala', 'Mozambique', -14.5428, 40.6728, 225034, 2017, 'city proper', 'census', true, null, 'Nacala', '2017 Mozambique census'],
+  ['Pemba', 'Mozambique', -12.9667, 40.55, 201846, 2017, 'city proper', 'census', true, null, 'Pemba, Mozambique', '2017 Mozambique census'],
+  ['Toliara', 'Madagascar', -23.35, 43.6667, 168756, 2018, 'city proper', 'census', true, null, 'Toliara', '2018 Madagascar census'],
+  ['Bandar Abbas', 'Iran', 27.1961, 56.2878, 526664, 2016, 'city proper', 'census', false, null, 'Bandar Abbas', '2016 Iranian census', 'On the Strait of Hormuz (Persian Gulf mouth)'],
+  ['Gqeberha (Port Elizabeth)', 'South Africa', -33.9581, 25.6, 967677, 2020, 'city proper', 'unknown', true, T.ctry, 'Gqeberha', 'Infobox "2020" figure cited to the 2011 census; Wikipedia itself tags this as dubious'],
+  ['East London', 'South Africa', -33.0175, 27.9047, 267007, 2011, 'city proper', 'census', true, T.ctry, 'East London, South Africa', '2011 South African census'],
+  ['Kozhikode', 'India', 11.2489, 75.7839, 609224, 2011, 'city proper', 'census', true, null, 'Kozhikode', '2011 Census of India'],
+  ['Gunungsitoli', 'Indonesia', 1.2833, 97.6167, 145233, 2024, 'city proper', 'estimate', true, W('Gunungsitoli'), 'Gunungsitoli', 'BPS mid-2024 estimate'],
+  ['Malacca City', 'Malaysia', 2.1944, 102.2486, 579000, 2019, 'city proper', 'estimate', false, null, 'Malacca City', '2019, Department of Statistics Malaysia', 'Inside the Strait of Malacca, sheltered by Sumatra'],
+  ['Sittwe', 'Myanmar', 20.137, 92.885, 124679, 2019, 'township', 'estimate', true, null, 'Sittwe', '2019, Myanmar Information Management Unit (Sittwe Township)'],
+];
+const cities = rows.map(([name, country, lat, lon, population, popYear, popKind, popBasis, facesIndianOceanDirectly, hitSrc, art, src, note]) => ({
+  name, country, lat, lon, population, popYear, popKind, popBasis, facesIndianOceanDirectly,
+  hit2004: !!hitSrc, ...(hitSrc && { hit2004Source: hitSrc }),
+  source: `Wikipedia: ${art} (citing ${src})`, url: W(art), ...(note && { note }),
+}));
+// self-check: inside bbox, positive population, no duplicates
+for (const c of cities) {
+  console.assert(c.lat >= -41 && c.lat <= 41 && c.lon >= 22.5 && c.lon <= 112.5, 'bbox', c.name);
+  console.assert(c.population > 0, 'pop', c.name);
+}
+console.assert(new Set(cities.map(c => c.name)).size === cities.length, 'dupes');
+fs.writeFileSync('D:/gsic/data/cities.json', JSON.stringify({ description: 'Indian Ocean coastal cities for LeadTime', bbox: { latMin: -41, latMax: 41, lonMin: 22.5, lonMax: 112.5 }, cities }, null, 2));
+console.log(cities.length, 'cities;', cities.filter(c => c.hit2004).length, 'hit2004');
