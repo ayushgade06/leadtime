@@ -9,6 +9,7 @@ import { createMap, createLayer, drawDepth, drawEta, drawEtaMax, drawIsochrones,
 import { customQuake, nearestTrench, quake2004, scenarioLibrary, type Quake } from './scenarios';
 import type { FromWorker, ToWorker } from './worker';
 import { T_MAX } from './solver';
+import { run2004, runPhysicsTests, scatterSVG, validationTableHTML, type ValidationResult } from './science';
 import { evaluate, fmtPeople, gainChartSVG, headlineHTML, liveSummary, loadCities, renderCities, type Eval } from './ui';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -309,6 +310,29 @@ for (const rb of realBuoys)
   L.marker([rb.lat, rb.lon], { icon: L.divIcon({ className: 'buoy-marker real', html: '<span></span>', iconSize: [14, 14] }), keyboard: false })
     .bindTooltip(`${rb.name}<br>${rb.operator} · ${rb.reportingRecently ? 'reporting on 24 Nov 2026' : rb.status === 'historical' ? 'historical' : 'listed, not reporting'}`).addTo(realLayer);
 $<HTMLInputElement>('lyr-real').onchange = (e) => ((e.target as HTMLInputElement).checked ? realLayer.addTo(map) : realLayer.remove());
+
+// ---- science tab -----------------------------------------------------------------------
+$('run-tests').onclick = async () => {
+  $<HTMLButtonElement>('run-tests').disabled = true;
+  $('tests-summary').textContent = 'Running…';
+  const passed = await runPhysicsTests($('tests'));
+  $('tests-summary').textContent = `${passed} of 6 checks passed.`;
+  $<HTMLButtonElement>('run-tests').disabled = false;
+};
+let v2004: ValidationResult | null = null;
+$('run-2004').onclick = async () => {
+  const btn = $<HTMLButtonElement>('run-2004');
+  btn.disabled = true;
+  const t0 = performance.now();
+  v2004 ??= await run2004(INDIAN_OCEAN, grid, b, (msg) => ($('v2004-status').textContent = msg));
+  $('v2004-status').textContent = `Done in ${((performance.now() - t0) / 1000).toFixed(0)} s. Hover a dot for the station.`;
+  $('v2004').hidden = false;
+  $('v2004-summary').innerHTML = `Mean absolute error <strong class="num">${v2004.mae.toFixed(0)} min</strong> over ${v2004.n} tide gauges
+    <span class="muted">(simulated waves arrive on average ${Math.abs(v2004.bias).toFixed(0)} min ${v2004.bias < 0 ? 'early' : 'late'}). Read at the ocean cell nearest each gauge; read further offshore (> 50 m deep, as the warning tool does) the error is ${v2004.maeDeep.toFixed(0)} min, always early, so warning times err on the short side. Hollow dots are soft checks left out of the error.</span>`;
+  $('v2004-chart').innerHTML = scatterSVG(v2004);
+  $('v2004-table').innerHTML = validationTableHTML(v2004);
+  btn.disabled = false;
+};
 
 // ---- tabs -------------------------------------------------------------------------------
 let activeTab = 'quake';

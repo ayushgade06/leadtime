@@ -96,7 +96,56 @@
           </div>
         </section>
 
-        <section id="pane-science" role="tabpanel" aria-labelledby="tab-science" class="pane" hidden></section>
+        <section id="pane-science" role="tabpanel" aria-labelledby="tab-science" class="pane" hidden>
+          <div class="card">
+            <h2>Does it match 2004?</h2>
+            <p class="hint">We re-run the 2004 earthquake and compare when the simulated wave reaches each tide gauge with the arrival times published after the event.</p>
+            <button id="run-2004" class="btn primary wide">Check against 2004 tide gauges</button>
+            <p id="v2004-status" class="hint" aria-live="polite"></p>
+            <div id="v2004" hidden>
+              <p id="v2004-summary" class="headline"></p>
+              <div id="v2004-chart"></div>
+              <div id="v2004-table" class="table-wrap"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h2>Physics tests</h2>
+            <p class="hint">The same six checks our automated test suite runs, executed live in your browser.</p>
+            <button id="run-tests" class="btn wide">Run validation</button>
+            <p id="tests-summary" class="hint" aria-live="polite"></p>
+            <ol id="tests" class="tests"></ol>
+          </div>
+          <div class="card how">
+            <h2>How it works</h2>
+            <h3>1 · Real seafloor</h3>
+            <p>16 Terrarium elevation tiles (ETOPO1 and other sources) are decoded in the browser, <code>h = R·256 + G + B/256 − 32768</code>, and averaged to a 512 × 512 grid of Mercator cells about 20 km across. Each row's cell size shrinks with latitude: <code>s = 19.6 km · cos(lat)</code>.</p>
+            <h3>2 · Earthquake → initial wave</h3>
+            <p>Fault size from magnitude (Strasser et al. 2010): <code>log₁₀L = −2.477 + 0.585·Mw</code>, <code>log₁₀W = −0.882 + 0.351·Mw</code>; slip <code>D = M₀/(μLW)</code> with <code>M₀ = 10^(1.5·Mw + 9.1)</code>. The seafloor (and sea surface) is lifted on the trench side and dropped on the land side:</p>
+            <p class="eq">η₀ = 0.3·D · taper(u, L) · [ G(v − W/4) − 0.6·G(v + W/4) ]</p>
+            <p>The 2004 preset uses the 5 published fault segments of Grilli et al. (2007), each breaking at its own time.</p>
+            <h3>3 · Shallow-water "pipes"</h3>
+            <svg viewBox="0 0 320 110" width="100%" class="pipe" role="img" aria-label="Two water columns joined by a pipe; the higher surface pushes water through the pipe to the lower one.">
+              <rect x="20" y="30" width="90" height="70" class="water"/><rect x="210" y="45" width="90" height="55" class="water"/>
+              <rect x="110" y="80" width="100" height="14" class="pipe-b"/><path d="M135 87 H185" class="arrow" marker-end="url(#ah)"/>
+              <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" class="arrowhead"/></marker></defs>
+              <text x="65" y="22" class="lbl" text-anchor="middle">η higher</text><text x="255" y="37" class="lbl" text-anchor="middle">η lower</text><text x="160" y="74" class="lbl" text-anchor="middle">flux Q</text>
+            </svg>
+            <p>Each ocean cell is a water column joined to its 4 neighbours by pipes. A height difference accelerates the pipe flow, and the flow moves water between columns:</p>
+            <p class="eq">dQ/dt = g·h·Δη &nbsp;&nbsp; dη/dt = (ΣQ<sub>in</sub> − ΣQ<sub>out</sub>) / s²</p>
+            <p>Together they give the wave equation with speed <code>c = √(g·h)</code>: about 200 m/s (720 km/h) over 4 km of water, slowing on shelves, which bends wave fronts. A positivity limiter, an adaptive time step (<code>dt = 0.4·s/√(g·h<sub>max</sub>)</code>, about 20 s), a 20-cell absorbing sponge at the edges and shallow-water friction keep it stable. It all runs in a Web Worker.</p>
+            <h3>4 · Confirmed warning time</h3>
+            <p class="eq">lead = t<sub>city</sub> − (t<sub>first sensor</sub> + T<sub>proc</sub>)</p>
+            <p>A city counts as warned when <code>lead ≥ T<sub>evac</sub></code>. The optimizer adds sensors one at a time, each time picking the site that warns the most people summed over 15 hypothetical quakes.</p>
+            <h3>Limitations</h3>
+            <ul class="limits">
+              <li>~20 km grid: harbours, bays and narrow shelves are not resolved, so arrival times at the coast are approximate (see the 2004 check).</li>
+              <li>Simplified dipole source, not the full Okada (1985) solution; uniform slip per segment.</li>
+              <li>No inundation or run-up: heights are offshore, not on land.</li>
+              <li>No Coriolis force, no wave dispersion, no tides.</li>
+              <li>Populations are approximate and mix years and area definitions.</li>
+            </ul>
+          </div>
+        </section>
         <section id="pane-learn" role="tabpanel" aria-labelledby="tab-learn" class="pane" hidden></section>
       </aside>
       <div id="live" class="sr-only" aria-live="polite"></div>

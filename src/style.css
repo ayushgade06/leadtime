@@ -71,7 +71,7 @@ input[type='range'] { width: 100%; accent-color: var(--cyan); }
 .layer-wave, .layer-max, .layer-iso, .layer-depth { image-rendering: auto; }
 [hidden] { display: none !important; }
 
-.tabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); position: sticky; top: 0; z-index: 2; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: #0a1524; border: 1px solid var(--line); border-radius: var(--radius); position: sticky; top: 0; z-index: 2; }
 .tabs [role='tab'] { flex: 1; font: inherit; font-size: 12.5px; color: var(--muted); background: transparent; border: 0; border-radius: 7px; padding: 7px 4px; cursor: pointer; }
 .tabs [role='tab'][aria-selected='true'] { background: var(--surface-2); color: var(--text); }
 .pane { display: flex; flex-direction: column; gap: 12px; }
@@ -115,3 +115,28 @@ table.cities { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .chart .base { stroke: var(--line); }
 .sub.lib { color: var(--amber); }
 .btn:disabled { opacity: 0.5; cursor: progress; }
+.tests { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tests li { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+.t-head { display: flex; gap: 8px; align-items: center; }
+.t-vals { color: var(--muted); font-size: 12px; margin-top: 4px; }
+.badge { font: 700 10px var(--font); padding: 2px 6px; border-radius: 4px; background: var(--green); color: #04150d; }
+.fail .badge { background: var(--red); color: #1a0503; }
+.sci-chart { margin-top: 6px; overflow: visible; }
+.sci-chart .axis, .sci-chart .grid { stroke: var(--line); }
+.sci-chart .tick { fill: var(--muted); font: 10px var(--font); }
+.sci-chart .line { fill: none; stroke: var(--cyan); stroke-width: 2; }
+.sci-chart .ref { fill: none; stroke: var(--muted); stroke-dasharray: 4 3; }
+.sci-chart .one { stroke: var(--muted); stroke-dasharray: 5 4; }
+.sci-chart .pt { fill: var(--amber); stroke: #1a1205; }
+.sci-chart .soft { fill: none; stroke: var(--amber); stroke-width: 1.5; }
+.how h3 { font-size: 13px; margin: 14px 0 4px; }
+.how p, .how li { color: #c3d2e1; font-size: 13px; }
+.how code, .eq { font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; font-size: 12px; }
+.eq { background: rgba(90, 209, 230, 0.07); border: 1px solid var(--line); border-radius: 6px; padding: 8px; text-align: center; color: var(--text) !important; }
+.pipe .water { fill: rgba(90, 209, 230, 0.35); stroke: var(--cyan); }
+.pipe .pipe-b { fill: rgba(90, 209, 230, 0.2); stroke: var(--cyan); }
+.pipe .arrow { stroke: var(--amber); stroke-width: 2; }
+.pipe .arrowhead { fill: var(--amber); }
+.pipe .lbl { fill: var(--muted); font: 11px var(--font); }
+.limits { padding-left: 18px; margin: 4px 0 0; }
+a { color: var(--cyan); }
