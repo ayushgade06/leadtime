@@ -36,14 +36,51 @@
         <div id="loading" class="loading" role="status"><div class="spinner"></div><span>Loading real seafloor depth…</span></div>
       </main>
       <aside id="panel" class="panel" aria-label="Controls">
-        <section class="card">
-          <h2>Earthquake</h2>
-          <button id="preset2004" class="btn primary wide">Replay 2004 Sumatra–Andaman · Mw 9.1</button>
-          <p class="hint">…or click anywhere on the ocean to place an epicentre.</p>
-          <div class="field"><label for="mw">Magnitude <span id="mw-v" class="num">8.8</span></label><input id="mw" type="range" min="7.5" max="9.5" step="0.1" value="8.8" /></div>
-          <div class="field"><label for="strike">Fault strike <span id="strike-v" class="num">330°</span></label><input id="strike" type="range" min="0" max="359" step="1" value="330" /></div>
-          <p id="quake-info" class="hint"></p>
+        <nav class="tabs" role="tablist" aria-label="Panels">
+          <button role="tab" id="tab-quake" aria-controls="pane-quake" aria-selected="true">1 · Quake</button>
+          <button role="tab" id="tab-warn" aria-controls="pane-warn" aria-selected="false">2 · Sensors</button>
+          <button role="tab" id="tab-science" aria-controls="pane-science" aria-selected="false">Science</button>
+          <button role="tab" id="tab-learn" aria-controls="pane-learn" aria-selected="false">Learn</button>
+        </nav>
+
+        <section id="pane-quake" role="tabpanel" aria-labelledby="tab-quake" class="pane">
+          <div class="card">
+            <h2>Earthquake</h2>
+            <button id="preset2004" class="btn primary wide">Replay 2004 Sumatra–Andaman · Mw 9.1</button>
+            <p class="hint">…or click anywhere on the ocean to place an epicentre. Near a trench, the fault lines up with it.</p>
+            <div class="field"><label for="mw">Magnitude <span id="mw-v" class="num">8.8</span></label><input id="mw" type="range" min="7.5" max="9.5" step="0.1" value="8.8" /></div>
+            <div class="field"><label for="strike">Fault strike <span id="strike-v" class="num">330°</span></label><input id="strike" type="range" min="0" max="359" step="1" value="330" /></div>
+            <p id="quake-info" class="hint"></p>
+          </div>
         </section>
+
+        <section id="pane-warn" role="tabpanel" aria-labelledby="tab-warn" class="pane" hidden>
+          <div class="card">
+            <h2>Confirmed warning time</h2>
+            <p id="headline" class="headline">Run an earthquake first.</p>
+            <div class="field"><label for="tproc">Processing delay after first detection <span id="tproc-v" class="num">10 min</span></label><input id="tproc" type="range" min="0" max="30" step="1" value="10" /></div>
+            <div class="field"><label for="tevac">Time people need to evacuate <span id="tevac-v" class="num">15 min</span></label><input id="tevac" type="range" min="5" max="60" step="1" value="15" /></div>
+          </div>
+          <div class="card">
+            <h2>Sensors <span id="buoy-count" class="num muted">0 / 8</span></h2>
+            <p class="hint">Click deep ocean (&gt; 1000 m) on the map to drop a DART-style pressure sensor. Drag to move, right-click or ✕ to remove.</p>
+            <ol id="buoy-list" class="buoy-list"></ol>
+            <div class="row"><button id="clear-buoys" class="btn ghost">Clear sensors</button></div>
+          </div>
+          <div class="card">
+            <h2>Coastal cities</h2>
+            <div class="table-wrap">
+              <table class="cities">
+                <thead><tr><th scope="col">City</th><th scope="col" class="r">People</th><th scope="col" class="r">Wave at</th><th scope="col" class="r">Height</th><th scope="col" class="r">Warning</th></tr></thead>
+                <tbody id="city-rows"></tbody>
+              </table>
+            </div>
+            <p class="hint">Approximate populations (years 2011–2025, mixed area definitions; sources in <code>cities.json</code>). Arrival and height are read offshore at the nearest grid cell deeper than 50 m, so warning times err on the short side. ◐ = partly sheltered, not counted in the headline.</p>
+          </div>
+        </section>
+
+        <section id="pane-science" role="tabpanel" aria-labelledby="tab-science" class="pane" hidden></section>
+        <section id="pane-learn" role="tabpanel" aria-labelledby="tab-learn" class="pane" hidden></section>
       </aside>
       <div id="live" class="sr-only" aria-live="polite"></div>
     </div>

@@ -61,7 +61,7 @@ export function drawDepth(l: Layer, b: Float32Array) {
 
 // Diverging, colour-blind-safe wave palette: blue troughs, transparent calm, orange crests.
 // A symmetric soft-log scale keeps 1-cm far-field waves visible next to metre-high ones.
-const E0 = 0.005, EMAX = 2;
+const E0 = 0.02, EMAX = 3;
 const LUT = (() => {
   const lut = new Uint8ClampedArray(512 * 4);
   const neg: [number, number, number, number][] = [[120, 190, 255, 0], [70, 150, 255, 150], [40, 90, 230, 230], [30, 40, 170, 255]];
@@ -91,8 +91,8 @@ export function drawEtaMax(l: Layer, etaMax: Float32Array, wet: Uint8Array) {
   const d = l.img.data;
   for (let k = 0; k < etaMax.length; k++) {
     const e = etaMax[k];
-    if (!wet[k] || e < 0.01) { d[4 * k + 3] = 0; continue; }
-    d.set(ramp(stops, Math.log(e / 0.01) / Math.log(200)), 4 * k);
+    if (!wet[k] || e < 0.03) { d[4 * k + 3] = 0; continue; }
+    d.set(ramp(stops, Math.log(e / 0.03) / Math.log(150)), 4 * k); // log scale 3 cm → 4.5 m
   }
   flush(l);
 }

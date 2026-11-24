@@ -21,7 +21,7 @@ export type FromWorker =
   | { type: 'batch-result'; tArrive: Float32Array[]; etaMax: Float32Array[] };
 
 let grid: Grid, bed: Float32Array, sim: Sim | null = null;
-let playing = false, rate = 1200, waitingAck = false, frames = 0, msPerStep = 0;
+let playing = false, rate = 1200, waitingAck = false, frames = 0, msPerStep = 0, lastTick = 0;
 
 const post = (m: FromWorker, transfer: Transferable[] = []) => (self as unknown as Worker).postMessage(m, transfer);
 
@@ -49,8 +49,9 @@ function sendFrame(full: boolean) {
 function tick() {
   if (!playing || !sim || waitingAck) return;
   // Advance `rate` simulated seconds per real second at ~30 frames/s, capped at ~40 ms work.
-  const target = Math.min(T_MAX, sim.t + rate / 30);
   const t0 = performance.now();
+  lastTick = t0;
+  const target = Math.min(T_MAX, sim.t + rate / 30);
   let n = 0;
   while (sim.t < target && performance.now() - t0 < 40) { step(sim); n++; }
   if (n) msPerStep = 0.9 * msPerStep + 0.1 * ((performance.now() - t0) / n);
@@ -70,7 +71,8 @@ self.onmessage = (e: MessageEvent<ToWorker>) => {
     case 'pause':
       playing = false; break;
     case 'ack':
-      waitingAck = false; setTimeout(tick, 0); break;
+      // pace playback at ~30 frames per second of wall-clock time
+      waitingAck = false; setTimeout(tick, Math.max(0, 33 - (performance.now() - lastTick))); break;
     case 'batch': {
       const g = makeGrid(m.domain);
       const tArrive: Float32Array[] = [], etaMax: Float32Array[] = [];
