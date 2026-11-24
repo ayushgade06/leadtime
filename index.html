@@ -4,10 +4,49 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LeadTime</title>
+    <meta name="description" content="LeadTime: simulate a tsunami across the real ocean floor, then find where warning sensors buy coastal cities the most time." />
+    <title>LeadTime · tsunami warning simulator</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand"><span class="logo" aria-hidden="true"></span><span class="name">LeadTime</span><span class="tag">every minute of tsunami warning, simulated</span></div>
+        <p class="disclaimer" role="note">Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.</p>
+      </header>
+      <main class="stage">
+        <div id="map" aria-label="Map of the Indian Ocean. Click to place an earthquake epicentre."></div>
+        <div id="hud" class="hud" hidden>
+          <div class="clock"><span id="clock" class="num">+00:00</span><span class="unit">h after quake</span></div>
+          <div class="controls">
+            <button id="play" class="btn icon" aria-label="Play">▶</button>
+            <div class="seg" role="radiogroup" aria-label="Playback speed">
+              <button role="radio" data-rate="300">5 min/s</button>
+              <button role="radio" data-rate="1200" aria-checked="true">20 min/s</button>
+              <button role="radio" data-rate="1e9">max</button>
+            </div>
+            <button id="reset" class="btn ghost" aria-label="Restart simulation">↺</button>
+          </div>
+          <div class="layers" role="group" aria-label="Map layers">
+            <label><input type="checkbox" id="lyr-wave" checked /> Live wave</label>
+            <label><input type="checkbox" id="lyr-max" /> Max height</label>
+            <label><input type="checkbox" id="lyr-iso" /> Arrival isochrones</label>
+          </div>
+          <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+        </div>
+        <div id="loading" class="loading" role="status"><div class="spinner"></div><span>Loading real seafloor depth…</span></div>
+      </main>
+      <aside id="panel" class="panel" aria-label="Controls">
+        <section class="card">
+          <h2>Earthquake</h2>
+          <button id="preset2004" class="btn primary wide">Replay 2004 Sumatra–Andaman · Mw 9.1</button>
+          <p class="hint">…or click anywhere on the ocean to place an epicentre.</p>
+          <div class="field"><label for="mw">Magnitude <span id="mw-v" class="num">8.8</span></label><input id="mw" type="range" min="7.5" max="9.5" step="0.1" value="8.8" /></div>
+          <div class="field"><label for="strike">Fault strike <span id="strike-v" class="num">330°</span></label><input id="strike" type="range" min="0" max="359" step="1" value="330" /></div>
+          <p id="quake-info" class="hint"></p>
+        </section>
+      </aside>
+      <div id="live" class="sr-only" aria-live="polite"></div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
