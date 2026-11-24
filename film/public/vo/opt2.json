@@ -1,0 +1,74 @@
+{
+ "spoken": "The first warns about fifty-three million people per quake. The sixth adds nothing.",
+ "voice": "en-US-AndrewMultilingualNeural",
+ "rate": "+6%",
+ "duration": 5.28,
+ "words": [
+  {
+   "t": 0.094333,
+   "d": 0.07075,
+   "w": "The"
+  },
+  {
+   "t": 0.176875,
+   "d": 0.306583,
+   "w": "first"
+  },
+  {
+   "t": 0.4835,
+   "d": 0.330166,
+   "w": "warns"
+  },
+  {
+   "t": 0.813666,
+   "d": 0.283,
+   "w": "about"
+  },
+  {
+   "t": 1.17925,
+   "d": 0.683958,
+   "w": "fifty-three"
+  },
+  {
+   "t": 1.863208,
+   "d": 0.4835,
+   "w": "million"
+  },
+  {
+   "t": 2.346708,
+   "d": 0.306583,
+   "w": "people"
+  },
+  {
+   "t": 2.653291,
+   "d": 0.1415,
+   "w": "per"
+  },
+  {
+   "t": 2.794791,
+   "d": 0.424541,
+   "w": "quake"
+  },
+  {
+   "t": 3.596708,
+   "d": 0.0471659,
+   "w": "The"
+  },
+  {
+   "t": 3.643875,
+   "d": 0.41275,
+   "w": "sixth"
+  },
+  {
+   "t": 4.174541,
+   "d": 0.318416,
+   "w": "adds"
+  },
+  {
+   "t": 4.504708,
+   "d": 0.424541,
+   "w": "nothing"
+  }
+ ],
+ "hash": "3afb5eda93"
+}

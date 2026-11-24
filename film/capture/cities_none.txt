@@ -1,0 +1,389 @@
+LeadTime
+
+Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.
+
+Copy link
+Source
++
+−
+ Leaflet | Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED)
++12:00
+hours after
+the quake
+5 min/s
+20 min/s
+Max
+Map layers
+Wave
+Highest wave
+Hourly arrival lines
+trough
+crest
+1
+Quake
+2
+Sensors
+Science
+Learn
+Confirmed warning time
+
+0
+people have ≥ 15 min of confirmed warning (0% of the 73.6 M people in coastal cities the wave reached)
+
+Delay from first detection to warning
+10 min
+Time people need to evacuate
+15 min
+Your sensors
+0 of 8
+
+Click deep ocean (over 1000 m) to drop a seafloor pressure sensor like NOAA's DART buoys. Drag to move; right-click or ✕ to remove.
+
+Add at map centre
+Clear sensors
+Let the optimizer place them
+
+It simulates 15 hypothetical Mw 8.8 earthquakes along the Sunda, Andaman and Makran trenches, then adds sensors one at a time where they warn the most people.
+
+Sensors
+1
+2
+3
+4
+5
+6
+7
+8
+Optimize
+Show the existing buoy network (13 listed stations)
+Coastal cities
+City	People	Wave at	Warning
+Meulaboh
+Indonesia
+	67 k	0:00
+446 cm
+	✕ no sensor
+Car Nicobar
+India
+	18 k	0:09
+336 cm
+	✕ no sensor
+Port Blair (Sri Vijaya Puram)
+India
+	141 k	0:20
+305 cm
+	✕ no sensor
+Banda Aceh
+Indonesia
+	268 k	0:21
+456 cm
+	✕ no sensor
+Gunungsitoli
+Indonesia
+	145 k	0:51
+91 cm
+	✕ no sensor
+Sibolga
+Indonesia
+	92 k	1:26
+103 cm
+	✕ no sensor
+Phuket City
+Thailand
+	71 k	1:31
+414 cm
+	✕ no sensor
+Takua Pa District (incl. Khao Lak)
+Thailand
+	48 k	1:46
+533 cm
+	✕ no sensor
+Padang
+Indonesia
+	965 k	1:46
+85 cm
+	✕ no sensor
+Batticaloa
+Sri Lanka
+	86 k	1:47
+375 cm
+	✕ no sensor
+Trincomalee
+Sri Lanka
+	99 k	1:51
+137 cm
+	✕ no sensor
+Hambantota
+Sri Lanka
+	57 k	1:54
+297 cm
+	✕ no sensor
+Bengkulu
+Indonesia
+	408 k	1:57
+114 cm
+	✕ no sensor
+Galle
+Sri Lanka
+	112 k	2:04
+474 cm
+	✕ no sensor
+◐ Yangon
+Myanmar
+	5.2 M	2:05
+131 cm
+	✕ no sensor
+West Island (Cocos Islands)
+Australia
+	120	2:07
+20 cm
+	✕ no sensor
+Nagapattinam
+India
+	103 k	2:08
+142 cm
+	✕ no sensor
+Puducherry
+India
+	244 k	2:11
+145 cm
+	✕ no sensor
+Cuddalore
+India
+	174 k	2:13
+252 cm
+	✕ no sensor
+Chennai
+India
+	6.7 M	2:16
+181 cm
+	✕ no sensor
+Sittwe
+Myanmar
+	125 k	2:18
+136 cm
+	✕ no sensor
+Visakhapatnam
+India
+	2.1 M	2:21
+117 cm
+	✕ no sensor
+Colombo
+Sri Lanka
+	753 k	2:24
+181 cm
+	✕ no sensor
+◐ Jakarta
+Indonesia
+	11.0 M	2:31
+23 cm
+	✕ no sensor
+Cox's Bazar
+Bangladesh
+	196 k	2:54
+144 cm
+	✕ no sensor
+Chittagong
+Bangladesh
+	3.2 M	3:01
+116 cm
+	✕ no sensor
+Kanyakumari
+India
+	30 k	3:06
+163 cm
+	✕ no sensor
+Malé
+Maldives
+	212 k	3:09
+125 cm
+	✕ no sensor
+Thiruvananthapuram
+India
+	958 k	3:16
+250 cm
+	✕ no sensor
+Kollam
+India
+	397 k	3:17
+170 cm
+	✕ no sensor
+George Town (Penang Island)
+Malaysia
+	794 k	3:42
+158 cm
+	✕ no sensor
+Kochi
+India
+	677 k	3:50
+93 cm
+	✕ no sensor
+Kozhikode
+India
+	609 k	4:06
+55 cm
+	✕ no sensor
+Mangaluru (Mangalore)
+India
+	620 k	4:39
+52 cm
+	✕ no sensor
+Panaji
+India
+	40 k	5:41
+53 cm
+	✕ no sensor
+◐ Malacca City
+Malaysia
+	579 k	6:07
+155 cm
+	✕ no sensor
+Port Louis
+Mauritius
+	140 k	6:43
+33 cm
+	✕ no sensor
+Veraval
+India
+	186 k	6:51
+14 cm
+	✕ no sensor
+Saint-Denis
+Réunion (France)
+	156 k	6:54
+12 cm
+	✕ no sensor
+Salalah
+Oman
+	332 k	6:55
+58 cm
+	✕ no sensor
+Victoria
+Seychelles
+	30 k	7:00
+58 cm
+	✕ no sensor
+Gwadar
+Pakistan
+	71 k	7:06
+17 cm
+	✕ no sensor
+Hafun
+Somalia
+	13 k	7:07
+105 cm
+	✕ no sensor
+Chabahar
+Iran
+	107 k	7:15
+26 cm
+	✕ no sensor
+Muscat
+Oman
+	1.7 M	7:21
+21 cm
+	✕ no sensor
+Mumbai
+India
+	12.4 M	7:23
+38 cm
+	✕ no sensor
+Karachi
+Pakistan
+	18.9 M	7:30
+26 cm
+	✕ no sensor
+Mogadishu
+Somalia
+	3.3 M	7:33
+111 cm
+	✕ no sensor
+Toamasina
+Madagascar
+	326 k	7:40
+16 cm
+	✕ no sensor
+Lamu
+Kenya
+	25 k	8:14
+60 cm
+	✕ no sensor
+Mombasa
+Kenya
+	1.3 M	8:38
+67 cm
+	✕ no sensor
+Zanzibar City
+Tanzania
+	219 k	8:38
+74 cm
+	✕ no sensor
+Mahajanga
+Madagascar
+	246 k	8:46
+23 cm
+	✕ no sensor
+Dar es Salaam
+Tanzania
+	7.8 M	8:48
+52 cm
+	✕ no sensor
+Aden
+Yemen
+	863 k	8:56
+8 cm
+	✕ no sensor
+Pemba
+Mozambique
+	202 k	9:02
+13 cm
+	✕ no sensor
+Nacala
+Mozambique
+	225 k	9:10
+15 cm
+	✕ no sensor
+Djibouti City
+Djibouti
+	777 k	9:41
+11 cm
+	✕ no sensor
+◐ Bandar Abbas
+Iran
+	527 k	9:57
+6 cm
+	✕ no sensor
+Toliara
+Madagascar
+	169 k	10:25
+6 cm
+	✕ no sensor
+Durban
+South Africa
+	595 k	10:48
+12 cm
+	✕ no sensor
+Maputo
+Mozambique
+	1.1 M	10:50
+27 cm
+	✕ no sensor
+Beira
+Mozambique
+	592 k	10:58
+7 cm
+	✕ no sensor
+East London
+South Africa
+	267 k	11:10
+15 cm
+	✕ no sensor
+Gqeberha (Port Elizabeth)
+South Africa
+	968 k	11:47
+11 cm
+	✕ no sensor
+
+Approximate populations (census years 2011–2025, mixed area definitions; sources in cities.json). Arrival and height are read offshore at the nearest grid cell deeper than 50 m, so warning times err on the short side. ◐ marks partly sheltered cities, left out of the headline.
+
+Wave reached Meulaboh at 0 h 00 min. 0 of 65 cities warned in time with 0 sensors.

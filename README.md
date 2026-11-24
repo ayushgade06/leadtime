@@ -1,6 +1,6 @@
 # LeadTime: every minute of tsunami warning, simulated
 
-**▶ Live demo: https://leadtime-liard.vercel.app** · Video: _link added at submission_ · Built for the STEM Innovation Challenge 2026 (Devpost)
+**▶ Live demo: https://leadtime-liard.vercel.app** · Video: _YouTube link added at submission_ (source in [`film/`](film/)) · Built for the STEM Innovation Challenge 2026 (Devpost)
 
 ![LeadTime replaying the 2004 Indian Ocean tsunami](docs/screenshots/hero.gif)
 

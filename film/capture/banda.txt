@@ -1,0 +1,489 @@
+LeadTime
+
+Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.
+
+Copy link
+Source
+1
+2
+3
+4
+5
+6
++
+−
+ Leaflet | Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED)
++12:00
+hours after
+the quake
+5 min/s
+20 min/s
+Max
+Map layers
+Wave
+Highest wave
+Hourly arrival lines
+trough
+crest
+1
+Quake
+2
+Sensors
+Science
+Learn
+Confirmed warning time
+
+73.1 M
+people have ≥ 15 min of confirmed warning (99% of the 73.6 M people in coastal cities the wave reached)
+
+Delay from first detection to warning
+10 min
+Time people need to evacuate
+15 min
+Your sensors
+6 of 8
+
+Click deep ocean (over 1000 m) to drop a seafloor pressure sensor like NOAA's DART buoys. Drag to move; right-click or ✕ to remove.
+
+1. 3.3°, 91.6°, 4095 m deep
+✕
+2. 24.7°, 59.9°, 1961 m deep
+✕
+3. 11.7°, 91.6°, 2598 m deep
+✕
+4. -6.1°, 102.1°, 2997 m deep
+✕
+5. 0.2°, 96.9°, 5348 m deep
+✕
+6. -8.2°, 106.3°, 2282 m deep
+✕
+Add at map centre
+Clear sensors
+Let the optimizer place them
+
+It simulates 15 hypothetical Mw 8.8 earthquakes along the Sunda, Andaman and Makran trenches, then adds sensors one at a time where they warn the most people.
+
+Sensors
+1
+2
+3
+4
+5
+6
+7
+8
+Optimize
+Simulated 15 earthquakes in 7 s.
+extra people warned per quake (avg)
+52.9 M
+#1
+7.1 M
+#2
+943 k
+#3
+438 k
+#4
+69 k
+#5
+0
+#6
+
+Across 15 quakes, on average 61.4 M of the 62.1 M people in reached cities get ≥ 15 min with these 6 sensors. The 13 real stations we have positions for score 58.7 M (the 5 reporting on 24 Nov 2026: 53.4 M). Real networks also weigh cost, maintenance, false alarms and politics, and Indonesia's buoys are missing from our data, so this is a teaching comparison, not a verdict.
+
+Show the existing buoy network (13 listed stations)
+Coastal cities
+City	People	Wave at	Warning
+Meulaboh
+Indonesia
+warned in 13 of 15 library quakes
+	67 k	0:00
+446 cm
+	✕ -25 min
+Car Nicobar
+India
+warned in 11 of 14 library quakes
+	18 k	0:09
+336 cm
+	✕ -16 min
+Port Blair (Sri Vijaya Puram)
+India
+warned in 11 of 14 library quakes
+	141 k	0:20
+305 cm
+	✕ -4 min
+Banda Aceh
+Indonesia
+warned in 11 of 13 library quakes
+	268 k	0:21
+456 cm
+	✕ -4 min
+Gunungsitoli
+Indonesia
+warned in 13 of 15 library quakes
+	145 k	0:51
+91 cm
+	✓ 26 min
+Sibolga
+Indonesia
+warned in 13 of 15 library quakes
+	92 k	1:26
+103 cm
+	✓ 61 min
+Phuket City
+Thailand
+warned in 14 of 14 library quakes
+	71 k	1:31
+414 cm
+	✓ 66 min
+Takua Pa District (incl. Khao Lak)
+Thailand
+warned in 14 of 14 library quakes
+	48 k	1:46
+533 cm
+	✓ 81 min
+Padang
+Indonesia
+warned in 12 of 15 library quakes
+	965 k	1:46
+85 cm
+	✓ 82 min
+Batticaloa
+Sri Lanka
+warned in 14 of 14 library quakes
+	86 k	1:47
+375 cm
+	✓ 83 min
+Trincomalee
+Sri Lanka
+warned in 13 of 13 library quakes
+	99 k	1:51
+137 cm
+	✓ 86 min
+Hambantota
+Sri Lanka
+warned in 15 of 15 library quakes
+	57 k	1:54
+297 cm
+	✓ 89 min
+Bengkulu
+Indonesia
+warned in 13 of 15 library quakes
+	408 k	1:57
+114 cm
+	✓ 92 min
+Galle
+Sri Lanka
+warned in 15 of 15 library quakes
+	112 k	2:04
+474 cm
+	✓ 99 min
+◐ Yangon
+Myanmar
+warned in 11 of 11 library quakes
+	5.2 M	2:05
+131 cm
+	✓ 100 min
+West Island (Cocos Islands)
+Australia
+warned in 14 of 14 library quakes
+	120	2:07
+20 cm
+	✓ 103 min
+Nagapattinam
+India
+warned in 15 of 15 library quakes
+	103 k	2:08
+142 cm
+	✓ 103 min
+Puducherry
+India
+warned in 15 of 15 library quakes
+	244 k	2:11
+145 cm
+	✓ 106 min
+Cuddalore
+India
+warned in 14 of 14 library quakes
+	174 k	2:13
+252 cm
+	✓ 109 min
+Chennai
+India
+warned in 13 of 13 library quakes
+	6.7 M	2:16
+181 cm
+	✓ 111 min
+Sittwe
+Myanmar
+warned in 14 of 14 library quakes
+	125 k	2:18
+136 cm
+	✓ 113 min
+Visakhapatnam
+India
+warned in 13 of 13 library quakes
+	2.1 M	2:21
+117 cm
+	✓ 117 min
+Colombo
+Sri Lanka
+warned in 15 of 15 library quakes
+	753 k	2:24
+181 cm
+	✓ 119 min
+◐ Jakarta
+Indonesia
+warned in 13 of 15 library quakes
+	11.0 M	2:31
+23 cm
+	✓ 127 min
+Cox's Bazar
+Bangladesh
+warned in 13 of 13 library quakes
+	196 k	2:54
+144 cm
+	✓ 149 min
+Chittagong
+Bangladesh
+warned in 13 of 13 library quakes
+	3.2 M	3:01
+116 cm
+	✓ 157 min
+Kanyakumari
+India
+warned in 15 of 15 library quakes
+	30 k	3:06
+163 cm
+	✓ 162 min
+Malé
+Maldives
+warned in 15 of 15 library quakes
+	212 k	3:09
+125 cm
+	✓ 164 min
+Thiruvananthapuram
+India
+warned in 15 of 15 library quakes
+	958 k	3:16
+250 cm
+	✓ 172 min
+Kollam
+India
+warned in 15 of 15 library quakes
+	397 k	3:17
+170 cm
+	✓ 172 min
+George Town (Penang Island)
+Malaysia
+warned in 12 of 12 library quakes
+	794 k	3:42
+158 cm
+	✓ 198 min
+Kochi
+India
+warned in 15 of 15 library quakes
+	677 k	3:50
+93 cm
+	✓ 205 min
+Kozhikode
+India
+warned in 15 of 15 library quakes
+	609 k	4:06
+55 cm
+	✓ 221 min
+Mangaluru (Mangalore)
+India
+warned in 14 of 14 library quakes
+	620 k	4:39
+52 cm
+	✓ 254 min
+Panaji
+India
+warned in 14 of 14 library quakes
+	40 k	5:41
+53 cm
+	✓ 316 min
+◐ Malacca City
+Malaysia
+warned in 11 of 11 library quakes
+	579 k	6:07
+155 cm
+	✓ 343 min
+Port Louis
+Mauritius
+warned in 14 of 14 library quakes
+	140 k	6:43
+33 cm
+	✓ 378 min
+Veraval
+India
+warned in 12 of 12 library quakes
+	186 k	6:51
+14 cm
+	✓ 386 min
+Saint-Denis
+Réunion (France)
+warned in 15 of 15 library quakes
+	156 k	6:54
+12 cm
+	✓ 389 min
+Salalah
+Oman
+warned in 14 of 14 library quakes
+	332 k	6:55
+58 cm
+	✓ 391 min
+Victoria
+Seychelles
+warned in 14 of 14 library quakes
+	30 k	7:00
+58 cm
+	✓ 395 min
+Gwadar
+Pakistan
+warned in 10 of 12 library quakes
+	71 k	7:06
+17 cm
+	✓ 401 min
+Hafun
+Somalia
+warned in 15 of 15 library quakes
+	13 k	7:07
+105 cm
+	✓ 402 min
+Chabahar
+Iran
+warned in 9 of 11 library quakes
+	107 k	7:15
+26 cm
+	✓ 410 min
+Muscat
+Oman
+warned in 10 of 12 library quakes
+	1.7 M	7:21
+21 cm
+	✓ 416 min
+Mumbai
+India
+warned in 13 of 13 library quakes
+	12.4 M	7:23
+38 cm
+	✓ 419 min
+Karachi
+Pakistan
+warned in 12 of 12 library quakes
+	18.9 M	7:30
+26 cm
+	✓ 425 min
+Mogadishu
+Somalia
+warned in 15 of 15 library quakes
+	3.3 M	7:33
+111 cm
+	✓ 429 min
+Toamasina
+Madagascar
+warned in 15 of 15 library quakes
+	326 k	7:40
+16 cm
+	✓ 435 min
+Lamu
+Kenya
+warned in 14 of 14 library quakes
+	25 k	8:14
+60 cm
+	✓ 469 min
+Mombasa
+Kenya
+warned in 11 of 11 library quakes
+	1.3 M	8:38
+67 cm
+	✓ 493 min
+Zanzibar City
+Tanzania
+warned in 13 of 13 library quakes
+	219 k	8:38
+74 cm
+	✓ 493 min
+Mahajanga
+Madagascar
+warned in 10 of 10 library quakes
+	246 k	8:46
+23 cm
+	✓ 501 min
+Dar es Salaam
+Tanzania
+warned in 13 of 13 library quakes
+	7.8 M	8:48
+52 cm
+	✓ 503 min
+Aden
+Yemen
+warned in 10 of 10 library quakes
+	863 k	8:56
+8 cm
+	✓ 512 min
+Pemba
+Mozambique
+warned in 10 of 10 library quakes
+	202 k	9:02
+13 cm
+	✓ 517 min
+Nacala
+Mozambique
+warned in 13 of 13 library quakes
+	225 k	9:10
+15 cm
+	✓ 525 min
+Djibouti City
+Djibouti
+warned in 12 of 12 library quakes
+	777 k	9:41
+11 cm
+	✓ 556 min
+◐ Bandar Abbas
+Iran
+warned in 4 of 4 library quakes
+	527 k	9:57
+6 cm
+	✓ 573 min
+Toliara
+Madagascar
+warned in 7 of 7 library quakes
+	169 k	10:25
+6 cm
+	✓ 601 min
+Durban
+South Africa
+warned in 10 of 10 library quakes
+	595 k	10:48
+12 cm
+	✓ 624 min
+Maputo
+Mozambique
+warned in 9 of 9 library quakes
+	1.1 M	10:50
+27 cm
+	✓ 625 min
+Beira
+Mozambique
+warned in 7 of 7 library quakes
+	592 k	10:58
+7 cm
+	✓ 633 min
+East London
+South Africa
+warned in 10 of 10 library quakes
+	267 k	11:10
+15 cm
+	✓ 645 min
+Gqeberha (Port Elizabeth)
+South Africa
+warned in 7 of 7 library quakes
+	968 k	11:47
+11 cm
+	✓ 682 min
+
+Approximate populations (census years 2011–2025, mixed area definitions; sources in cities.json). Arrival and height are read offshore at the nearest grid cell deeper than 50 m, so warning times err on the short side. ◐ marks partly sheltered cities, left out of the headline.
+
+Wave reached Meulaboh at 0 h 00 min. 61 of 65 cities warned in time with 6 sensors.

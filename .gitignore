@@ -10,3 +10,7 @@ dist
 
 .vercel
 .env*
+film/node_modules
+film/out
+film/capture/frames_*
+film/public/audio

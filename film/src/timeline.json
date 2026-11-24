@@ -1,0 +1,1792 @@
+{
+ "fps": 30,
+ "transition": 18,
+ "total": 3862,
+ "scenes": [
+  {
+   "id": "hook",
+   "from": 0,
+   "dur": 299
+  },
+  {
+   "id": "problem",
+   "from": 281,
+   "dur": 412
+  },
+  {
+   "id": "reveal",
+   "from": 675,
+   "dur": 209
+  },
+  {
+   "id": "wave",
+   "from": 866,
+   "dur": 480
+  },
+  {
+   "id": "beam",
+   "from": 1328,
+   "dur": 213
+  },
+  {
+   "id": "cities",
+   "from": 1523,
+   "dur": 301
+  },
+  {
+   "id": "sensor",
+   "from": 1806,
+   "dur": 448
+  },
+  {
+   "id": "optimizer",
+   "from": 2236,
+   "dur": 538
+  },
+  {
+   "id": "nearfield",
+   "from": 2756,
+   "dur": 446
+  },
+  {
+   "id": "proof",
+   "from": 3184,
+   "dur": 410
+  },
+  {
+   "id": "close",
+   "from": 3576,
+   "dur": 286
+  }
+ ],
+ "lines": [
+  {
+   "id": "hook1",
+   "scene": "hook",
+   "from": 36,
+   "local": 36,
+   "dur": 235,
+   "src": "vo/hook1.mp3",
+   "text": "On 26 December 2004, a magnitude 9.1 earthquake broke the seafloor off Sumatra.",
+   "phrases": [
+    {
+     "text": "On 26 December 2004,",
+     "start": 0.083,
+     "end": 2.971
+    },
+    {
+     "text": "a magnitude 9.1 earthquake broke",
+     "start": 2.972,
+     "end": 5.896
+    },
+    {
+     "text": "the seafloor off Sumatra.",
+     "start": 5.896,
+     "end": 7.488
+    }
+   ],
+   "words": [
+    {
+     "w": "On",
+     "f": 2
+    },
+    {
+     "w": "the",
+     "f": 5
+    },
+    {
+     "w": "twenty-sixth",
+     "f": 6
+    },
+    {
+     "w": "of",
+     "f": 22
+    },
+    {
+     "w": "December",
+     "f": 24
+    },
+    {
+     "w": "two",
+     "f": 46
+    },
+    {
+     "w": "thousand",
+     "f": 51
+    },
+    {
+     "w": "four",
+     "f": 63
+    },
+    {
+     "w": "a",
+     "f": 89
+    },
+    {
+     "w": "magnitude",
+     "f": 96
+    },
+    {
+     "w": "nine",
+     "f": 125
+    },
+    {
+     "w": "point",
+     "f": 134
+    },
+    {
+     "w": "one",
+     "f": 143
+    },
+    {
+     "w": "earthquake",
+     "f": 149
+    },
+    {
+     "w": "broke",
+     "f": 168
+    },
+    {
+     "w": "the",
+     "f": 177
+    },
+    {
+     "w": "seafloor",
+     "f": 180
+    },
+    {
+     "w": "off",
+     "f": 198
+    },
+    {
+     "w": "Sumatra",
+     "f": 205
+    }
+   ]
+  },
+  {
+   "id": "problem1",
+   "scene": "problem",
+   "from": 301,
+   "local": 20,
+   "dur": 192,
+   "src": "vo/problem1.mp3",
+   "text": "The tsunami took 2 hours 36 minutes to reach Chennai, and almost three hours to reach Colombo.",
+   "phrases": [
+    {
+     "text": "The tsunami took 2 hours",
+     "start": 0.094,
+     "end": 1.71
+    },
+    {
+     "text": "36 minutes to reach Chennai,",
+     "start": 1.71,
+     "end": 3.855
+    },
+    {
+     "text": "and almost three hours to reach Colombo.",
+     "start": 3.856,
+     "end": 6.026
+    }
+   ],
+   "words": [
+    {
+     "w": "The",
+     "f": 3
+    },
+    {
+     "w": "tsunami",
+     "f": 5
+    },
+    {
+     "w": "took",
+     "f": 18
+    },
+    {
+     "w": "two",
+     "f": 24
+    },
+    {
+     "w": "hours",
+     "f": 33
+    },
+    {
+     "w": "and",
+     "f": 46
+    },
+    {
+     "w": "thirty-six",
+     "f": 51
+    },
+    {
+     "w": "minutes",
+     "f": 70
+    },
+    {
+     "w": "to",
+     "f": 79
+    },
+    {
+     "w": "reach",
+     "f": 82
+    },
+    {
+     "w": "Chennai",
+     "f": 91
+    },
+    {
+     "w": "and",
+     "f": 116
+    },
+    {
+     "w": "almost",
+     "f": 121
+    },
+    {
+     "w": "three",
+     "f": 132
+    },
+    {
+     "w": "hours",
+     "f": 143
+    },
+    {
+     "w": "to",
+     "f": 155
+    },
+    {
+     "w": "reach",
+     "f": 158
+    },
+    {
+     "w": "Colombo",
+     "f": 164
+    }
+   ]
+  },
+  {
+   "id": "problem2",
+   "scene": "problem",
+   "from": 503,
+   "local": 222,
+   "dur": 164,
+   "src": "vo/problem2.mp3",
+   "text": "The Indian Ocean had no warning system. More than 227,000 people died.",
+   "phrases": [
+    {
+     "text": "The Indian Ocean had no warning system.",
+     "start": 0.094,
+     "end": 2.617
+    },
+    {
+     "text": "More than 227,000 people died.",
+     "start": 2.618,
+     "end": 5.094
+    }
+   ],
+   "words": [
+    {
+     "w": "The",
+     "f": 3
+    },
+    {
+     "w": "Indian",
+     "f": 5
+    },
+    {
+     "w": "Ocean",
+     "f": 14
+    },
+    {
+     "w": "had",
+     "f": 29
+    },
+    {
+     "w": "no",
+     "f": 37
+    },
+    {
+     "w": "warning",
+     "f": 46
+    },
+    {
+     "w": "system",
+     "f": 55
+    },
+    {
+     "w": "More",
+     "f": 79
+    },
+    {
+     "w": "than",
+     "f": 85
+    },
+    {
+     "w": "two",
+     "f": 89
+    },
+    {
+     "w": "hundred",
+     "f": 96
+    },
+    {
+     "w": "and",
+     "f": 101
+    },
+    {
+     "w": "twenty-seven",
+     "f": 102
+    },
+    {
+     "w": "thousand",
+     "f": 119
+    },
+    {
+     "w": "people",
+     "f": 133
+    },
+    {
+     "w": "died",
+     "f": 141
+    }
+   ]
+  },
+  {
+   "id": "reveal1",
+   "scene": "reveal",
+   "from": 697,
+   "local": 22,
+   "dur": 165,
+   "src": "vo/reveal1.mp3",
+   "text": "This is LeadTime. It asks one question: how many minutes does a coastal city get to run?",
+   "phrases": [
+    {
+     "text": "This is LeadTime.",
+     "start": 0.083,
+     "end": 1.332
+    },
+    {
+     "text": "It asks one question:",
+     "start": 1.333,
+     "end": 2.912
+    },
+    {
+     "text": "how many minutes does a coastal city get to run?",
+     "start": 2.913,
+     "end": 5.165
+    }
+   ],
+   "words": [
+    {
+     "w": "This",
+     "f": 2
+    },
+    {
+     "w": "is",
+     "f": 7
+    },
+    {
+     "w": "Lead",
+     "f": 11
+    },
+    {
+     "w": "Time",
+     "f": 17
+    },
+    {
+     "w": "It",
+     "f": 40
+    },
+    {
+     "w": "asks",
+     "f": 42
+    },
+    {
+     "w": "one",
+     "f": 50
+    },
+    {
+     "w": "question",
+     "f": 58
+    },
+    {
+     "w": "how",
+     "f": 87
+    },
+    {
+     "w": "many",
+     "f": 90
+    },
+    {
+     "w": "minutes",
+     "f": 96
+    },
+    {
+     "w": "does",
+     "f": 109
+    },
+    {
+     "w": "a",
+     "f": 113
+    },
+    {
+     "w": "coastal",
+     "f": 115
+    },
+    {
+     "w": "city",
+     "f": 128
+    },
+    {
+     "w": "get",
+     "f": 137
+    },
+    {
+     "w": "to",
+     "f": 142
+    },
+    {
+     "w": "run",
+     "f": 144
+    }
+   ]
+  },
+  {
+   "id": "wave1",
+   "scene": "wave",
+   "from": 880,
+   "local": 14,
+   "dur": 250,
+   "src": "vo/wave1.mp3",
+   "text": "Replay 2004, and a shallow-water solver carries the wave across the real ocean floor, live in your browser.",
+   "phrases": [
+    {
+     "text": "Replay 2004,",
+     "start": 0.083,
+     "end": 2.0980000000000003
+    },
+    {
+     "text": "and a shallow-water solver carries the",
+     "start": 2.099,
+     "end": 4.387
+    },
+    {
+     "text": "wave across the real ocean floor,",
+     "start": 4.387,
+     "end": 7.050999999999999
+    },
+    {
+     "text": "live in your browser.",
+     "start": 7.052,
+     "end": 7.972
+    }
+   ],
+   "words": [
+    {
+     "w": "Replay",
+     "f": 2
+    },
+    {
+     "w": "2004",
+     "f": 15
+    },
+    {
+     "w": "and",
+     "f": 63
+    },
+    {
+     "w": "a",
+     "f": 73
+    },
+    {
+     "w": "shallow-water",
+     "f": 73
+    },
+    {
+     "w": "solver",
+     "f": 94
+    },
+    {
+     "w": "carries",
+     "f": 116
+    },
+    {
+     "w": "the",
+     "f": 128
+    },
+    {
+     "w": "wave",
+     "f": 132
+    },
+    {
+     "w": "across",
+     "f": 148
+    },
+    {
+     "w": "the",
+     "f": 162
+    },
+    {
+     "w": "real",
+     "f": 165
+    },
+    {
+     "w": "ocean",
+     "f": 177
+    },
+    {
+     "w": "floor",
+     "f": 186
+    },
+    {
+     "w": "live",
+     "f": 212
+    },
+    {
+     "w": "in",
+     "f": 219
+    },
+    {
+     "w": "your",
+     "f": 221
+    },
+    {
+     "w": "browser",
+     "f": 223
+    }
+   ]
+  },
+  {
+   "id": "wave2",
+   "scene": "wave",
+   "from": 1138,
+   "local": 272,
+   "dur": 188,
+   "src": "vo/wave2.mp3",
+   "text": "Over deep water it moves as fast as a jet, and twelve hours of tsunami play out in under a minute.",
+   "phrases": [
+    {
+     "text": "Over deep water it moves as fast as a jet,",
+     "start": 0.094,
+     "end": 3.148
+    },
+    {
+     "text": "and twelve hours of tsunami play",
+     "start": 3.149,
+     "end": 4.811
+    },
+    {
+     "text": "out in under a minute.",
+     "start": 4.811,
+     "end": 5.908
+    }
+   ],
+   "words": [
+    {
+     "w": "Over",
+     "f": 3
+    },
+    {
+     "w": "deep",
+     "f": 10
+    },
+    {
+     "w": "water",
+     "f": 17
+    },
+    {
+     "w": "it",
+     "f": 29
+    },
+    {
+     "w": "moves",
+     "f": 32
+    },
+    {
+     "w": "as",
+     "f": 45
+    },
+    {
+     "w": "fast",
+     "f": 52
+    },
+    {
+     "w": "as",
+     "f": 70
+    },
+    {
+     "w": "a",
+     "f": 73
+    },
+    {
+     "w": "jet",
+     "f": 74
+    },
+    {
+     "w": "and",
+     "f": 94
+    },
+    {
+     "w": "twelve",
+     "f": 98
+    },
+    {
+     "w": "hours",
+     "f": 109
+    },
+    {
+     "w": "of",
+     "f": 119
+    },
+    {
+     "w": "tsunami",
+     "f": 121
+    },
+    {
+     "w": "play",
+     "f": 134
+    },
+    {
+     "w": "out",
+     "f": 144
+    },
+    {
+     "w": "in",
+     "f": 153
+    },
+    {
+     "w": "under",
+     "f": 159
+    },
+    {
+     "w": "a",
+     "f": 166
+    },
+    {
+     "w": "minute",
+     "f": 167
+    }
+   ]
+  },
+  {
+   "id": "beam1",
+   "scene": "beam",
+   "from": 1342,
+   "local": 14,
+   "dur": 179,
+   "src": "vo/beam1.mp3",
+   "text": "The seafloor bends it into beams. Here's where it hit hardest, and when, hour by hour.",
+   "phrases": [
+    {
+     "text": "The seafloor bends it into beams.",
+     "start": 0.094,
+     "end": 2.228
+    },
+    {
+     "text": "Here's where it hit hardest, and when, hour by hour.",
+     "start": 2.229,
+     "end": 5.59
+    }
+   ],
+   "words": [
+    {
+     "w": "The",
+     "f": 3
+    },
+    {
+     "w": "seafloor",
+     "f": 5
+    },
+    {
+     "w": "bends",
+     "f": 19
+    },
+    {
+     "w": "it",
+     "f": 30
+    },
+    {
+     "w": "into",
+     "f": 31
+    },
+    {
+     "w": "beams",
+     "f": 36
+    },
+    {
+     "w": "Here's",
+     "f": 67
+    },
+    {
+     "w": "where",
+     "f": 75
+    },
+    {
+     "w": "it",
+     "f": 79
+    },
+    {
+     "w": "hit",
+     "f": 81
+    },
+    {
+     "w": "hardest",
+     "f": 86
+    },
+    {
+     "w": "and",
+     "f": 116
+    },
+    {
+     "w": "when",
+     "f": 119
+    },
+    {
+     "w": "hour",
+     "f": 139
+    },
+    {
+     "w": "by",
+     "f": 148
+    },
+    {
+     "w": "hour",
+     "f": 155
+    }
+   ]
+  },
+  {
+   "id": "cities1",
+   "scene": "cities",
+   "from": 1537,
+   "local": 14,
+   "dur": 163,
+   "src": "vo/cities1.mp3",
+   "text": "For 65 cities on the coast, you see when the wave arrives, and how many people live there.",
+   "phrases": [
+    {
+     "text": "For 65 cities on the coast,",
+     "start": 0.13,
+     "end": 2.051
+    },
+    {
+     "text": "you see when the wave arrives,",
+     "start": 2.052,
+     "end": 3.8080000000000003
+    },
+    {
+     "text": "and how many people live there.",
+     "start": 3.809,
+     "end": 5.071
+    }
+   ],
+   "words": [
+    {
+     "w": "For",
+     "f": 4
+    },
+    {
+     "w": "sixty-five",
+     "f": 7
+    },
+    {
+     "w": "cities",
+     "f": 28
+    },
+    {
+     "w": "on",
+     "f": 36
+    },
+    {
+     "w": "the",
+     "f": 38
+    },
+    {
+     "w": "coast",
+     "f": 40
+    },
+    {
+     "w": "you",
+     "f": 62
+    },
+    {
+     "w": "see",
+     "f": 65
+    },
+    {
+     "w": "when",
+     "f": 73
+    },
+    {
+     "w": "the",
+     "f": 76
+    },
+    {
+     "w": "wave",
+     "f": 79
+    },
+    {
+     "w": "arrives",
+     "f": 85
+    },
+    {
+     "w": "and",
+     "f": 114
+    },
+    {
+     "w": "how",
+     "f": 117
+    },
+    {
+     "w": "many",
+     "f": 121
+    },
+    {
+     "w": "people",
+     "f": 126
+    },
+    {
+     "w": "live",
+     "f": 136
+    },
+    {
+     "w": "there",
+     "f": 143
+    }
+   ]
+  },
+  {
+   "id": "cities2",
+   "scene": "cities",
+   "from": 1708,
+   "local": 185,
+   "dur": 96,
+   "src": "vo/cities2.mp3",
+   "text": "With no sensors, nobody gets a confirmed warning.",
+   "phrases": [
+    {
+     "text": "With no sensors, nobody gets a confirmed warning.",
+     "start": 0.094,
+     "end": 2.818
+    }
+   ],
+   "words": [
+    {
+     "w": "With",
+     "f": 3
+    },
+    {
+     "w": "no",
+     "f": 7
+    },
+    {
+     "w": "sensors",
+     "f": 13
+    },
+    {
+     "w": "nobody",
+     "f": 44
+    },
+    {
+     "w": "gets",
+     "f": 54
+    },
+    {
+     "w": "a",
+     "f": 58
+    },
+    {
+     "w": "confirmed",
+     "f": 59
+    },
+    {
+     "w": "warning",
+     "f": 74
+    }
+   ]
+  },
+  {
+   "id": "sensor1",
+   "scene": "sensor",
+   "from": 1820,
+   "local": 14,
+   "dur": 283,
+   "src": "vo/sensor1.mp3",
+   "text": "Now you're the engineer. Drop one deep-ocean sensor west of Sumatra, and 73.1 million people get at least fifteen minutes to evacuate.",
+   "phrases": [
+    {
+     "text": "Now you're the engineer.",
+     "start": 0.071,
+     "end": 1.332
+    },
+    {
+     "text": "Drop one deep-ocean sensor west of Sumatra,",
+     "start": 1.333,
+     "end": 4.420999999999999
+    },
+    {
+     "text": "and 73.1 million people get at",
+     "start": 4.422,
+     "end": 7.17
+    },
+    {
+     "text": "least fifteen minutes to evacuate.",
+     "start": 7.17,
+     "end": 9.057
+    }
+   ],
+   "words": [
+    {
+     "w": "Now",
+     "f": 2
+    },
+    {
+     "w": "you're",
+     "f": 7
+    },
+    {
+     "w": "the",
+     "f": 10
+    },
+    {
+     "w": "engineer",
+     "f": 12
+    },
+    {
+     "w": "Drop",
+     "f": 40
+    },
+    {
+     "w": "one",
+     "f": 54
+    },
+    {
+     "w": "deep-ocean",
+     "f": 63
+    },
+    {
+     "w": "sensor",
+     "f": 81
+    },
+    {
+     "w": "west",
+     "f": 93
+    },
+    {
+     "w": "of",
+     "f": 101
+    },
+    {
+     "w": "Sumatra",
+     "f": 103
+    },
+    {
+     "w": "and",
+     "f": 133
+    },
+    {
+     "w": "seventy-three",
+     "f": 136
+    },
+    {
+     "w": "point",
+     "f": 152
+    },
+    {
+     "w": "one",
+     "f": 166
+    },
+    {
+     "w": "million",
+     "f": 175
+    },
+    {
+     "w": "people",
+     "f": 185
+    },
+    {
+     "w": "get",
+     "f": 207
+    },
+    {
+     "w": "at",
+     "f": 212
+    },
+    {
+     "w": "least",
+     "f": 215
+    },
+    {
+     "w": "fifteen",
+     "f": 223
+    },
+    {
+     "w": "minutes",
+     "f": 237
+    },
+    {
+     "w": "to",
+     "f": 249
+    },
+    {
+     "w": "evacuate",
+     "f": 252
+    }
+   ]
+  },
+  {
+   "id": "sensor2",
+   "scene": "sensor",
+   "from": 2111,
+   "local": 305,
+   "dur": 121,
+   "src": "vo/sensor2.mp3",
+   "text": "Chennai, with 6.7 million people, gets 101 minutes.",
+   "phrases": [
+    {
+     "text": "Chennai, with 6.7 million people, gets 101 minutes.",
+     "start": 0.094,
+     "end": 3.667
+    }
+   ],
+   "words": [
+    {
+     "w": "Chennai",
+     "f": 3
+    },
+    {
+     "w": "with",
+     "f": 21
+    },
+    {
+     "w": "six",
+     "f": 25
+    },
+    {
+     "w": "point",
+     "f": 33
+    },
+    {
+     "w": "seven",
+     "f": 40
+    },
+    {
+     "w": "million",
+     "f": 49
+    },
+    {
+     "w": "people",
+     "f": 57
+    },
+    {
+     "w": "gets",
+     "f": 76
+    },
+    {
+     "w": "a",
+     "f": 80
+    },
+    {
+     "w": "hundred",
+     "f": 81
+    },
+    {
+     "w": "and",
+     "f": 91
+    },
+    {
+     "w": "one",
+     "f": 92
+    },
+    {
+     "w": "minutes",
+     "f": 96
+    }
+   ]
+  },
+  {
+   "id": "opt1",
+   "scene": "optimizer",
+   "from": 2250,
+   "local": 14,
+   "dur": 175,
+   "src": "vo/opt1.mp3",
+   "text": "The optimizer tests 15 possible earthquakes along the trenches, and places six sensors.",
+   "phrases": [
+    {
+     "text": "The optimizer tests 15 possible",
+     "start": 0.094,
+     "end": 2.31
+    },
+    {
+     "text": "earthquakes along the trenches,",
+     "start": 2.311,
+     "end": 4.221
+    },
+    {
+     "text": "and places six sensors.",
+     "start": 4.222,
+     "end": 5.472
+    }
+   ],
+   "words": [
+    {
+     "w": "The",
+     "f": 3
+    },
+    {
+     "w": "optimizer",
+     "f": 6
+    },
+    {
+     "w": "tests",
+     "f": 24
+    },
+    {
+     "w": "fifteen",
+     "f": 36
+    },
+    {
+     "w": "possible",
+     "f": 53
+    },
+    {
+     "w": "earthquakes",
+     "f": 69
+    },
+    {
+     "w": "along",
+     "f": 87
+    },
+    {
+     "w": "the",
+     "f": 96
+    },
+    {
+     "w": "trenches",
+     "f": 98
+    },
+    {
+     "w": "and",
+     "f": 127
+    },
+    {
+     "w": "places",
+     "f": 129
+    },
+    {
+     "w": "six",
+     "f": 140
+    },
+    {
+     "w": "sensors",
+     "f": 147
+    }
+   ]
+  },
+  {
+   "id": "opt2",
+   "scene": "optimizer",
+   "from": 2433,
+   "local": 197,
+   "dur": 159,
+   "src": "vo/opt2.mp3",
+   "text": "The first warns about 53 million people per quake. The sixth adds nothing.",
+   "phrases": [
+    {
+     "text": "The first warns about 53 million people per quake.",
+     "start": 0.094,
+     "end": 3.596
+    },
+    {
+     "text": "The sixth adds nothing.",
+     "start": 3.597,
+     "end": 4.929
+    }
+   ],
+   "words": [
+    {
+     "w": "The",
+     "f": 3
+    },
+    {
+     "w": "first",
+     "f": 5
+    },
+    {
+     "w": "warns",
+     "f": 15
+    },
+    {
+     "w": "about",
+     "f": 24
+    },
+    {
+     "w": "fifty-three",
+     "f": 35
+    },
+    {
+     "w": "million",
+     "f": 56
+    },
+    {
+     "w": "people",
+     "f": 70
+    },
+    {
+     "w": "per",
+     "f": 80
+    },
+    {
+     "w": "quake",
+     "f": 84
+    },
+    {
+     "w": "The",
+     "f": 108
+    },
+    {
+     "w": "sixth",
+     "f": 109
+    },
+    {
+     "w": "adds",
+     "f": 125
+    },
+    {
+     "w": "nothing",
+     "f": 135
+    }
+   ]
+  },
+  {
+   "id": "opt3",
+   "scene": "optimizer",
+   "from": 2602,
+   "local": 366,
+   "dur": 150,
+   "src": "vo/opt3.mp3",
+   "text": "Real networks also weigh cost and upkeep, but now you can see what each sensor buys.",
+   "phrases": [
+    {
+     "text": "Real networks also weigh cost and upkeep,",
+     "start": 0.083,
+     "end": 2.758
+    },
+    {
+     "text": "but now you can see what each sensor buys.",
+     "start": 2.759,
+     "end": 4.611
+    }
+   ],
+   "words": [
+    {
+     "w": "Real",
+     "f": 2
+    },
+    {
+     "w": "networks",
+     "f": 7
+    },
+    {
+     "w": "also",
+     "f": 20
+    },
+    {
+     "w": "weigh",
+     "f": 29
+    },
+    {
+     "w": "cost",
+     "f": 34
+    },
+    {
+     "w": "and",
+     "f": 58
+    },
+    {
+     "w": "upkeep",
+     "f": 62
+    },
+    {
+     "w": "but",
+     "f": 83
+    },
+    {
+     "w": "now",
+     "f": 87
+    },
+    {
+     "w": "you",
+     "f": 92
+    },
+    {
+     "w": "can",
+     "f": 94
+    },
+    {
+     "w": "see",
+     "f": 98
+    },
+    {
+     "w": "what",
+     "f": 105
+    },
+    {
+     "w": "each",
+     "f": 109
+    },
+    {
+     "w": "sensor",
+     "f": 114
+    },
+    {
+     "w": "buys",
+     "f": 124
+    }
+   ]
+  },
+  {
+   "id": "near1",
+   "scene": "nearfield",
+   "from": 2772,
+   "local": 16,
+   "dur": 165,
+   "src": "vo/near1.mp3",
+   "text": "And the honest part: Banda Aceh is hit in 21 minutes. No sensor can save it.",
+   "phrases": [
+    {
+     "text": "And the honest part:",
+     "start": 0.094,
+     "end": 1.32
+    },
+    {
+     "text": "Banda Aceh is hit in 21 minutes.",
+     "start": 1.321,
+     "end": 4.008
+    },
+    {
+     "text": "No sensor can save it.",
+     "start": 4.009,
+     "end": 5.141
+    }
+   ],
+   "words": [
+    {
+     "w": "And",
+     "f": 3
+    },
+    {
+     "w": "the",
+     "f": 5
+    },
+    {
+     "w": "honest",
+     "f": 7
+    },
+    {
+     "w": "part",
+     "f": 17
+    },
+    {
+     "w": "Banda",
+     "f": 40
+    },
+    {
+     "w": "Aceh",
+     "f": 51
+    },
+    {
+     "w": "is",
+     "f": 70
+    },
+    {
+     "w": "hit",
+     "f": 75
+    },
+    {
+     "w": "in",
+     "f": 81
+    },
+    {
+     "w": "twenty-one",
+     "f": 84
+    },
+    {
+     "w": "minutes",
+     "f": 95
+    },
+    {
+     "w": "No",
+     "f": 120
+    },
+    {
+     "w": "sensor",
+     "f": 124
+    },
+    {
+     "w": "can",
+     "f": 135
+    },
+    {
+     "w": "save",
+     "f": 139
+    },
+    {
+     "w": "it",
+     "f": 150
+    }
+   ]
+  },
+  {
+   "id": "near2",
+   "scene": "nearfield",
+   "from": 2947,
+   "local": 191,
+   "dur": 233,
+   "src": "vo/near2.mp3",
+   "text": "On nearby Simeulue Island, an oral tradition did. Only seven of more than 78,000 people died there.",
+   "phrases": [
+    {
+     "text": "On nearby Simeulue Island, an oral tradition did.",
+     "start": 0.083,
+     "end": 3.678
+    },
+    {
+     "text": "Only seven of more than 78,000 people died there.",
+     "start": 3.679,
+     "end": 7.406
+    }
+   ],
+   "words": [
+    {
+     "w": "On",
+     "f": 2
+    },
+    {
+     "w": "nearby",
+     "f": 6
+    },
+    {
+     "w": "Simeulue",
+     "f": 29
+    },
+    {
+     "w": "Island",
+     "f": 44
+    },
+    {
+     "w": "an",
+     "f": 68
+    },
+    {
+     "w": "oral",
+     "f": 71
+    },
+    {
+     "w": "tradition",
+     "f": 80
+    },
+    {
+     "w": "did",
+     "f": 91
+    },
+    {
+     "w": "Only",
+     "f": 110
+    },
+    {
+     "w": "seven",
+     "f": 117
+    },
+    {
+     "w": "of",
+     "f": 128
+    },
+    {
+     "w": "more",
+     "f": 131
+    },
+    {
+     "w": "than",
+     "f": 142
+    },
+    {
+     "w": "seventy-eight",
+     "f": 149
+    },
+    {
+     "w": "thousand",
+     "f": 174
+    },
+    {
+     "w": "people",
+     "f": 189
+    },
+    {
+     "w": "died",
+     "f": 203
+    },
+    {
+     "w": "there",
+     "f": 212
+    }
+   ]
+  },
+  {
+   "id": "proof1",
+   "scene": "proof",
+   "from": 3200,
+   "local": 16,
+   "dur": 269,
+   "src": "vo/proof1.mp3",
+   "text": "Can you trust the physics? Against 13 tide gauges from 2004, our arrival times are off by 20 minutes on average, and mostly early.",
+   "phrases": [
+    {
+     "text": "Can you trust the physics?",
+     "start": 0.083,
+     "end": 1.685
+    },
+    {
+     "text": "Against 13 tide gauges from 2004,",
+     "start": 1.686,
+     "end": 4.681
+    },
+    {
+     "text": "our arrival times are off by 20 minutes on average,",
+     "start": 4.682,
+     "end": 7.688
+    },
+    {
+     "text": "and mostly early.",
+     "start": 7.689,
+     "end": 8.62
+    }
+   ],
+   "words": [
+    {
+     "w": "Can",
+     "f": 2
+    },
+    {
+     "w": "you",
+     "f": 5
+    },
+    {
+     "w": "trust",
+     "f": 9
+    },
+    {
+     "w": "the",
+     "f": 18
+    },
+    {
+     "w": "physics",
+     "f": 21
+    },
+    {
+     "w": "Against",
+     "f": 51
+    },
+    {
+     "w": "thirteen",
+     "f": 60
+    },
+    {
+     "w": "tide",
+     "f": 75
+    },
+    {
+     "w": "gauges",
+     "f": 84
+    },
+    {
+     "w": "from 2004",
+     "f": 94
+    },
+    {
+     "w": "our",
+     "f": 140
+    },
+    {
+     "w": "arrival",
+     "f": 144
+    },
+    {
+     "w": "times",
+     "f": 155
+    },
+    {
+     "w": "are",
+     "f": 164
+    },
+    {
+     "w": "off",
+     "f": 168
+    },
+    {
+     "w": "by",
+     "f": 177
+    },
+    {
+     "w": "twenty",
+     "f": 188
+    },
+    {
+     "w": "minutes",
+     "f": 197
+    },
+    {
+     "w": "on",
+     "f": 204
+    },
+    {
+     "w": "average",
+     "f": 208
+    },
+    {
+     "w": "and",
+     "f": 231
+    },
+    {
+     "w": "mostly",
+     "f": 235
+    },
+    {
+     "w": "early",
+     "f": 247
+    }
+   ]
+  },
+  {
+   "id": "proof2",
+   "scene": "proof",
+   "from": 3479,
+   "local": 295,
+   "dur": 91,
+   "src": "vo/proof2.mp3",
+   "text": "So the warning times you see err on the safe side.",
+   "phrases": [
+    {
+     "text": "So the warning times you see err on the safe side.",
+     "start": 0.094,
+     "end": 2.677
+    }
+   ],
+   "words": [
+    {
+     "w": "So",
+     "f": 3
+    },
+    {
+     "w": "the",
+     "f": 7
+    },
+    {
+     "w": "warning",
+     "f": 10
+    },
+    {
+     "w": "times",
+     "f": 20
+    },
+    {
+     "w": "you",
+     "f": 31
+    },
+    {
+     "w": "see",
+     "f": 34
+    },
+    {
+     "w": "err",
+     "f": 43
+    },
+    {
+     "w": "on",
+     "f": 56
+    },
+    {
+     "w": "the",
+     "f": 58
+    },
+    {
+     "w": "safe",
+     "f": 60
+    },
+    {
+     "w": "side",
+     "f": 69
+    }
+   ]
+  },
+  {
+   "id": "end1",
+   "scene": "close",
+   "from": 3596,
+   "local": 20,
+   "dur": 152,
+   "src": "vo/end1.mp3",
+   "text": "LeadTime. Free, open source, no login. Every minute counts.",
+   "phrases": [
+    {
+     "text": "LeadTime.",
+     "start": 0.089,
+     "end": 1.1090000000000002
+    },
+    {
+     "text": "Free, open source, no login.",
+     "start": 1.11,
+     "end": 3.634
+    },
+    {
+     "text": "Every minute counts.",
+     "start": 3.635,
+     "end": 4.656
+    }
+   ],
+   "words": [
+    {
+     "w": "Lead",
+     "f": 3
+    },
+    {
+     "w": "Time",
+     "f": 8
+    },
+    {
+     "w": "Free",
+     "f": 33
+    },
+    {
+     "w": "open",
+     "f": 51
+    },
+    {
+     "w": "source",
+     "f": 59
+    },
+    {
+     "w": "no",
+     "f": 75
+    },
+    {
+     "w": "login",
+     "f": 82
+    },
+    {
+     "w": "Every",
+     "f": 109
+    },
+    {
+     "w": "minute",
+     "f": 115
+    },
+    {
+     "w": "counts",
+     "f": 122
+    }
+   ]
+  }
+ ]
+}

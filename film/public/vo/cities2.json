@@ -1,0 +1,49 @@
+{
+ "spoken": "With no sensors, nobody gets a confirmed warning.",
+ "voice": "en-US-AndrewMultilingualNeural",
+ "rate": "+6%",
+ "duration": 3.168,
+ "words": [
+  {
+   "t": 0.094333,
+   "d": 0.117916,
+   "w": "With"
+  },
+  {
+   "t": 0.224041,
+   "d": 0.200458,
+   "w": "no"
+  },
+  {
+   "t": 0.424541,
+   "d": 0.69575,
+   "w": "sensors"
+  },
+  {
+   "t": 1.474041,
+   "d": 0.330208,
+   "w": "nobody"
+  },
+  {
+   "t": 1.80425,
+   "d": 0.1415,
+   "w": "gets"
+  },
+  {
+   "t": 1.94575,
+   "d": 0.035375,
+   "w": "a"
+  },
+  {
+   "t": 1.981125,
+   "d": 0.471708,
+   "w": "confirmed"
+  },
+  {
+   "t": 2.452833,
+   "d": 0.365583,
+   "w": "warning"
+  }
+ ],
+ "hash": "b1f0ea2b2f"
+}

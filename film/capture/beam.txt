@@ -1,0 +1,53 @@
+LeadTime
+
+Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.
+
+Copy link
+Source
+10 h
+9 h
+8 h
+7 h
+6 h
+4 h
+3 h
+2 h
+5 h
+1 h
++
+−
+ Leaflet | Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED)
++12:00
+hours after
+the quake
+5 min/s
+20 min/s
+Max
+Map layers
+Wave
+Highest wave
+Hourly arrival lines
+highest wave 3 cm
+4.5 m
+1
+Quake
+2
+Sensors
+Science
+Learn
+Choose an earthquake
+Replay 2004 Sumatra–Andaman, Mw 9.1
+
+Or click the ocean to place your own epicentre. Near a subduction trench the fault lines up with it automatically.
+
+Your earthquake
+Magnitude
+8.8
+Fault direction (strike)
+330°
+Place at map centre
+
+2004 Sumatra–Andaman: 5 fault segments, 1260 km of rupture.
+
+Next: place warning sensors
+Wave reached Meulaboh at 0 h 00 min. 0 of 65 cities warned in time with 0 sensors.

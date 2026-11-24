@@ -1,0 +1,68 @@
+LeadTime
+
+Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.
+
+Copy link
+Source
+1
+2
+3
+4
+5
+6
++
+−
+ Leaflet | Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED)
++12:00
+hours after
+the quake
+5 min/s
+20 min/s
+Max
+Map layers
+Wave
+Highest wave
+Hourly arrival lines
+trough
+crest
+1
+Quake
+2
+Sensors
+Science
+Learn
+Why a tsunami crosses an ocean as fast as a jet
+
+A tsunami moves the whole water column, so its speed depends only on depth: c = √(g·h). Over 4 km of ocean that is about 200 m/s, or 720 km/h. NOAA puts deep-ocean speeds at over 500 mph, "as fast as a jet plane". Tide gauges in 2004 measured a typical 187 m/s.
+
+Sources: NOAA National Weather Service, Tsunami Safety; Merrifield et al. 2005, GRL.
+
+Show me the hourly arrival lines
+How the seafloor steers the wave into beams
+
+Where the water gets shallower the wave slows down, so a wave front bends toward shallow water, much as light bends in a lens. Ridges and shelves focus energy into beams. In 2004 the strongest beam ran west, straight at Sri Lanka and southern India.
+
+Show me the highest-wave map
+A warning, then a confirmation
+
+Warning centres send their first message from earthquake data, within about five minutes where seismic networks are dense. Deep-ocean pressure sensors then confirm whether a tsunami is really coming and how big it is, so the warning can be upgraded or cancelled. That confirmed time is what LeadTime measures. The Indian Ocean had no warning system in 2004; India's centre opened in October 2007 and the regional service started in October 2011.
+
+Sources: tsunami.gov FAQ; Merrifield et al. 2005; INCOIS; IOC-UNESCO.
+
+Show me an optimized sensor network
+When there is no time: the story of smong
+
+Close to the earthquake no sensor can help: in our model the wave reaches Banda Aceh about 20 minutes after the shaking. On nearby Simeulue Island, an oral tradition called smong tells people to run to the hills after strong shaking. In 2004 only 7 of its 78,128 people died. Education is the warning system that works in the near field.
+
+Source: McAdoo, B. G., et al. (2006), Smong: How an oral history saved thousands, Earthquake Spectra 22(S3).
+
+Show me Banda Aceh
+Data and credits
+Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED and others).
+Basemap: Esri World Dark Gray (Esri, HERE, Garmin, © OpenStreetMap contributors).
+2004 rupture: Grilli et al. 2007; magnitude scaling: Strasser et al. 2010; epicentre: USGS.
+Tide-gauge arrivals: Merrifield et al. 2005, Nagarajan et al. 2006, Tsuji et al. 2006, Bilham et al. 2005.
+Trenches: Bird 2003 (PB2002). Buoys: NOAA NDBC, INCOIS. Cities: national censuses via Wikipedia.
+The 2004 tsunami killed more than 227,000 people (Wikipedia: 227,898; USGS: more than 283,100).
+Built with Leaflet (BSD-2), Barlow fonts (OFL), Lucide icons (ISC), Vite and vitest. AI-assisted development (Claude Code), reviewed by the team.
+Wave reached Meulaboh at 0 h 00 min. 61 of 65 cities warned in time with 6 sensors.

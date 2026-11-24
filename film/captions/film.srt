@@ -1,0 +1,195 @@
+1
+00:00:01,283 --> 00:00:04,172
+On 26 December 2004,
+
+2
+00:00:04,172 --> 00:00:07,096
+a magnitude 9.1 earthquake broke
+
+3
+00:00:07,096 --> 00:00:08,821
+the seafloor off Sumatra.
+
+4
+00:00:10,127 --> 00:00:11,743
+The tsunami took 2 hours
+
+5
+00:00:11,743 --> 00:00:13,889
+36 minutes to reach Chennai,
+
+6
+00:00:13,889 --> 00:00:16,193
+and almost three hours to reach Colombo.
+
+7
+00:00:16,861 --> 00:00:19,385
+The Indian Ocean had no warning system.
+
+8
+00:00:19,385 --> 00:00:21,994
+More than 227,000 people died.
+
+9
+00:00:23,316 --> 00:00:24,566
+This is LeadTime.
+
+10
+00:00:24,566 --> 00:00:26,146
+It asks one question:
+
+11
+00:00:26,146 --> 00:00:28,532
+how many minutes does a coastal city get to run?
+
+12
+00:00:29,416 --> 00:00:31,432
+Replay 2004,
+
+13
+00:00:31,432 --> 00:00:33,720
+and a shallow-water solver carries the
+
+14
+00:00:33,720 --> 00:00:36,385
+wave across the real ocean floor,
+
+15
+00:00:36,385 --> 00:00:37,439
+live in your browser.
+
+16
+00:00:38,027 --> 00:00:41,082
+Over deep water it moves as fast as a jet,
+
+17
+00:00:41,082 --> 00:00:42,744
+and twelve hours of tsunami play
+
+18
+00:00:42,744 --> 00:00:43,975
+out in under a minute.
+
+19
+00:00:44,827 --> 00:00:46,962
+The seafloor bends it into beams.
+
+20
+00:00:46,962 --> 00:00:50,457
+Here's where it hit hardest, and when, hour by hour.
+
+21
+00:00:51,363 --> 00:00:53,285
+For 65 cities on the coast,
+
+22
+00:00:53,285 --> 00:00:55,042
+you see when the wave arrives,
+
+23
+00:00:55,042 --> 00:00:56,438
+and how many people live there.
+
+24
+00:00:57,027 --> 00:00:59,885
+With no sensors, nobody gets a confirmed warning.
+
+25
+00:01:00,738 --> 00:01:01,000
+Now you're the engineer.
+
+26
+00:01:01,000 --> 00:01:05,089
+Drop one deep-ocean sensor west of Sumatra,
+
+27
+00:01:05,089 --> 00:01:07,837
+and 73.1 million people get at
+
+28
+00:01:07,837 --> 00:01:09,857
+least fifteen minutes to evacuate.
+
+29
+00:01:10,461 --> 00:01:14,167
+Chennai, with 6.7 million people, gets 101 minutes.
+
+30
+00:01:15,094 --> 00:01:17,311
+The optimizer tests 15 possible
+
+31
+00:01:17,311 --> 00:01:19,222
+earthquakes along the trenches,
+
+32
+00:01:19,222 --> 00:01:20,605
+and places six sensors.
+
+33
+00:01:21,194 --> 00:01:24,697
+The first warns about 53 million people per quake.
+
+34
+00:01:24,697 --> 00:01:26,162
+The sixth adds nothing.
+
+35
+00:01:26,816 --> 00:01:29,492
+Real networks also weigh cost and upkeep,
+
+36
+00:01:29,492 --> 00:01:31,478
+but now you can see what each sensor buys.
+
+37
+00:01:32,494 --> 00:01:33,721
+And the honest part:
+
+38
+00:01:33,721 --> 00:01:36,409
+Banda Aceh is hit in 21 minutes.
+
+39
+00:01:36,409 --> 00:01:37,674
+No sensor can save it.
+
+40
+00:01:38,316 --> 00:01:41,912
+On nearby Simeulue Island, an oral tradition did.
+
+41
+00:01:41,912 --> 00:01:45,773
+Only seven of more than 78,000 people died there.
+
+42
+00:01:46,750 --> 00:01:48,353
+Can you trust the physics?
+
+43
+00:01:48,353 --> 00:01:51,349
+Against 13 tide gauges from 2004,
+
+44
+00:01:51,349 --> 00:01:54,356
+our arrival times are off by 20 minutes on average,
+
+45
+00:01:54,356 --> 00:01:55,420
+and mostly early.
+
+46
+00:01:56,061 --> 00:01:58,777
+So the warning times you see err on the safe side.
+
+47
+00:01:59,956 --> 00:02:00,977
+LeadTime.
+
+48
+00:02:00,977 --> 00:02:03,502
+Free, open source, no login.
+
+49
+00:02:03,502 --> 00:02:04,656
+Every minute counts.

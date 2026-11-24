@@ -1,0 +1,200 @@
+{
+  "voice": "en-US-AndrewMultilingualNeural",
+  "rate": "+6%",
+  "fps": 30,
+  "transition": 18,
+  "note": "{display|spoken}: captions show display, the voice says spoken. Every number is checked in VOICEOVER_SCRIPT.md (Fact sources).",
+  "clicks": [
+    [
+      "wave1",
+      "replay"
+    ],
+    [
+      "sensor1",
+      "drop"
+    ]
+  ],
+  "ticks": [
+    [
+      "sensor1",
+      "seventy-three"
+    ],
+    [
+      "sensor2",
+      "hundred"
+    ],
+    [
+      "opt2",
+      "fifty-three"
+    ],
+    [
+      "proof1",
+      "twenty"
+    ]
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "lead": 36,
+      "tail": 28,
+      "lines": [
+        {
+          "id": "hook1",
+          "text": "On {26 December 2004|the twenty-sixth of December, two thousand four}, a magnitude {9.1|nine point one} earthquake broke the seafloor off Sumatra."
+        }
+      ]
+    },
+    {
+      "id": "problem",
+      "lead": 20,
+      "tail": 26,
+      "lines": [
+        {
+          "id": "problem1",
+          "gap": 10,
+          "text": "The tsunami took {2 hours 36 minutes|two hours and thirty-six minutes} to reach Chennai, and almost three hours to reach Colombo."
+        },
+        {
+          "id": "problem2",
+          "text": "The Indian Ocean had no warning system. More than {227,000|two hundred and twenty-seven thousand} people died."
+        }
+      ]
+    },
+    {
+      "id": "reveal",
+      "reveal": true,
+      "lead": 22,
+      "tail": 22,
+      "lines": [
+        {
+          "id": "reveal1",
+          "text": "This is {LeadTime|Lead Time}. It asks one question: how many minutes does a coastal city get to run?"
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "lead": 14,
+      "tail": 20,
+      "lines": [
+        {
+          "id": "wave1",
+          "gap": 8,
+          "text": "Replay 2004, and a shallow-water solver carries the wave across the real ocean floor, live in your browser."
+        },
+        {
+          "id": "wave2",
+          "text": "Over deep water it moves as fast as a jet, and twelve hours of tsunami play out in under a minute."
+        }
+      ]
+    },
+    {
+      "id": "beam",
+      "lead": 14,
+      "tail": 20,
+      "lines": [
+        {
+          "id": "beam1",
+          "text": "The seafloor bends it into beams. Here's where it hit hardest, and when, hour by hour."
+        }
+      ]
+    },
+    {
+      "id": "cities",
+      "lead": 14,
+      "tail": 20,
+      "lines": [
+        {
+          "id": "cities1",
+          "gap": 8,
+          "text": "For {65|sixty-five} cities on the coast, you see when the wave arrives, and how many people live there."
+        },
+        {
+          "id": "cities2",
+          "text": "With no sensors, nobody gets a confirmed warning."
+        }
+      ]
+    },
+    {
+      "id": "sensor",
+      "lead": 14,
+      "tail": 22,
+      "lines": [
+        {
+          "id": "sensor1",
+          "gap": 8,
+          "text": "Now you're the engineer. Drop one deep-ocean sensor west of Sumatra, and {73.1 million|seventy-three point one million} people get at least fifteen minutes to evacuate."
+        },
+        {
+          "id": "sensor2",
+          "text": "Chennai, with {6.7 million|six point seven million} people, gets {101|a hundred and one} minutes."
+        }
+      ]
+    },
+    {
+      "id": "optimizer",
+      "lead": 14,
+      "tail": 22,
+      "lines": [
+        {
+          "id": "opt1",
+          "gap": 8,
+          "text": "The optimizer tests {15|fifteen} possible earthquakes along the trenches, and places six sensors."
+        },
+        {
+          "id": "opt2",
+          "text": "The first warns about {53 million|fifty-three million} people per quake. The sixth adds nothing.",
+          "gap": 10
+        },
+        {
+          "id": "opt3",
+          "text": "Real networks also weigh cost and upkeep, but now you can see what each sensor buys."
+        }
+      ]
+    },
+    {
+      "id": "nearfield",
+      "lead": 16,
+      "tail": 22,
+      "lines": [
+        {
+          "id": "near1",
+          "gap": 10,
+          "text": "And the honest part: Banda Aceh is hit in {21|twenty-one} minutes. No sensor can save it."
+        },
+        {
+          "id": "near2",
+          "text": "On nearby Simeulue Island, an oral tradition did. Only seven of more than {78,000|seventy-eight thousand} people died there."
+        }
+      ]
+    },
+    {
+      "id": "proof",
+      "lead": 16,
+      "tail": 24,
+      "lines": [
+        {
+          "id": "proof1",
+          "gap": 10,
+          "text": "Can you trust the physics? Against {13|thirteen} tide gauges from 2004, our arrival times are off by {20|twenty} minutes on average, and mostly early."
+        },
+        {
+          "id": "proof2",
+          "text": "So the warning times you see err on the safe side."
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "lead": 20,
+      "tail": 114,
+      "lines": [
+        {
+          "id": "end1",
+          "rate": "-2%",
+          "text": "{LeadTime|Lead Time}. Free, open source, no login. Every minute counts."
+        }
+      ]
+    }
+  ]
+}

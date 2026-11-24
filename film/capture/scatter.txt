@@ -1,0 +1,148 @@
+LeadTime
+
+Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.
+
+Copy link
+Source
+1
+2
+3
+4
+5
+6
++
+−
+ Leaflet | Basemap © Esri, HERE, Garmin, © OpenStreetMap contributors · Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED)
++12:00
+hours after
+the quake
+5 min/s
+20 min/s
+Max
+Map layers
+Wave
+Highest wave
+Hourly arrival lines
+trough
+crest
+1
+Quake
+2
+Sensors
+Science
+Learn
+Does it match 2004?
+
+Re-run the 2004 earthquake and compare when the simulated wave reaches each tide gauge with the arrival times published after the event.
+
+Check against 2004 tide gauges
+
+Done in 14 s. Hover a dot for the station.
+
+Mean absolute error 20 min over 13 tide gauges (simulated waves arrive on average 11 min early). Read at the ocean cell nearest each gauge; read further offshore (> 50 m deep, as the warning tool does) the error is 26 min, always early, so warning times err on the short side. Hollow dots are soft checks left out of the error.
+
+0 h
+0 h
+2 h
+2 h
+4 h
+4 h
+6 h
+6 h
+8 h
+8 h
+10 h
+10 h
+1 : 1
+observed arrival (tide gauge)
+simulated arrival
+Gauge	Observed	Simulated	Δ
+Port Blair (soft)	45 min	21 min	-24
+Cocos Islands	138 min	128 min	-10
+Kuraburi (soft)	153 min	148 min	-5
+Chennai	156 min	137 min	-20
+Visakhapatnam	161 min	150 min	-12
+Colombo	173 min	151 min	-22
+Male (Hulule)	197 min	189 min	-8
+Gan	201 min	191 min	-10
+Tuticorin	204 min	195 min	-9
+Hanimaadhoo	213 min	202 min	-11
+Kochi (Cochin)	282 min	256 min	-26
+Salalah	433 min	418 min	-15
+Pointe La Rue	437 min	422 min	-15
+Lamu	537 min	495 min	-42
+Zanzibar	585 min	644 min	+59
+
+Sources: Bilham, R., Engdahl, E. R., Feldl, N., Satyabala, S. P.; Merrifield, M. A., et al.; Tsuji, Y., et al.; Nagarajan, B., et al.. Gauge coordinates from UHSLC / PSMSL station lists.
+
+Physics tests
+
+The six checks from our automated test suite, run live in your browser.
+
+Run the physics tests
+
+6 of 6 checks passed.
+
+PASS
+1 · Mass conservation (closed basin, 2000 steps)
+measured |ΔV|/V = 1.3e-15 · expected < 1e-6
+-14
+-18
+step
+log₁₀ volume error
+PASS
+2 · Ocean at rest over rough seafloor (1000 steps)
+measured max |η| = 0.0e+0 m · expected < 1e-6 m
+PASS
+3 · Wave speed over 4000 m of water
+measured 197.6 m/s · expected √(g·h) = 198.1 m/s ± 5% (error 0.27%)
+PASS
+4 · Radial symmetry of a centred hump
+measured max asymmetry 2.9e-16 m · expected < 1e-5 m
+PASS
+5 · Slowing over a continental shelf
+measured 120.6 min · expected ∫dx/√(gh) = 117.8 min ± 10% (error 2.4%)
+198
+31
+distance (km): deep ocean → slope → 100 m shelf
+wave speed √(gh), m/s
+PASS
+6 · Earthquake source at Mw 9.1 (Strasser 2010)
+measured L 702 km, W 205 km, slip 13.0 m, uplift +3.6 m / -2.0 m · expected L 600–800, W 170–240 km, slip 8–20 m, both lobes
+How it works
+Real seafloor
+
+16 Terrarium elevation tiles (ETOPO1 and other sources) are decoded in the browser, h = R·256 + G + B/256 − 32768, and averaged to a 512 × 512 grid of Mercator cells about 20 km across. Each row's cell size shrinks with latitude: s = 19.6 km × cos(lat).
+
+Earthquake to initial wave
+
+Fault size from magnitude (Strasser et al. 2010): log₁₀L = −2.477 + 0.585·Mw, log₁₀W = −0.882 + 0.351·Mw; slip D = M₀/(μLW) with M₀ = 10^(1.5·Mw + 9.1). The seafloor, and the sea surface with it, rises on the trench side and drops on the land side:
+
+η₀ = 0.3·D · taper(u, L) · [ G(v − W/4) − 0.6·G(v + W/4) ]
+
+The 2004 preset uses the 5 published fault segments of Grilli et al. (2007), each breaking at its own time.
+
+Shallow-water pipes
+higher surface
+lower surface
+flow Q
+
+Each ocean cell is a water column joined to its 4 neighbours by pipes. A height difference speeds up the flow in a pipe, and the flow moves water between columns:
+
+dQ/dt = g·h·Δη    dη/dt = (ΣQin − ΣQout) / s²
+
+Together they give the wave equation with speed c = √(g·h): about 200 m/s (720 km/h) over 4 km of water, slower on shelves, which bends the wave fronts. A positivity limiter, an adaptive time step (dt = 0.4·s/√(g·hmax), about 20 s), a 20-cell absorbing sponge at the edges and shallow-water friction keep it stable. It all runs in a Web Worker.
+
+Confirmed warning time
+
+lead = tcity − (tfirst sensor + Tproc)
+
+A city counts as warned when lead ≥ Tevac. The optimizer adds sensors one at a time, each time choosing the site that warns the most people summed over 15 hypothetical earthquakes.
+
+Limitations
+The 20 km grid can't resolve harbours, bays and narrow shelves, so coastal arrival times are approximate (see the 2004 check).
+A simplified dipole source, not the full Okada (1985) solution, with uniform slip per segment.
+No inundation or run-up: heights are offshore, not on land.
+No Coriolis force, wave dispersion or tides.
+Populations are approximate and mix years and area definitions.
+Wave reached Meulaboh at 0 h 00 min. 61 of 65 cities warned in time with 6 sensors.
