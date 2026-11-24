@@ -1,6 +1,11 @@
 import 'leaflet/dist/leaflet.css';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/500.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource/barlow-condensed/600.css';
 import './style.css';
 import L from 'leaflet';
+import { createElement, Crosshair, Link, Pause, Play, RotateCcw } from 'lucide';
 import { INDIAN_OCEAN, cellOf, makeGrid } from './geo';
 import { keepConnectedOcean, loadBathy } from './bathy';
 import buoysData from './data/buoys.json';
@@ -14,7 +19,12 @@ import { evaluate, fmtPeople, gainChartSVG, headlineHTML, liveSummary, loadCitie
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 
-const { grid, b } = await loadBathy(INDIAN_OCEAN, [-20, 80]);
+const ICONS = { crosshair: Crosshair, link: Link, play: Play, 'rotate-ccw': RotateCcw };
+for (const el of document.querySelectorAll<HTMLElement>('[data-lucide]')) el.replaceWith(createElement(ICONS[el.dataset.lucide as keyof typeof ICONS]));
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Phones get a 256² grid (4× fewer cells, 2× longer time step) so playback stays smooth.
+const DOMAIN = matchMedia('(max-width: 760px)').matches ? { ...INDIAN_OCEAN, N: 256 } : INDIAN_OCEAN;
+const { grid, b } = await loadBathy(DOMAIN, [-20, 80]);
 const N = grid.N;
 const wet = Uint8Array.from(b, (v) => (v < 0 ? 1 : 0));
 
@@ -34,7 +44,7 @@ const cities = loadCities(grid, b);
 // ---- simulation state -------------------------------------------------------------------
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
 const send = (m: ToWorker) => worker.postMessage(m);
-send({ type: 'init', domain: INDIAN_OCEAN, b });
+send({ type: 'init', domain: DOMAIN, b });
 
 let quake: Quake | null = null;
 let playing = false, rate = 1200, simT = 0, finished = false;
@@ -52,7 +62,7 @@ worker.onmessage = (e: MessageEvent<FromWorker>) => {
   latest = m;
   simT = m.t;
   if (m.etaMax) { etaMax = m.etaMax; tArrive = m.tArrive!; recordersDirty = true; finished = m.done; refreshWarnings(m.done); }
-  if (m.done) setPlaying(false);
+  if (m.done) { setPlaying(false); $('next-sensors').hidden = false; }
 };
 
 function drawFrame() {
@@ -84,7 +94,7 @@ const layerOn = (id: 'wave' | 'max' | 'iso') => $<HTMLInputElement>(`lyr-${id}`)
 
 function setPlaying(p: boolean) {
   playing = p;
-  $('play').textContent = p ? '❚❚' : '▶';
+  $('play').replaceChildren(createElement(p ? Pause : Play));
   $('play').setAttribute('aria-label', p ? 'Pause' : 'Play');
   send(p ? { type: 'play', rate } : { type: 'pause' });
 }
@@ -96,8 +106,11 @@ function startQuake(q: Quake, autoplay = true) {
   clear(maxLayer); clear(isoLayer); isoLabels.clearLayers();
   epiMarker.setLatLng([q.lat, q.lon]).addTo(map);
   $('hud').hidden = false;
-  $('quake-info').textContent = `${q.label} · ${q.segments.length} fault segment${q.segments.length > 1 ? 's' : ''}, ` +
-    `${Math.round(q.segments.reduce((s, x) => s + x.lengthKm, 0))} km of rupture`;
+  $('quake-info').textContent = `${q.label}: ${q.segments.length} fault segment${q.segments.length > 1 ? 's' : ''}, ` +
+    `${Math.round(q.segments.reduce((s, x) => s + x.lengthKm, 0))} km of rupture.`;
+  $('guide').hidden = true;
+  $('next-sensors').hidden = true;
+  updateHash();
   send({ type: 'start', segments: q.segments });
   setPlaying(autoplay);
   refreshWarnings(false);
@@ -132,6 +145,7 @@ function addBuoy(lat: number, lon: number, cls = ''): string | null {
     const p = marker.getLatLng(), dd = depthAt(p.lat, p.lng);
     if (!dd || dd.depth < MIN_BUOY_DEPTH) { marker.setLatLng(from); toast(`Too shallow there. Sensors need > ${MIN_BUOY_DEPTH} m of water.`); return; }
     buoy.cell = dd.cell;
+    renumberBuoys();
     refreshWarnings(finished);
   });
   marker.on('contextmenu', () => removeBuoy(buoy));
@@ -151,15 +165,16 @@ function removeBuoy(bu: Buoy) {
 
 function renumberBuoys() {
   buoys.forEach((bu, i) => bu.marker.setIcon(buoyIcon(i + 1, bu.marker.options.icon?.options.className?.includes('opt') ? 'opt' : '')));
-  $('buoy-count').textContent = `${buoys.length} / ${MAX_BUOYS}`;
+  $('buoy-count').textContent = `${buoys.length} of ${MAX_BUOYS}`;
+  updateHash();
   const list = $('buoy-list');
   list.innerHTML = '';
   buoys.forEach((bu, i) => {
     const p = bu.marker.getLatLng();
     const li = document.createElement('li');
-    li.innerHTML = `<span class="num">#${i + 1} · ${p.lat.toFixed(1)}°, ${p.lng.toFixed(1)}° · ${Math.round(-b[bu.cell])} m deep</span>`;
+    li.innerHTML = `<span class="num">${i + 1}. ${p.lat.toFixed(1)}°, ${p.lng.toFixed(1)}°, ${Math.round(-b[bu.cell])} m deep</span>`;
     const x = document.createElement('button');
-    x.className = 'btn icon ghost'; x.textContent = '✕'; x.setAttribute('aria-label', `Remove sensor ${i + 1}`);
+    x.className = 'btn icon quiet'; x.textContent = '✕'; x.setAttribute('aria-label', `Remove sensor ${i + 1}`);
     x.onclick = () => removeBuoy(bu);
     li.append(x);
     list.append(li);
@@ -169,7 +184,7 @@ function renumberBuoys() {
 function refreshWarnings(done: boolean) {
   $('tproc-v').textContent = `${minutes('tproc') / 60} min`;
   $('tevac-v').textContent = `${minutes('tevac') / 60} min`;
-  if (!tArrive) { $('headline').textContent = quake ? 'Simulating…' : 'Run an earthquake first (tab 1).'; $('city-rows').innerHTML = ''; cityLayer.clearLayers(); return; }
+  if (!tArrive) { $('headline').textContent = quake ? 'Simulating…' : 'Choose an earthquake first, on the Quake tab.'; $('city-rows').innerHTML = ''; cityLayer.clearLayers(); return; }
   const ev = evaluate(cities, tArrive, etaMax, buoys.map((x) => x.cell), minutes('tproc'), minutes('tevac'));
   lastEval = ev;
   $('headline').innerHTML = headlineHTML(ev, minutes('tevac'), done);
@@ -177,17 +192,19 @@ function refreshWarnings(done: boolean) {
   cityLayer.clearLayers();
   for (const r of ev.rows) {
     const reached = Number.isFinite(r.arrive);
+    // Colour-blind safe: warned = mint hollow ring, not warned = coral filled dot.
+    const col = !reached ? '#5b6b7d' : r.safe ? '#62e0c8' : '#ff6b4a';
     L.circleMarker([r.city.lat, r.city.lon], {
-      radius: 3 + Math.sqrt(r.city.population / 1e6) * 2.5, weight: 1.5,
-      color: !reached ? '#5b6b7d' : r.safe ? '#4fd69c' : '#ff6b5a', fillOpacity: 0.35,
-    }).bindTooltip(`${r.city.name}`, { direction: 'top' }).addTo(cityLayer);
+      radius: 3 + Math.sqrt(r.city.population / 1e6) * 2.5, weight: 2,
+      color: col, fillColor: col, fillOpacity: reached && !r.safe ? 0.75 : 0.08,
+    }).bindTooltip(`${r.city.name}: ${!reached ? 'not reached' : r.safe ? 'warned in time' : 'not enough time'}`, { direction: 'top' }).addTo(cityLayer);
   }
   if (done) $('live').textContent = liveSummary(ev, buoys.length);
 }
 
 $('city-rows').addEventListener('click', (e) => {
   const tr = (e.target as HTMLElement).closest('tr');
-  if (tr && lastEval) { const c = lastEval.rows[Number(tr.dataset.i)].city; map.flyTo([c.lat, c.lon], 6, { duration: 0.8 }); }
+  if (tr && lastEval) { const c = lastEval.rows[Number(tr.dataset.i)].city; flyTo(c.lat, c.lon, 6); }
 });
 $('city-rows').addEventListener('keydown', (e) => { if (e.key === 'Enter') (e.target as HTMLElement).click(); });
 $('tproc').oninput = $('tevac').oninput = () => refreshWarnings(finished);
@@ -209,10 +226,12 @@ function toast(msg: string) {
 const LIB = { ...INDIAN_OCEAN, N: 256 };
 const libGrid = makeGrid(LIB);
 const libB = new Float32Array(LIB.N * LIB.N);
+const fct = N / LIB.N; // 2 on desktop (512 → 256), 1 on phones
 for (let j = 0; j < LIB.N; j++)
   for (let i = 0; i < LIB.N; i++) {
-    const k = 2 * j * N + 2 * i;
-    libB[j * LIB.N + i] = (b[k] + b[k + 1] + b[k + N] + b[k + N + 1]) / 4;
+    let sum = 0;
+    for (let y = 0; y < fct; y++) for (let x = 0; x < fct; x++) sum += b[(fct * j + y) * N + fct * i + x];
+    libB[j * LIB.N + i] = sum / (fct * fct);
   }
 keepConnectedOcean(libB, LIB.N, cellOf(libGrid, -20, 80)!);
 // Keep epicentres out of the absorbing sponge at the east edge (112.5°E).
@@ -285,7 +304,7 @@ async function optimize() {
     const p = latLonOfLib(candCells[res.picks[i]]);
     addBuoy(p.lat, p.lon, 'opt');
     $('gain-chart').innerHTML = gainChartSVG(gains.slice(0, i + 1));
-    await new Promise((r) => setTimeout(r, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 450));
+    await new Promise((r) => setTimeout(r, reducedMotion ? 0 : 450));
   }
   $('gain-chart').setAttribute('aria-label', `Extra people warned per quake for each added sensor: ${gains.map((g) => fmtPeople(Math.round(g))).join(', ')}`);
   // Score the real network with exactly the same metric.
@@ -324,7 +343,7 @@ $('run-2004').onclick = async () => {
   const btn = $<HTMLButtonElement>('run-2004');
   btn.disabled = true;
   const t0 = performance.now();
-  v2004 ??= await run2004(INDIAN_OCEAN, grid, b, (msg) => ($('v2004-status').textContent = msg));
+  v2004 ??= await run2004(DOMAIN, grid, b, (msg) => ($('v2004-status').textContent = msg));
   $('v2004-status').textContent = `Done in ${((performance.now() - t0) / 1000).toFixed(0)} s. Hover a dot for the station.`;
   $('v2004').hidden = false;
   $('v2004-summary').innerHTML = `Mean absolute error <strong class="num">${v2004.mae.toFixed(0)} min</strong> over ${v2004.n} tide gauges
@@ -354,6 +373,75 @@ document.querySelectorAll<HTMLButtonElement>('[role=tab]').forEach((t, i, all) =
   };
 });
 selectTab('quake');
+$('next-sensors').onclick = () => { selectTab('warn'); $('tab-warn').focus(); };
+
+function flyTo(lat: number, lon: number, zoom: number) {
+  if (reducedMotion) map.setView([lat, lon], zoom);
+  else map.flyTo([lat, lon], zoom, { duration: 0.8 });
+}
+
+// ---- keyboard alternatives to clicking the map -----------------------------------------
+$('quake-here').onclick = () => placeQuake(map.getCenter().lat, map.getCenter().lng);
+$('buoy-here').onclick = () => { const c = map.getCenter(); const err = addBuoy(c.lat, c.lng); if (err) toast(err); };
+
+// ---- first-run guide ---------------------------------------------------------------------
+const store = {
+  get: (k: string) => { try { return localStorage.getItem(k); } catch { return null; } },
+  set: (k: string, v: string) => { try { localStorage.setItem(k, v); } catch { /* private mode */ } },
+};
+const closeGuide = () => { $('guide').hidden = true; store.set('lt-guide', 'seen'); };
+$('guide-2004').onclick = () => { closeGuide(); startQuake(quake2004()); };
+$('guide-close').onclick = closeGuide;
+
+// ---- Learn tab: "Show me" sets up the scene ----------------------------------------------
+function setLayer(id: 'wave' | 'max' | 'iso', on: boolean) {
+  const el = $<HTMLInputElement>(`lyr-${id}`);
+  if (el.checked !== on) { el.checked = on; el.dispatchEvent(new Event('change')); }
+}
+const ensure2004 = () => { if (quake?.id !== '2004') startQuake(quake2004()); };
+document.querySelectorAll<HTMLButtonElement>('[data-show]').forEach((btn) => {
+  btn.onclick = () => {
+    const what = btn.dataset.show;
+    if (what === 'speed') { ensure2004(); setLayer('iso', true); setLayer('max', false); }
+    if (what === 'beam') { ensure2004(); setLayer('max', true); setLayer('wave', false); setLayer('iso', false); }
+    if (what === 'sensors') { ensure2004(); selectTab('warn'); void optimize(); }
+    if (what === 'nearfield') { ensure2004(); selectTab('warn'); flyTo(5.55, 95.32, 6); }
+  };
+});
+
+// ---- share link: #q=2004 or #q=lat,lon,mw,strike & s=lat,lon;lat,lon --------------------
+function updateHash() {
+  const parts: string[] = [];
+  if (quake) parts.push(`q=${quake.id === '2004' ? '2004' : [quake.lat.toFixed(2), quake.lon.toFixed(2), quake.mw.toFixed(1), Math.round(quake.strikeDeg)].join(',')}`);
+  if (buoys.length) parts.push(`s=${buoys.map((x) => { const p = x.marker.getLatLng(); return `${p.lat.toFixed(2)},${p.lng.toFixed(2)}`; }).join(';')}`);
+  history.replaceState(null, '', parts.length ? `#${parts.join('&')}` : location.pathname);
+}
+$('share').onclick = async () => {
+  try { await navigator.clipboard.writeText(location.href); toast('Link copied. It opens this earthquake and these sensors.'); }
+  catch { toast(`Copy this link: ${location.href}`); }
+};
+function applyHash() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  const q = h.get('q'), sens = h.get('s');
+  if (!q && !sens) return false;
+  if (q === '2004') startQuake(quake2004());
+  else if (q) {
+    const [lat, lon, mw, strike] = q.split(',').map(Number);
+    if ([lat, lon, mw, strike].every(Number.isFinite)) {
+      mwIn.value = String(mw); strikeIn.value = String(strike); syncLabels();
+      startQuake(customQuake(lat, lon, Math.min(9.5, Math.max(7.5, mw)), strike));
+    }
+  }
+  if (sens) {
+    for (const pair of sens.split(';').slice(0, MAX_BUOYS)) {
+      const [lat, lon] = pair.split(',').map(Number);
+      if (Number.isFinite(lat) && Number.isFinite(lon)) addBuoy(lat, lon);
+    }
+    selectTab('warn');
+  }
+  return true;
+}
+
 
 // ---- quake controls ---------------------------------------------------------------------
 $('preset2004').onclick = () => startQuake(quake2004());
@@ -390,11 +478,17 @@ syncLabels();
 map.on('click', (e: L.LeafletMouseEvent) => {
   const { lat, lng } = e.latlng;
   if (activeTab === 'warn') { const err = addBuoy(lat, lng); if (err) toast(err); return; }
+  placeQuake(lat, lng);
+});
+
+function placeQuake(lat: number, lng: number) {
   const c = cellOf(grid, lat, lng);
-  if (!c || !wet[c.j * N + c.i]) { toast('Click on the ocean to place an earthquake.'); return; }
+  if (!c || !wet[c.j * N + c.i]) { toast('That is land. Click the ocean to place an earthquake.'); return; }
   // Near a subduction trench, align the fault with it (that's where megathrust quakes happen).
   const tr = nearestTrench(lat, lng);
   if (tr) { strikeIn.value = String(Math.round(tr.strikeDeg)); syncLabels(); }
   startQuake(customQuake(lat, lng, Number(mwIn.value), Number(strikeIn.value)));
-});
+}
 
+// Open a shared link, or greet first-time visitors.
+if (!applyHash() && store.get('lt-guide') !== 'seen') $('guide').hidden = false;

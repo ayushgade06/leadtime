@@ -51,7 +51,8 @@ function tick() {
   lastTick = t0;
   const target = Math.min(T_MAX, sim.t + rate / 30);
   let n = 0;
-  while (sim.t < target && performance.now() - t0 < 40) { step(sim); n++; }
+  const budget = rate > 1e6 ? 90 : 40; // "Max" trades frame rate for simulation speed
+  while (sim.t < target && performance.now() - t0 < budget) { step(sim); n++; }
   if (n) msPerStep = 0.9 * msPerStep + 0.1 * ((performance.now() - t0) / n);
   if (sim.t >= T_MAX) playing = false;
   sendFrame(++frames % 8 === 0);

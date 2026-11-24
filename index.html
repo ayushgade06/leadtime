@@ -4,87 +4,120 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="LeadTime: simulate a tsunami across the real ocean floor, then find where warning sensors buy coastal cities the most time." />
-    <title>LeadTime · tsunami warning simulator</title>
+    <meta name="theme-color" content="#04101c" />
+    <meta name="description" content="Simulate a tsunami across the real Indian Ocean floor, then find where warning sensors buy coastal cities the most time." />
+    <title>LeadTime: tsunami warning simulator</title>
   </head>
   <body>
     <div id="app">
       <header class="topbar">
-        <div class="brand"><span class="logo" aria-hidden="true"></span><span class="name">LeadTime</span><span class="tag">every minute of tsunami warning, simulated</span></div>
+        <a class="brand" href="#" aria-label="LeadTime home"><span class="mark" aria-hidden="true"></span><span class="word">LeadTime</span></a>
         <p class="disclaimer" role="note">Educational model: about 20 km grid, simplified earthquake source, no coastal inundation. Real warnings come from national tsunami warning centres.</p>
+        <nav class="top-actions" aria-label="Project">
+          <button id="share" class="btn quiet" type="button"><i data-lucide="link"></i><span>Copy link</span></button>
+          <a class="btn quiet" href="https://github.com/ayushgade06/leadtime" target="_blank" rel="noopener">Source</a>
+        </nav>
       </header>
+
       <main class="stage">
-        <div id="map" aria-label="Map of the Indian Ocean. Click to place an earthquake epicentre."></div>
+        <div id="map" tabindex="0" aria-label="Map of the Indian Ocean. Click the ocean to place an earthquake or, on the Sensors tab, a sensor. Arrow keys pan, plus and minus zoom."></div>
+
         <div id="hud" class="hud" hidden>
-          <div class="clock"><span id="clock" class="num">+00:00</span><span class="unit">h after quake</span></div>
-          <div class="controls">
-            <button id="play" class="btn icon" aria-label="Play">▶</button>
+          <div class="clock" aria-label="Time since the earthquake"><span id="clock" class="readout">+00:00</span><span class="unit">hours after<br />the quake</span></div>
+          <div class="transport">
+            <button id="play" class="btn round" type="button" aria-label="Play"><i data-lucide="play"></i></button>
             <div class="seg" role="radiogroup" aria-label="Playback speed">
-              <button role="radio" data-rate="300">5 min/s</button>
-              <button role="radio" data-rate="1200" aria-checked="true">20 min/s</button>
-              <button role="radio" data-rate="1e9">max</button>
+              <button role="radio" type="button" data-rate="300" aria-checked="false">5 min/s</button>
+              <button role="radio" type="button" data-rate="1200" aria-checked="true">20 min/s</button>
+              <button role="radio" type="button" data-rate="1e9" aria-checked="false">Max</button>
             </div>
-            <button id="reset" class="btn ghost" aria-label="Restart simulation">↺</button>
+            <button id="reset" class="btn round quiet" type="button" aria-label="Restart from the earthquake"><i data-lucide="rotate-ccw"></i></button>
           </div>
-          <div class="layers" role="group" aria-label="Map layers">
-            <label><input type="checkbox" id="lyr-wave" checked /> Live wave</label>
-            <label><input type="checkbox" id="lyr-max" /> Max height</label>
-            <label><input type="checkbox" id="lyr-iso" /> Arrival isochrones</label>
-          </div>
+          <fieldset class="layers">
+            <legend class="sr-only">Map layers</legend>
+            <label><input type="checkbox" id="lyr-wave" checked /> Wave</label>
+            <label><input type="checkbox" id="lyr-max" /> Highest wave</label>
+            <label><input type="checkbox" id="lyr-iso" /> Hourly arrival lines</label>
+          </fieldset>
           <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+          <div class="legend" aria-hidden="true"><span class="ramp"></span><span>trough</span><span>crest</span></div>
         </div>
+
+        <div id="guide" class="guide" role="dialog" aria-modal="false" aria-labelledby="guide-title" hidden>
+          <h1 id="guide-title">How many minutes does a coastal city get to run?</h1>
+          <p class="lede">In 2004 the tsunami took over two hours to reach Sri Lanka and India, and the Indian Ocean had no warning system. Simulate it on the real ocean floor, then decide where warning sensors should go.</p>
+          <ol class="steps">
+            <li><strong>Pick an earthquake</strong><span>Replay 2004, or click anywhere on the ocean.</span></li>
+            <li><strong>Watch the wave</strong><span>Real shallow-water physics, running in your browser.</span></li>
+            <li><strong>Place sensors</strong><span>See which cities gain enough time to evacuate.</span></li>
+          </ol>
+          <div class="guide-actions">
+            <button id="guide-2004" class="btn primary" type="button">Replay the 2004 tsunami</button>
+            <button id="guide-close" class="btn quiet" type="button">Explore on my own</button>
+          </div>
+        </div>
+
         <div id="loading" class="loading" role="status"><div class="spinner"></div><span>Loading real seafloor depth…</span></div>
       </main>
+
       <aside id="panel" class="panel" aria-label="Controls">
         <nav class="tabs" role="tablist" aria-label="Panels">
-          <button role="tab" id="tab-quake" aria-controls="pane-quake" aria-selected="true">1 · Quake</button>
-          <button role="tab" id="tab-warn" aria-controls="pane-warn" aria-selected="false">2 · Sensors</button>
-          <button role="tab" id="tab-science" aria-controls="pane-science" aria-selected="false">Science</button>
-          <button role="tab" id="tab-learn" aria-controls="pane-learn" aria-selected="false">Learn</button>
+          <button role="tab" type="button" id="tab-quake" aria-controls="pane-quake" aria-selected="true"><span class="n">1</span>Quake</button>
+          <button role="tab" type="button" id="tab-warn" aria-controls="pane-warn" aria-selected="false"><span class="n">2</span>Sensors</button>
+          <button role="tab" type="button" id="tab-science" aria-controls="pane-science" aria-selected="false">Science</button>
+          <button role="tab" type="button" id="tab-learn" aria-controls="pane-learn" aria-selected="false">Learn</button>
         </nav>
 
         <section id="pane-quake" role="tabpanel" aria-labelledby="tab-quake" class="pane">
-          <div class="card">
-            <h2>Earthquake</h2>
-            <button id="preset2004" class="btn primary wide">Replay 2004 Sumatra–Andaman · Mw 9.1</button>
-            <p class="hint">…or click anywhere on the ocean to place an epicentre. Near a trench, the fault lines up with it.</p>
-            <div class="field"><label for="mw">Magnitude <span id="mw-v" class="num">8.8</span></label><input id="mw" type="range" min="7.5" max="9.5" step="0.1" value="8.8" /></div>
-            <div class="field"><label for="strike">Fault strike <span id="strike-v" class="num">330°</span></label><input id="strike" type="range" min="0" max="359" step="1" value="330" /></div>
+          <div class="block">
+            <h2>Choose an earthquake</h2>
+            <button id="preset2004" class="btn primary wide" type="button">Replay 2004 Sumatra–Andaman, Mw 9.1</button>
+            <p class="hint">Or click the ocean to place your own epicentre. Near a subduction trench the fault lines up with it automatically.</p>
+          </div>
+          <div class="block">
+            <h2>Your earthquake</h2>
+            <div class="field"><label for="mw">Magnitude <output id="mw-v" class="num">8.8</output></label><input id="mw" type="range" min="7.5" max="9.5" step="0.1" value="8.8" /></div>
+            <div class="field"><label for="strike">Fault direction (strike) <output id="strike-v" class="num">330°</output></label><input id="strike" type="range" min="0" max="359" step="1" value="330" /></div>
+            <button id="quake-here" class="btn wide" type="button"><i data-lucide="crosshair"></i><span>Place at map centre</span></button>
             <p id="quake-info" class="hint"></p>
+            <button id="next-sensors" class="btn primary wide" type="button" hidden>Next: place warning sensors</button>
           </div>
         </section>
 
         <section id="pane-warn" role="tabpanel" aria-labelledby="tab-warn" class="pane" hidden>
-          <div class="card">
+          <div class="block hero-stat">
             <h2>Confirmed warning time</h2>
             <p id="headline" class="headline">Run an earthquake first.</p>
-            <div class="field"><label for="tproc">Processing delay after first detection <span id="tproc-v" class="num">10 min</span></label><input id="tproc" type="range" min="0" max="30" step="1" value="10" /></div>
-            <div class="field"><label for="tevac">Time people need to evacuate <span id="tevac-v" class="num">15 min</span></label><input id="tevac" type="range" min="5" max="60" step="1" value="15" /></div>
+            <div class="field"><label for="tproc">Delay from first detection to warning <output id="tproc-v" class="num">10 min</output></label><input id="tproc" type="range" min="0" max="30" step="1" value="10" /></div>
+            <div class="field"><label for="tevac">Time people need to evacuate <output id="tevac-v" class="num">15 min</output></label><input id="tevac" type="range" min="5" max="60" step="1" value="15" /></div>
           </div>
-          <div class="card">
-            <h2>Sensors <span id="buoy-count" class="num muted">0 / 8</span></h2>
-            <p class="hint">Click deep ocean (&gt; 1000 m) on the map to drop a DART-style pressure sensor. Drag to move, right-click or ✕ to remove.</p>
+          <div class="block">
+            <h2>Your sensors <span id="buoy-count" class="count num">0 of 8</span></h2>
+            <p class="hint">Click deep ocean (over 1000 m) to drop a seafloor pressure sensor like NOAA's DART buoys. Drag to move; right-click or ✕ to remove.</p>
             <ol id="buoy-list" class="buoy-list"></ol>
-            <div class="row"><button id="clear-buoys" class="btn ghost">Clear sensors</button></div>
+            <div class="row">
+              <button id="buoy-here" class="btn" type="button"><i data-lucide="crosshair"></i><span>Add at map centre</span></button>
+              <button id="clear-buoys" class="btn quiet" type="button">Clear sensors</button>
+            </div>
           </div>
-          <div class="card">
-            <h2>Optimizer</h2>
-            <p class="hint">Tests a library of <span id="lib-n">15</span> hypothetical Mw 8.8 earthquakes along the Sunda, Andaman and Makran trenches and adds sensors one at a time where they protect the most people (greedy search).</p>
+          <div class="block">
+            <h2>Let the optimizer place them</h2>
+            <p class="hint">It simulates <span id="lib-n">15</span> hypothetical Mw 8.8 earthquakes along the Sunda, Andaman and Makran trenches, then adds sensors one at a time where they warn the most people.</p>
             <div class="row">
               <label class="inline" for="opt-k">Sensors</label>
               <select id="opt-k" class="select">
                 <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option>
               </select>
-              <button id="optimize" class="btn primary">Optimize</button>
+              <button id="optimize" class="btn primary" type="button">Optimize</button>
             </div>
-            <div id="opt-progress" class="opt-progress" hidden><div class="progress"><div id="opt-bar"></div></div><span id="opt-status" class="hint"></span></div>
+            <div id="opt-progress" class="opt-progress" hidden><div class="progress"><div id="opt-bar"></div></div><span id="opt-status" class="hint" aria-live="polite"></span></div>
             <div id="opt-result" hidden>
               <div id="gain-chart" class="chart" role="img"></div>
               <p id="opt-compare" class="hint"></p>
             </div>
-            <label class="check"><input type="checkbox" id="lyr-real" /> Show existing buoy network (13 listed stations)</label>
+            <label class="check"><input type="checkbox" id="lyr-real" /> Show the existing buoy network (13 listed stations)</label>
           </div>
-          <div class="card">
+          <div class="block">
             <h2>Coastal cities</h2>
             <div class="table-wrap">
               <table class="cities">
@@ -92,61 +125,98 @@
                 <tbody id="city-rows"></tbody>
               </table>
             </div>
-            <p class="hint">Approximate populations (years 2011–2025, mixed area definitions; sources in <code>cities.json</code>). Arrival and height are read offshore at the nearest grid cell deeper than 50 m, so warning times err on the short side. ◐ = partly sheltered, not counted in the headline.</p>
+            <p class="hint">Approximate populations (census years 2011–2025, mixed area definitions; sources in <code>cities.json</code>). Arrival and height are read offshore at the nearest grid cell deeper than 50 m, so warning times err on the short side. ◐ marks partly sheltered cities, left out of the headline.</p>
           </div>
         </section>
 
         <section id="pane-science" role="tabpanel" aria-labelledby="tab-science" class="pane" hidden>
-          <div class="card">
+          <div class="block">
             <h2>Does it match 2004?</h2>
-            <p class="hint">We re-run the 2004 earthquake and compare when the simulated wave reaches each tide gauge with the arrival times published after the event.</p>
-            <button id="run-2004" class="btn primary wide">Check against 2004 tide gauges</button>
+            <p class="hint">Re-run the 2004 earthquake and compare when the simulated wave reaches each tide gauge with the arrival times published after the event.</p>
+            <button id="run-2004" class="btn primary wide" type="button">Check against 2004 tide gauges</button>
             <p id="v2004-status" class="hint" aria-live="polite"></p>
             <div id="v2004" hidden>
-              <p id="v2004-summary" class="headline"></p>
+              <p id="v2004-summary" class="headline small"></p>
               <div id="v2004-chart"></div>
               <div id="v2004-table" class="table-wrap"></div>
             </div>
           </div>
-          <div class="card">
+          <div class="block">
             <h2>Physics tests</h2>
-            <p class="hint">The same six checks our automated test suite runs, executed live in your browser.</p>
-            <button id="run-tests" class="btn wide">Run validation</button>
+            <p class="hint">The six checks from our automated test suite, run live in your browser.</p>
+            <button id="run-tests" class="btn wide" type="button">Run the physics tests</button>
             <p id="tests-summary" class="hint" aria-live="polite"></p>
             <ol id="tests" class="tests"></ol>
           </div>
-          <div class="card how">
+          <div class="block how">
             <h2>How it works</h2>
-            <h3>1 · Real seafloor</h3>
-            <p>16 Terrarium elevation tiles (ETOPO1 and other sources) are decoded in the browser, <code>h = R·256 + G + B/256 − 32768</code>, and averaged to a 512 × 512 grid of Mercator cells about 20 km across. Each row's cell size shrinks with latitude: <code>s = 19.6 km · cos(lat)</code>.</p>
-            <h3>2 · Earthquake → initial wave</h3>
-            <p>Fault size from magnitude (Strasser et al. 2010): <code>log₁₀L = −2.477 + 0.585·Mw</code>, <code>log₁₀W = −0.882 + 0.351·Mw</code>; slip <code>D = M₀/(μLW)</code> with <code>M₀ = 10^(1.5·Mw + 9.1)</code>. The seafloor (and sea surface) is lifted on the trench side and dropped on the land side:</p>
+            <h3>Real seafloor</h3>
+            <p>16 Terrarium elevation tiles (ETOPO1 and other sources) are decoded in the browser, <code>h = R·256 + G + B/256 − 32768</code>, and averaged to a 512 × 512 grid of Mercator cells about 20 km across. Each row's cell size shrinks with latitude: <code>s = 19.6 km × cos(lat)</code>.</p>
+            <h3>Earthquake to initial wave</h3>
+            <p>Fault size from magnitude (Strasser et al. 2010): <code>log₁₀L = −2.477 + 0.585·Mw</code>, <code>log₁₀W = −0.882 + 0.351·Mw</code>; slip <code>D = M₀/(μLW)</code> with <code>M₀ = 10^(1.5·Mw + 9.1)</code>. The seafloor, and the sea surface with it, rises on the trench side and drops on the land side:</p>
             <p class="eq">η₀ = 0.3·D · taper(u, L) · [ G(v − W/4) − 0.6·G(v + W/4) ]</p>
             <p>The 2004 preset uses the 5 published fault segments of Grilli et al. (2007), each breaking at its own time.</p>
-            <h3>3 · Shallow-water "pipes"</h3>
+            <h3>Shallow-water pipes</h3>
             <svg viewBox="0 0 320 110" width="100%" class="pipe" role="img" aria-label="Two water columns joined by a pipe; the higher surface pushes water through the pipe to the lower one.">
-              <rect x="20" y="30" width="90" height="70" class="water"/><rect x="210" y="45" width="90" height="55" class="water"/>
-              <rect x="110" y="80" width="100" height="14" class="pipe-b"/><path d="M135 87 H185" class="arrow" marker-end="url(#ah)"/>
-              <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" class="arrowhead"/></marker></defs>
-              <text x="65" y="22" class="lbl" text-anchor="middle">η higher</text><text x="255" y="37" class="lbl" text-anchor="middle">η lower</text><text x="160" y="74" class="lbl" text-anchor="middle">flux Q</text>
+              <rect x="20" y="30" width="90" height="70" class="water" /><rect x="210" y="45" width="90" height="55" class="water" />
+              <rect x="110" y="80" width="100" height="14" class="pipe-b" /><path d="M135 87 H185" class="arrow" marker-end="url(#ah)" />
+              <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" class="arrowhead" /></marker></defs>
+              <text x="65" y="22" class="lbl" text-anchor="middle">higher surface</text><text x="255" y="37" class="lbl" text-anchor="middle">lower surface</text><text x="160" y="74" class="lbl" text-anchor="middle">flow Q</text>
             </svg>
-            <p>Each ocean cell is a water column joined to its 4 neighbours by pipes. A height difference accelerates the pipe flow, and the flow moves water between columns:</p>
+            <p>Each ocean cell is a water column joined to its 4 neighbours by pipes. A height difference speeds up the flow in a pipe, and the flow moves water between columns:</p>
             <p class="eq">dQ/dt = g·h·Δη &nbsp;&nbsp; dη/dt = (ΣQ<sub>in</sub> − ΣQ<sub>out</sub>) / s²</p>
-            <p>Together they give the wave equation with speed <code>c = √(g·h)</code>: about 200 m/s (720 km/h) over 4 km of water, slowing on shelves, which bends wave fronts. A positivity limiter, an adaptive time step (<code>dt = 0.4·s/√(g·h<sub>max</sub>)</code>, about 20 s), a 20-cell absorbing sponge at the edges and shallow-water friction keep it stable. It all runs in a Web Worker.</p>
-            <h3>4 · Confirmed warning time</h3>
+            <p>Together they give the wave equation with speed <code>c = √(g·h)</code>: about 200 m/s (720 km/h) over 4 km of water, slower on shelves, which bends the wave fronts. A positivity limiter, an adaptive time step (<code>dt = 0.4·s/√(g·h<sub>max</sub>)</code>, about 20 s), a 20-cell absorbing sponge at the edges and shallow-water friction keep it stable. It all runs in a Web Worker.</p>
+            <h3>Confirmed warning time</h3>
             <p class="eq">lead = t<sub>city</sub> − (t<sub>first sensor</sub> + T<sub>proc</sub>)</p>
-            <p>A city counts as warned when <code>lead ≥ T<sub>evac</sub></code>. The optimizer adds sensors one at a time, each time picking the site that warns the most people summed over 15 hypothetical quakes.</p>
+            <p>A city counts as warned when <code>lead ≥ T<sub>evac</sub></code>. The optimizer adds sensors one at a time, each time choosing the site that warns the most people summed over 15 hypothetical earthquakes.</p>
             <h3>Limitations</h3>
             <ul class="limits">
-              <li>~20 km grid: harbours, bays and narrow shelves are not resolved, so arrival times at the coast are approximate (see the 2004 check).</li>
-              <li>Simplified dipole source, not the full Okada (1985) solution; uniform slip per segment.</li>
+              <li>The 20 km grid can't resolve harbours, bays and narrow shelves, so coastal arrival times are approximate (see the 2004 check).</li>
+              <li>A simplified dipole source, not the full Okada (1985) solution, with uniform slip per segment.</li>
               <li>No inundation or run-up: heights are offshore, not on land.</li>
-              <li>No Coriolis force, no wave dispersion, no tides.</li>
+              <li>No Coriolis force, wave dispersion or tides.</li>
               <li>Populations are approximate and mix years and area definitions.</li>
             </ul>
           </div>
         </section>
-        <section id="pane-learn" role="tabpanel" aria-labelledby="tab-learn" class="pane" hidden></section>
+
+        <section id="pane-learn" role="tabpanel" aria-labelledby="tab-learn" class="pane" hidden>
+          <article class="block learn">
+            <h2>Why a tsunami crosses an ocean as fast as a jet</h2>
+            <p>A tsunami moves the whole water column, so its speed depends only on depth: <code>c = √(g·h)</code>. Over 4 km of ocean that is about 200 m/s, or 720 km/h. NOAA puts deep-ocean speeds at over 500 mph, "as fast as a jet plane". Tide gauges in 2004 measured a typical 187 m/s.</p>
+            <p class="cite">Sources: NOAA National Weather Service, <a href="https://www.weather.gov/safety/tsunami-about" target="_blank" rel="noopener">Tsunami Safety</a>; Merrifield et al. 2005, GRL.</p>
+            <button class="btn" type="button" data-show="speed">Show me the hourly arrival lines</button>
+          </article>
+          <article class="block learn">
+            <h2>How the seafloor steers the wave into beams</h2>
+            <p>Where the water gets shallower the wave slows down, so a wave front bends toward shallow water, much as light bends in a lens. Ridges and shelves focus energy into beams. In 2004 the strongest beam ran west, straight at Sri Lanka and southern India.</p>
+            <button class="btn" type="button" data-show="beam">Show me the highest-wave map</button>
+          </article>
+          <article class="block learn">
+            <h2>A warning, then a confirmation</h2>
+            <p>Warning centres send their first message from earthquake data, within about five minutes where seismic networks are dense. Deep-ocean pressure sensors then confirm whether a tsunami is really coming and how big it is, so the warning can be upgraded or cancelled. That confirmed time is what LeadTime measures. The Indian Ocean had no warning system in 2004; India's centre opened in October 2007 and the regional service started in October 2011.</p>
+            <p class="cite">Sources: <a href="https://www.tsunami.gov/?page=tsunamiFAQ" target="_blank" rel="noopener">tsunami.gov FAQ</a>; Merrifield et al. 2005; <a href="https://tsunami.incois.gov.in/TEWS/searlywarnings.jsp" target="_blank" rel="noopener">INCOIS</a>; <a href="https://legacy.ioc-tsunami.org/legacy.ioc-tsunami.org/indexa4bf.html" target="_blank" rel="noopener">IOC-UNESCO</a>.</p>
+            <button class="btn" type="button" data-show="sensors">Show me an optimized sensor network</button>
+          </article>
+          <article class="block learn">
+            <h2>When there is no time: the story of smong</h2>
+            <p>Close to the earthquake no sensor can help: in our model the wave reaches Banda Aceh about 20 minutes after the shaking. On nearby Simeulue Island, an oral tradition called <em>smong</em> tells people to run to the hills after strong shaking. In 2004 only 7 of its 78,128 people died. Education is the warning system that works in the near field.</p>
+            <p class="cite">Source: McAdoo, B. G., et al. (2006), <a href="https://rctwg.humboldt.edu/sites/default/files/smong_eqspectra_0.pdf" target="_blank" rel="noopener">Smong: How an oral history saved thousands</a>, Earthquake Spectra 22(S3).</p>
+            <button class="btn" type="button" data-show="nearfield">Show me Banda Aceh</button>
+          </article>
+          <div class="block credits">
+            <h2>Data and credits</h2>
+            <ul>
+              <li>Bathymetry: Terrain Tiles (Mapzen / AWS Open Data; ETOPO1, SRTM, GMTED and others).</li>
+              <li>Basemap: Esri World Dark Gray (Esri, HERE, Garmin, © OpenStreetMap contributors).</li>
+              <li>2004 rupture: Grilli et al. 2007; magnitude scaling: Strasser et al. 2010; epicentre: USGS.</li>
+              <li>Tide-gauge arrivals: Merrifield et al. 2005, Nagarajan et al. 2006, Tsuji et al. 2006, Bilham et al. 2005.</li>
+              <li>Trenches: Bird 2003 (PB2002). Buoys: NOAA NDBC, INCOIS. Cities: national censuses via Wikipedia.</li>
+              <li>The 2004 tsunami killed more than 227,000 people (Wikipedia: 227,898; USGS: more than 283,100).</li>
+              <li>Built with Leaflet (BSD-2), Barlow fonts (OFL), Lucide icons (ISC), Vite and vitest. AI-assisted development (Claude Code), reviewed by the team.</li>
+            </ul>
+          </div>
+        </section>
       </aside>
       <div id="live" class="sr-only" aria-live="polite"></div>
     </div>
