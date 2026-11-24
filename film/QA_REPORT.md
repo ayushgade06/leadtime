@@ -1,6 +1,6 @@
 # QA report: LeadTime film
 
-File: `out/film.mp4` (captions burned in) and `out/film_clean.mp4` (no captions). Captions also in `captions/film.srt`.
+File: `out/film.mp4` (captions burned in). Captions are also in `captions/film.srt`. The caption-free render (`out/film_clean.mp4`) was stopped by the system because memory was low; re-run it with `bash scripts/master.sh` when needed.
 
 | Check | Method | Result |
 |---|---|---|
