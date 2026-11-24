@@ -14,3 +14,9 @@ film/node_modules
 film/out
 film/capture/frames_*
 film/public/audio
+film/capture/rec
+film/public/clips/take.mp4
+film/capture/vt
+film/capture/*.log
+film/thumb
+film/brief/*.png

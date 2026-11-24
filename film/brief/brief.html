@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>LeadTime: judges' brief</title>
+<style>
+  @font-face { font-family: 'BC'; src: url('../public/fonts/BarlowCondensed-600.woff2') format('woff2'); font-weight: 600; }
+  @font-face { font-family: 'B'; src: url('../public/fonts/Barlow-400.woff2') format('woff2'); font-weight: 400; }
+  @font-face { font-family: 'B'; src: url('../public/fonts/Barlow-500.woff2') format('woff2'); font-weight: 500; }
+  @font-face { font-family: 'B'; src: url('../public/fonts/Barlow-600.woff2') format('woff2'); font-weight: 600; }
+  @page { size: A4; margin: 0; }
+  :root { --ink: #0b1b2c; --ink2: #3c5266; --mute: #6b7f91; --line: #d3dbe1; --paper: #fbfaf7; --amber: #b86e0a; --amberbg: #fff3df; --cyan: #0f7f95; --red: #c4502f; --green: #24806c; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #888; }
+  body { font: 400 8.9pt/1.38 'B', sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .page { width: 210mm; height: 297mm; padding: 11mm 12mm 9mm; background: var(--paper); position: relative; overflow: hidden; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  h1, h2, h3, .cond { font-family: 'BC', sans-serif; font-weight: 600; letter-spacing: 0.2px; }
+  .top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--ink); padding-bottom: 2.4mm; }
+  .brand { display: flex; align-items: center; gap: 2.4mm; font: 600 19pt/1 'BC'; }
+  .meta { font-size: 8pt; color: var(--ink2); text-align: right; line-height: 1.35; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  h1 { font-size: 18pt; line-height: 1.04; margin: 3.6mm 0 1.8mm; max-width: 172mm; }
+  h1 .q { color: var(--amber); }
+  .lede { font-size: 9.6pt; line-height: 1.38; color: var(--ink2); max-width: 176mm; }
+  .lede b { color: var(--ink); font-weight: 600; }
+  h2 { font-size: 11.5pt; text-transform: none; margin-bottom: 1.6mm; display: flex; align-items: baseline; gap: 2mm; }
+  h2 .n { color: var(--amber); font-size: 10pt; }
+  .label { font: 600 7.4pt/1.2 'B'; letter-spacing: 0.6px; color: var(--mute); text-transform: uppercase; }
+  .src { font-size: 6.8pt; color: var(--mute); line-height: 1.3; }
+  .grid { display: grid; gap: 4mm; }
+  .rule { border-top: 1px solid var(--line); }
+  figure { margin: 0; }
+  figure img { display: block; width: 100%; border-radius: 1.6mm; border: 1px solid #c8d1d8; }
+  figcaption { font-size: 7.6pt; color: var(--ink2); margin-top: 1.2mm; line-height: 1.3; }
+  figcaption b { color: var(--ink); }
+
+  /* page 1 */
+  .problem { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3.4mm; border: 1px solid var(--line); border-radius: 1.6mm; background: #fff; }
+  .problem > div { padding: 2mm 3mm; }
+  .problem > div + div { border-left: 1px solid var(--line); }
+  .big { font: 600 19pt/1 'BC'; }
+  .big small { font-size: 12pt; color: var(--ink2); }
+  .hero { margin-top: 3.4mm; position: relative; }
+  .hero img { aspect-ratio: 1240 / 420; object-fit: cover; object-position: center 30%; }
+  .results { display: grid; grid-template-columns: 1.15fr 1fr 1fr 0.8fr; margin-top: 3.4mm; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+  .results > div { padding: 2mm 3mm 2.2mm 0; }
+  .results > div + div { padding-left: 3mm; border-left: 1px solid var(--line); }
+  .results .big { color: var(--ink); }
+  .results .big.a { color: var(--amber); }
+  .results p { font-size: 7.9pt; color: var(--ink2); margin-top: 1mm; line-height: 1.3; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 3.4mm; }
+  .two img { aspect-ratio: 1500 / 680; object-fit: cover; object-position: top; }
+  .try { display: grid; grid-template-columns: 1fr auto; gap: 5mm; margin-top: 3.2mm; align-items: start; }
+  ol.steps { list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  ol.steps li { counter-increment: s; font-size: 8.4pt; color: var(--ink2); line-height: 1.32; }
+  ol.steps li::before { content: counter(s); display: block; font: 600 15pt/1 'BC'; color: var(--cyan); margin-bottom: 0.8mm; }
+  ol.steps b { color: var(--ink); font-weight: 600; }
+  .qrs { display: flex; gap: 3.2mm; }
+  .qr { width: 19mm; text-align: center; }
+  .qr img { width: 19mm; height: 19mm; display: block; }
+  .qr span { display: block; font: 600 7.4pt/1.1 'B'; margin-top: 1mm; }
+  .qr em { display: block; font-style: normal; font-size: 5.6pt; color: var(--mute); word-break: break-all; }
+  .foot { position: absolute; left: 12mm; right: 12mm; bottom: 6mm; display: flex; justify-content: space-between; font-size: 6.8pt; color: var(--mute); border-top: 1px solid var(--line); padding-top: 1.6mm; }
+
+  /* page 2 */
+  .pipe { margin-top: 1mm; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin-top: 3mm; }
+  .cols p { font-size: 7.9pt; color: var(--ink2); line-height: 1.33; }
+  .cols p b { color: var(--ink); font-weight: 600; }
+  .eq { white-space: nowrap; font: 500 8.4pt/1.5 'B'; background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--cyan); border-radius: 1mm; padding: 1.6mm 2.4mm; margin: 1.6mm 0; color: var(--ink); }
+  .eq i { font-family: 'Cambria Math', 'Times New Roman', serif; font-style: italic; font-size: 10pt; }
+  table { width: 100%; border-collapse: collapse; font-size: 7.3pt; }
+  th, td { text-align: left; padding: 0.45mm 1.4mm; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font: 600 7pt/1.2 'B'; letter-spacing: 0.4px; text-transform: uppercase; color: var(--mute); border-bottom: 1.5px solid var(--ink); }
+  td.r, th.r { text-align: right; }
+  td.k { color: var(--ink2); width: 34%; }
+  .pass { color: var(--green); font-weight: 600; }
+  .early { color: var(--amber); }
+  .late { color: var(--red); }
+  .val { display: grid; grid-template-columns: 78mm 1fr; gap: 5mm; margin-top: 2.6mm; }
+  .verdict { margin-top: 1.8mm; background: var(--amberbg); border: 1px solid #efcf98; border-radius: 1.4mm; padding: 1.6mm 2.4mm; font-size: 7.7pt; line-height: 1.32; }
+  .verdict b { font-weight: 600; }
+  ul.lim { padding-left: 4mm; font-size: 7.6pt; color: var(--ink2); line-height: 1.3; }
+  ul.lim li { margin-bottom: 0.6mm; }
+  ul.lim b { color: var(--ink); font-weight: 600; }
+  .bottom { display: grid; grid-template-columns: 1.1fr 1fr; gap: 6mm; margin-top: 2.6mm; }
+  svg text { font-family: 'B', sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page">
+  <div class="top">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="none" stroke="#0f7f95" stroke-opacity=".45" stroke-width="1.6"/><circle cx="16" cy="16" r="7" fill="none" stroke="#0f7f95" stroke-width="2"/><circle cx="16" cy="16" r="3" fill="#e08a12"/></svg>
+      LeadTime
+    </div>
+    <div class="meta"><b>Judges' brief</b> · STEM Innovation Challenge 2026<br />Engineering &amp; Scientific Computing · Social Impact · Education</div>
+  </div>
+
+  <h1>How many minutes does a coastal city get to run? <span class="q">LeadTime simulates the tsunami and shows where warning sensors buy the most.</span></h1>
+  <p class="lede">A tsunami simulator running on the <b>real Indian Ocean floor, live in a browser</b>, turned into a decision tool. Place deep-ocean pressure sensors and every coastal city's <b>confirmed warning time</b> updates instantly. An optimizer finds where sensors protect the most people across 15 possible earthquakes. Free, open source, no login.</p>
+
+  <div class="problem">
+    <div>
+      <div class="label">2004, Chennai</div>
+      <div class="big">2 h 36 <small>min</small></div>
+      <div class="src">from the quake to the first wave at the tide gauge (Nagarajan et al. 2006)</div>
+    </div>
+    <div>
+      <div class="label">Warning system in place</div>
+      <div class="big" style="color:var(--red)">None</div>
+      <div class="src">"no tsunami warning system in the Indian Ocean" (Merrifield et al. 2005, GRL)</div>
+    </div>
+    <div>
+      <div class="label">Deaths</div>
+      <div class="big">227,000+</div>
+      <div class="src">Wikipedia 227,898; USGS more than 283,100</div>
+    </div>
+  </div>
+
+  <figure class="hero">
+    <img src="hero.png" alt="Highest-wave map with hourly arrival lines for the 2004 tsunami" />
+    <figcaption><b>The 2004 replay after 12 simulated hours</b> (live app, unedited screen capture). Colour shows the highest wave at each point: the seafloor focuses energy into a beam toward Sri Lanka and India. White lines are hourly arrival times; dots are 65 coastal cities.</figcaption>
+  </figure>
+
+  <div class="results">
+    <div>
+      <div class="label">One sensor, 2004 replay</div>
+      <div class="big a">0 → 73.1 M</div>
+      <p>people with ≥ 15 min of confirmed warning after one sensor west of Sumatra. Chennai gets 101 min.</p>
+    </div>
+    <div>
+      <div class="label">Optimizer, 6 sensors</div>
+      <div class="big">53 M → 0</div>
+      <p>extra people warned per quake by the 1st vs the 6th sensor: sharp diminishing returns.</p>
+    </div>
+    <div>
+      <div class="label">vs 2004 tide gauges</div>
+      <div class="big">20 <small>min</small></div>
+      <p>mean arrival error over 13 gauges; 12 of 13 early, so warnings lean short.</p>
+    </div>
+    <div>
+      <div class="label">Physics tests</div>
+      <div class="big" style="color:var(--green)">6 / 6</div>
+      <p>pass, and judges can re-run them in the Science tab.</p>
+    </div>
+  </div>
+
+  <div class="two">
+    <figure>
+      <img src="sensor.png" alt="One sensor placed; city table shows warned and unwarned cities" />
+      <figcaption><b>You are the warning engineer.</b> Sensor 1 (3,101 m deep). Near-field cities stay red (Banda Aceh: wave at 0:21, −14 min); far-field cities turn green.</figcaption>
+    </figure>
+    <figure>
+      <img src="optimizer.png" alt="Optimizer result with six sensors and a gain chart" />
+      <figcaption><b>Optimizer over 15 hypothetical Mw 8.8 quakes.</b> Six sensors in pick order; the chart shows extra people warned per added sensor, compared with the real buoy network.</figcaption>
+    </figure>
+  </div>
+
+  <div class="try">
+    <div>
+      <h2><span class="n">60 s</span> Try it</h2>
+      <ol class="steps">
+        <li><b>Replay 2004.</b> Press the first button; watch 12 hours of tsunami in under a minute.</li>
+        <li><b>Place a sensor.</b> Sensors tab, click deep ocean west of Sumatra; read the city table.</li>
+        <li><b>Optimize, then check.</b> Press Optimize; then Science → "Check against 2004 tide gauges".</li>
+      </ol>
+    </div>
+    <div class="qrs">
+      <div class="qr"><img src="qr_live.svg" alt="" /><span>Live demo</span><em>leadtime-liard.vercel.app</em></div>
+      <div class="qr"><img src="qr_video.svg" alt="" /><span>Video, 2:08</span><em>youtu.be/J1QUlLlnz5w</em></div>
+      <div class="qr"><img src="qr_code.svg" alt="" /><span>Source</span><em>github.com/ayushgade06/leadtime</em></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>Educational model: ~20 km grid, simplified source, no inundation. Real warnings come from national tsunami warning centres.</span><span>1 / 2</span></div>
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page">
+  <div class="top">
+    <div class="brand" style="font-size:15pt">How it works, and how we checked it</div>
+    <div class="meta">TypeScript · Leaflet · Web Workers · no backend, no AI API</div>
+  </div>
+
+  <svg class="pipe" viewBox="0 0 744 88" width="100%" style="margin-top:3.4mm">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#3c5266"/></marker></defs>
+    <g font-size="10.5">
+      <g><rect x="0" y="10" width="128" height="58" rx="5" fill="#fff" stroke="#b9c5ce"/><text x="10" y="30" font-weight="600" font-size="11.5">Real seafloor</text><text x="10" y="45" fill="#3c5266">16 Terrarium tiles</text><text x="10" y="59" fill="#3c5266">→ 512 × 512 grid</text></g>
+      <g><rect x="154" y="10" width="128" height="58" rx="5" fill="#fff" stroke="#b9c5ce"/><text x="164" y="30" font-weight="600" font-size="11.5">Earthquake source</text><text x="164" y="45" fill="#3c5266">uplift/subsidence</text><text x="164" y="59" fill="#3c5266">dipole, 5 segments</text></g>
+      <g><rect x="308" y="4" width="138" height="70" rx="5" fill="#e8f5f7" stroke="#0f7f95" stroke-width="1.5"/><text x="318" y="25" font-weight="600" font-size="11.5">Shallow-water solver</text><text x="318" y="40" fill="#3c5266">Web Worker, dt ≈ 20 s</text><text x="318" y="54" fill="#3c5266">~12 ms per step</text><text x="318" y="68" fill="#3c5266">records arrival + max</text></g>
+      <g><rect x="472" y="10" width="128" height="58" rx="5" fill="#fff" stroke="#b9c5ce"/><text x="482" y="30" font-weight="600" font-size="11.5">Warning engine</text><text x="482" y="45" fill="#3c5266">lead time per city,</text><text x="482" y="59" fill="#3c5266">greedy optimizer</text></g>
+      <g><rect x="626" y="10" width="118" height="58" rx="5" fill="#fff3df" stroke="#e0a54a"/><text x="636" y="30" font-weight="600" font-size="11.5">Decision</text><text x="636" y="45" fill="#3c5266">where the next</text><text x="636" y="59" fill="#3c5266">sensor matters</text></g>
+      <path d="M130 39 H151" stroke="#3c5266" stroke-width="1.4" marker-end="url(#ar)"/><path d="M284 39 H305" stroke="#3c5266" stroke-width="1.4" marker-end="url(#ar)"/><path d="M448 39 H469" stroke="#3c5266" stroke-width="1.4" marker-end="url(#ar)"/><path d="M602 39 H623" stroke="#3c5266" stroke-width="1.4" marker-end="url(#ar)"/>
+      <text x="377" y="86" text-anchor="middle" fill="#6b7f91" font-size="9">15 scenarios × 3,350 candidate sites run in 3–4 parallel workers in under 30 s</text>
+    </g>
+  </svg>
+
+  <div class="cols">
+    <div>
+      <h2><span class="n">1</span>Source</h2>
+      <p>Fault length and width from magnitude (<b>Strasser et al. 2010</b>), slip from the seismic moment:</p>
+      <div class="eq"><i>M</i><sub>0</sub> = 10<sup>1.5<i>M<sub>w</sub></i> + 9.1</sup> = <i>μ L W D</i></div>
+      <p>The seafloor and sea surface rise on the trench side and drop on the land side. The 2004 preset uses <b>Grilli et al. 2007</b>'s 5 segments, each breaking at its published time.</p>
+    </div>
+    <div>
+      <h2><span class="n">2</span>Solver</h2>
+      <p>Each ocean cell is a water column joined to its neighbours by pipes:</p>
+      <div class="eq"><i>dQ/dt</i> = <i>gh</i>Δ<i>η</i>, &nbsp;<i>dη/dt</i> = Σ<i>Q</i>/<i>s</i>² &nbsp;⇒&nbsp; <i>c</i> = √<i>gh</i></div>
+      <p>About 200 m/s over 4 km of water, slower over shelves, so fronts bend into beams. One signed flux per face, a positivity limiter, CFL time step, absorbing sponge, shallow-water friction.</p>
+    </div>
+    <div>
+      <h2><span class="n">3</span>Warning</h2>
+      <p>A city's confirmed warning time is when the wave arrives, minus when the first sensor detects it plus processing:</p>
+      <div class="eq">lead = <i>t</i><sub>city</sub> − (<i>t</i><sub>first sensor</sub> + <i>T</i><sub>proc</sub>)</div>
+      <p>Warned if lead ≥ <i>T</i><sub>evac</sub> (defaults 10 and 15 min, sliders). The optimizer adds the site that warns the most people summed over all 15 scenarios.</p>
+    </div>
+  </div>
+
+  <div class="val">
+    <div>
+      <h2><span class="n">4</span>Does it match 2004?</h2>
+      <svg id="scatter" viewBox="0 0 310 262" width="92%"></svg>
+      <div class="src">Observed: Merrifield 2005; Nagarajan 2006; Tsuji 2006; Bilham 2005. Simulated: Science tab, nearest ocean cell, 5 cm threshold. Hollow = soft checks, not in the error.</div>
+    </div>
+    <div>
+      <table>
+        <thead><tr><th>Tide gauge</th><th class="r">Observed</th><th class="r">Simulated</th><th class="r">Δ min</th></tr></thead>
+        <tbody id="gauges"></tbody>
+      </table>
+      <div class="verdict"><b>Mean absolute error 20 min over 13 gauges; 12 of 13 early.</b> A 20 km grid cannot resolve harbours and shallow shelves, where waves slow most. The warning tool reads cities further offshore (error 26 min, always early), so <b>warning times err on the short, safe side</b>. We report this rather than tune it away.</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div>
+      <h2><span class="n">5</span>Physics tests <span class="label" style="margin-left:auto">vitest · also live in the app</span></h2>
+      <table>
+        <thead><tr><th>Check</th><th>Measured</th><th>Expected</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Mass conservation, 2000 steps</td><td>|ΔV|/V = 1.3e−15</td><td>&lt; 1e−6</td><td class="pass">✓</td></tr>
+          <tr><td>Ocean at rest over rough seafloor</td><td>max |η| = 0 m</td><td>&lt; 1e−6 m</td><td class="pass">✓</td></tr>
+          <tr><td>Wave speed over 4,000 m</td><td>197.6 m/s</td><td>198.1 m/s ± 5%</td><td class="pass">✓</td></tr>
+          <tr><td>Radial symmetry of a centred hump</td><td>0 m asymmetry</td><td>&lt; 1e−5 m</td><td class="pass">✓</td></tr>
+          <tr><td>Slowing over a 100 m shelf</td><td>120.6 min</td><td>117.8 min ± 10%</td><td class="pass">✓</td></tr>
+          <tr><td>Mw 9.1 source size (L, W)</td><td>702, 205 km</td><td>600–800, 170–240</td><td class="pass">✓</td></tr>
+        </tbody>
+      </table>
+      <h2 style="margin-top:2.4mm"><span class="n">6</span>Optimizer gain per sensor</h2>
+      <svg id="gain" viewBox="0 0 330 92" width="100%" style="max-height:21mm"></svg>
+      <div class="src">Average extra people warned per quake, 15 hypothetical Mw 8.8 events (desktop Chrome; headless Chromium shows 52.9 M for sensor 1). Real buoy network: 58.7 M vs 61.5 M for these 6.</div>
+    </div>
+    <div>
+      <h2><span class="n">7</span>Specs</h2>
+      <table>
+        <tbody>
+          <tr><td class="k">Domain</td><td>41°S–41°N, 22.5–112.5°E (Indian Ocean)</td></tr>
+          <tr><td class="k">Grid</td><td>512 × 512 Mercator cells, 19.6 km × cos(lat)</td></tr>
+          <tr><td class="k">Time step</td><td>adaptive CFL 0.4, ≈ 20 s</td></tr>
+          <tr><td class="k">Speed</td><td>≈ 12 ms per step; 12 h of tsunami in &lt; 1 min</td></tr>
+          <tr><td class="k">Arrival threshold</td><td>|η| &gt; 5 cm</td></tr>
+          <tr><td class="k">Cities</td><td>65, sourced populations</td></tr>
+          <tr><td class="k">Sensors</td><td>up to 8, deep water only (&gt; 1,000 m)</td></tr>
+          <tr><td class="k">Tests</td><td>13 vitest (6 physics, geometry, optimizer)</td></tr>
+          <tr><td class="k">Data</td><td>Terrain Tiles (ETOPO1 etc.), USGS, Bird 2003 trenches, NOAA NDBC + INCOIS buoys</td></tr>
+        </tbody>
+      </table>
+      <h2 style="margin-top:2.4mm"><span class="n">8</span>Limits, stated plainly</h2>
+      <ul class="lim">
+        <li><b>20 km grid:</b> coastal arrival times are approximate (see 4).</li>
+        <li><b>Simplified source:</b> a dipole, not the full Okada (1985) solution.</li>
+        <li><b>No inundation</b>, Coriolis, dispersion or tides; heights are offshore.</li>
+        <li><b>Hypothetical scenarios</b> for the optimizer; not an operational forecast.</li>
+      </ul>
+      <p class="src" style="margin-top:2mm"><b style="color:var(--ink2)">AI disclosure.</b> Built during the hackathon with AI-assisted development (Claude Code) for scaffolding, solver and optimizer code, UI and docs. The team reviewed the code and ran every test. Build timeline: BUILDLOG.md. MIT licence.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>LeadTime · leadtime-liard.vercel.app · github.com/ayushgade06/leadtime · video youtu.be/J1QUlLlnz5w</span><span>2 / 2</span></div>
+</section>
+
+<script>
+// Real data: docs/VALIDATION.md (observed from the cited papers, simulated from the app's Science tab).
+const G = [
+  ['Port Blair', 45, 21, true], ['Cocos Islands', 138, 128], ['Kuraburi', 153, 148, true], ['Chennai', 156, 137],
+  ['Visakhapatnam', 161, 150], ['Colombo', 173, 151], ['Malé', 197, 189], ['Gan', 201, 191], ['Tuticorin', 204, 195],
+  ['Hanimaadhoo', 213, 202], ['Kochi', 282, 256], ['Salalah', 433, 418], ['Pointe La Rue', 437, 422], ['Lamu', 537, 495], ['Zanzibar', 585, 644],
+];
+document.getElementById('gauges').innerHTML = G.map(([n, o, s, soft]) => {
+  const d = s - o;
+  return `<tr${soft ? ' style="color:#6b7f91"' : ''}><td>${n}${soft ? ' <span class="src">(soft)</span>' : ''}</td><td class="r">${o}</td><td class="r">${s}</td><td class="r ${d < 0 ? 'early' : 'late'}">${d > 0 ? '+' : '−'}${Math.abs(d)}</td></tr>`;
+}).join('');
+
+const NS = 'http://www.w3.org/2000/svg';
+function svg(el, tag, attrs, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; el.appendChild(e); return e; }
+
+// scatter
+(() => {
+  const s = document.getElementById('scatter'), L = 40, T = 8, W = 262, H = 214, max = 660;
+  const X = (m) => L + (W * m) / max, Y = (m) => T + H - (H * m) / max;
+  for (let t = 0; t <= 600; t += 120) {
+    svg(s, 'line', {x1: X(t), x2: X(t), y1: Y(0), y2: Y(max), stroke: '#e3e9ed'});
+    svg(s, 'line', {x1: X(0), x2: X(max), y1: Y(t), y2: Y(t), stroke: '#e3e9ed'});
+    svg(s, 'text', {x: X(t), y: Y(0) + 13, 'text-anchor': 'middle', 'font-size': 9, fill: '#6b7f91'}, `${t / 60} h`);
+    svg(s, 'text', {x: L - 5, y: Y(t) + 3, 'text-anchor': 'end', 'font-size': 9, fill: '#6b7f91'}, `${t / 60} h`);
+  }
+  svg(s, 'line', {x1: X(0), y1: Y(0), x2: X(max), y2: Y(max), stroke: '#6b7f91', 'stroke-dasharray': '4 3'});
+  svg(s, 'text', {x: X(560), y: Y(600), 'font-size': 9, fill: '#6b7f91'}, '1 : 1');
+  svg(s, 'text', {x: L + W / 2, y: 258, 'text-anchor': 'middle', 'font-size': 9.5, fill: '#3c5266'}, 'observed arrival (tide gauge)');
+  svg(s, 'text', {x: 11, y: T + H / 2, 'text-anchor': 'middle', 'font-size': 9.5, fill: '#3c5266', transform: `rotate(-90 11 ${T + H / 2})`}, 'simulated arrival');
+  const lab = {Chennai: [-7, -2, 'end'], Colombo: [6, 11, 'start'], Kochi: [6, 4, 'start'], Salalah: [-6, -6, 'end'], Lamu: [6, 6, 'start'], Zanzibar: [-7, 3, 'end']};
+  for (const [n, o, sim, soft] of G) {
+    svg(s, 'circle', {cx: X(o), cy: Y(sim), r: 3.6, fill: soft ? 'none' : '#e08a12', stroke: soft ? '#e08a12' : '#7a4a06', 'stroke-width': soft ? 1.4 : 0.7});
+    if (lab[n]) svg(s, 'text', {x: X(o) + lab[n][0], y: Y(sim) + lab[n][1], 'text-anchor': lab[n][2], 'font-size': 8.4, fill: '#0b1b2c'}, n.replace(' Islands', ''));
+  }
+})();
+
+// gain chart
+(() => {
+  const s = document.getElementById('gain'), vals = [53.0, 7.1, 0.943, 0.438, 0.069, 0], labs = ['53.0 M', '7.1 M', '943 k', '438 k', '69 k', '0'];
+  const base = 74, h = 58, bw = 40, gap = 14, x0 = 8;
+  svg(s, 'line', {x1: 0, x2: 330, y1: base, y2: base, stroke: '#b9c5ce'});
+  vals.forEach((v, i) => {
+    const x = x0 + i * (bw + gap), bh = Math.max(1.2, (h * v) / 53);
+    svg(s, 'rect', {x, y: base - bh, width: bw, height: bh, rx: 2, fill: i === 0 ? '#e08a12' : '#f0b45c'});
+    svg(s, 'text', {x: x + bw / 2, y: base - bh - 3, 'text-anchor': 'middle', 'font-size': 9, 'font-weight': 600, fill: '#0b1b2c'}, labs[i]);
+    svg(s, 'text', {x: x + bw / 2, y: base + 12, 'text-anchor': 'middle', 'font-size': 8.6, fill: '#6b7f91'}, `sensor ${i + 1}`);
+  });
+})();
+</script>
+</body>
+</html>

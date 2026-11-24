@@ -1,6 +1,6 @@
 # LeadTime: every minute of tsunami warning, simulated
 
-**▶ Live demo: https://leadtime-liard.vercel.app** · Video: _YouTube link added at submission_ (source in [`film/`](film/)) · Built for the STEM Innovation Challenge 2026 (Devpost)
+**▶ Live demo: https://leadtime-liard.vercel.app** · Video: https://youtu.be/J1QUlLlnz5w (source in [`film/`](film/)) · [Judges' brief (PDF)](docs/LeadTime_judges_brief.pdf) · Built for the STEM Innovation Challenge 2026 (Devpost)
 
 ![LeadTime replaying the 2004 Indian Ocean tsunami](docs/screenshots/hero.gif)
 
@@ -91,7 +91,7 @@ This project was built during the hackathon with AI-assisted development (Claude
 
 ## Team
 
-_Team members and roles: to be completed before submission._
+**Ayush Gade** ([@ayushgade23](https://devpost.com/ayushgade23)): solo entry. Idea, physics and optimizer design, app, validation, documentation and video, built with AI-assisted development as disclosed above.
 
 ## License
 

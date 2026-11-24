@@ -9,7 +9,7 @@
 **Links**
 - Live demo: https://leadtime-liard.vercel.app
 - Source: https://github.com/ayushgade06/leadtime
-- Video: _YouTube link (upload `film/out/film.mp4`)_
+- Video: https://youtu.be/J1QUlLlnz5w
 
 ---
 
@@ -59,4 +59,4 @@ Built with AI-assisted development (Claude Code) for scaffolding, the solver and
 typescript, vite, leaflet, web-workers, canvas, svg, vitest, aws-terrain-tiles, remotion (video)
 
 ## Team
-_Names and roles: fill in before submitting._
+Ayush Gade (@ayushgade23): solo entry.
