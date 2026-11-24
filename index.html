@@ -68,10 +68,27 @@
             <div class="row"><button id="clear-buoys" class="btn ghost">Clear sensors</button></div>
           </div>
           <div class="card">
+            <h2>Optimizer</h2>
+            <p class="hint">Tests a library of <span id="lib-n">15</span> hypothetical Mw 8.8 earthquakes along the Sunda, Andaman and Makran trenches and adds sensors one at a time where they protect the most people (greedy search).</p>
+            <div class="row">
+              <label class="inline" for="opt-k">Sensors</label>
+              <select id="opt-k" class="select">
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option>
+              </select>
+              <button id="optimize" class="btn primary">Optimize</button>
+            </div>
+            <div id="opt-progress" class="opt-progress" hidden><div class="progress"><div id="opt-bar"></div></div><span id="opt-status" class="hint"></span></div>
+            <div id="opt-result" hidden>
+              <div id="gain-chart" class="chart" role="img"></div>
+              <p id="opt-compare" class="hint"></p>
+            </div>
+            <label class="check"><input type="checkbox" id="lyr-real" /> Show existing buoy network (13 listed stations)</label>
+          </div>
+          <div class="card">
             <h2>Coastal cities</h2>
             <div class="table-wrap">
               <table class="cities">
-                <thead><tr><th scope="col">City</th><th scope="col" class="r">People</th><th scope="col" class="r">Wave at</th><th scope="col" class="r">Height</th><th scope="col" class="r">Warning</th></tr></thead>
+                <thead><tr><th scope="col">City</th><th scope="col" class="r">People</th><th scope="col" class="r" title="Arrival (h:mm after the quake) and highest offshore crest">Wave at</th><th scope="col" class="r">Warning</th></tr></thead>
                 <tbody id="city-rows"></tbody>
               </table>
             </div>

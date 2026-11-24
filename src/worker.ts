@@ -2,10 +2,8 @@
 //  • playback: steps the live simulation and streams η frames (transferable Float32Arrays)
 //  • batch:    runs many scenarios headless and returns arrival times at chosen cells (optimizer)
 import { makeGrid, type Domain, type Grid } from './geo';
-import { addSurface, createSim, step, type Sim } from './solver';
+import { T_MAX, addSurface, createSim, step, type Sim } from './solver';
 import { surfaceFromSegment, type Segment } from './source';
-
-export const T_MAX = 12 * 3600; // simulate 12 hours after the quake
 
 export type ToWorker =
   | { type: 'init'; domain: Domain; b: Float32Array }
@@ -27,7 +25,7 @@ const post = (m: FromWorker, transfer: Transferable[] = []) => (self as unknown 
 
 /** Build a simulation with every fault segment scheduled at its trigger time. */
 function newSim(g: Grid, b: Float32Array, segments: Segment[]) {
-  const s = createSim(g.N, g.N, b, g.rowSize);
+  const s = createSim(g.N, g.N, b, g.rowSize, { sponge: Math.round((20 * g.N) / 512) });
   for (const seg of segments) addSurface(s, surfaceFromSegment(g, seg), seg.triggerTimeS ?? 0);
   return s;
 }
@@ -79,8 +77,8 @@ self.onmessage = (e: MessageEvent<ToWorker>) => {
       m.scenarios.forEach((segs, s) => {
         const bs = newSim(g, m.b, segs);
         while (bs.t < T_MAX) step(bs);
-        tArrive.push(Float32Array.from(m.cells, (c) => bs.tArrive[c]));
-        etaMax.push(Float32Array.from(m.cells, (c) => bs.etaMax[c]));
+        tArrive.push(Float32Array.from(m.cells, (c) => (c < 0 ? Infinity : bs.tArrive[c])));
+        etaMax.push(Float32Array.from(m.cells, (c) => (c < 0 ? 0 : bs.etaMax[c])));
         post({ type: 'progress', done: s + 1, total: m.scenarios.length });
       });
       post({ type: 'batch-result', tArrive, etaMax });

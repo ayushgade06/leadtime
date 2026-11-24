@@ -85,3 +85,21 @@ export function greedyPlace(scen: Scenario[], pop: ArrayLike<number>, opts: { k:
   }
   return { picks, protectedPeople };
 }
+
+/** How a fixed sensor set performs across scenarios: total people warned (summed over
+ *  scenarios) and, per city, in how many scenarios it was reached and warned in time. */
+export function coverage(scen: Scenario[], set: number[], pop: ArrayLike<number>, opts: { tProc: number; tEvac: number }) {
+  const C = pop.length;
+  const warned = new Int32Array(C), reached = new Int32Array(C);
+  let people = 0;
+  for (const s of scen) {
+    let det = Infinity;
+    for (const m of set) det = Math.min(det, s.cand[m]);
+    for (let c = 0; c < C; c++) {
+      if (!Number.isFinite(s.city[c])) continue;
+      reached[c]++;
+      if (s.city[c] - (det + opts.tProc) >= opts.tEvac) { warned[c]++; people += pop[c]; }
+    }
+  }
+  return { people, warned, reached };
+}

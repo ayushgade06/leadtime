@@ -100,3 +100,18 @@ table.cities { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .buoy-marker.real span { width: 14px; height: 14px; border-radius: 3px; border-color: #c6d4e3; color: transparent; box-shadow: none; }
 #map[data-mode='sensor'] { cursor: crosshair; }
 .toast { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); z-index: 800; max-width: min(520px, calc(100% - 32px)); padding: 10px 14px; background: var(--surface-2); border: 1px solid rgba(255, 181, 71, 0.4); border-radius: var(--radius); color: var(--text); }
+.select { font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; }
+.row { align-items: center; }
+.inline { color: var(--muted); }
+.check { display: flex; gap: 6px; align-items: center; margin-top: 10px; color: var(--muted); cursor: pointer; }
+.opt-progress { margin-top: 10px; }
+.opt-progress .progress { height: 4px; }
+#opt-bar { height: 100%; width: 0; background: var(--amber); transition: width 0.3s; }
+.chart { margin-top: 10px; }
+.chart .bar { fill: var(--amber); }
+.chart .val { fill: var(--text); font: 600 10px var(--font); text-anchor: middle; }
+.chart .lab { fill: var(--muted); font: 10px var(--font); text-anchor: middle; }
+.chart .axis { fill: var(--muted); font: 10px var(--font); }
+.chart .base { stroke: var(--line); }
+.sub.lib { color: var(--amber); }
+.btn:disabled { opacity: 0.5; cursor: progress; }

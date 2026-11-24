@@ -75,16 +75,16 @@ function leadCell(r: Row, finished: boolean, nBuoys: number) {
     : `<span class="bad" title="Not enough time to evacuate">✕ ${m} min</span>`;
 }
 
-export function renderCities(tbody: HTMLElement, ev: Eval, finished: boolean, nBuoys: number, scenarioHits?: Map<string, number>, scenarioCount?: number) {
+export function renderCities(tbody: HTMLElement, ev: Eval, finished: boolean, nBuoys: number, libHits?: Map<string, { warned: number; reached: number }>) {
   tbody.innerHTML = ev.rows
     .map((r, i) => {
       const reached = Number.isFinite(r.arrive);
-      const prot = scenarioHits ? `<div class="sub">protected in ${scenarioHits.get(r.city.name) ?? 0} of ${scenarioCount} quakes</div>` : '';
+      const h = libHits?.get(r.city.name);
+      const prot = h ? `<div class="sub lib">warned in ${h.warned} of ${h.reached} library quakes</div>` : '';
       return `<tr data-i="${i}" tabindex="0" class="${reached ? '' : 'dim'}">
         <th scope="row">${r.city.sheltered ? '<span title="Partly sheltered; not counted in the headline">◐ </span>' : ''}${r.city.name}<div class="sub">${r.city.country}</div>${prot}</th>
         <td class="r num">${fmtPeople(r.city.population)}</td>
-        <td class="r num">${reached ? fmtHM(r.arrive) : '—'}</td>
-        <td class="r num">${reached && r.height > 0 ? `${Math.round(r.height * 100)} cm` : '—'}</td>
+        <td class="r num">${reached ? fmtHM(r.arrive) : '—'}<div class="sub">${reached && r.height > 0 ? `${Math.round(r.height * 100)} cm` : ''}</div></td>
         <td class="r num">${leadCell(r, finished, nBuoys)}</td></tr>`;
     })
     .join('');
@@ -104,4 +104,21 @@ export function liveSummary(ev: Eval, nBuoys: number) {
   if (first) parts.push(`Wave reached ${first.city.name} at ${fmtDuration(first.arrive)}.`);
   parts.push(`${ev.warned} of ${ev.reachedCount} cities warned in time with ${nBuoys} sensor${nBuoys === 1 ? '' : 's'}.`);
   return parts.join(' ');
+}
+
+/** Bar chart (SVG) of people protected per added sensor: the diminishing-returns curve. */
+export function gainChartSVG(gains: number[]) {
+  const W = 340, H = 160, padL = 8, padB = 22, padT = 34;
+  const max = Math.max(...gains, 1);
+  const bw = (W - padL - 8) / gains.length;
+  const y = (v: number) => H - padB - ((H - padB - padT) * v) / max;
+  const bars = gains.map((g, i) => {
+    const x = padL + i * bw + 3, top = y(g);
+    return `<rect x="${x}" y="${top}" width="${bw - 6}" height="${H - padB - top}" rx="3" class="bar"/>
+      <text x="${x + (bw - 6) / 2}" y="${top - 4}" class="val">${fmtPeople(Math.round(g))}</text>
+      <text x="${x + (bw - 6) / 2}" y="${H - 6}" class="lab">#${i + 1}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" aria-hidden="true">
+    <text x="0" y="12" class="axis">extra people warned per quake (avg)</text>
+    <line x1="${padL}" x2="${W}" y1="${H - padB}" y2="${H - padB}" class="base"/>${bars.join('')}</svg>`;
 }

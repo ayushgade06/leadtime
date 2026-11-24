@@ -1,12 +1,15 @@
 import 'leaflet/dist/leaflet.css';
 import './style.css';
 import L from 'leaflet';
-import { INDIAN_OCEAN, cellOf } from './geo';
-import { loadBathy } from './bathy';
+import { INDIAN_OCEAN, cellOf, makeGrid } from './geo';
+import { keepConnectedOcean, loadBathy } from './bathy';
+import buoysData from './data/buoys.json';
+import { coverage, greedyPlace, snapToOcean, type Scenario } from './warning';
 import { createMap, createLayer, drawDepth, drawEta, drawEtaMax, drawIsochrones, isochroneLabels, clear } from './render';
-import { customQuake, nearestTrench, quake2004, type Quake } from './scenarios';
-import { T_MAX, type FromWorker, type ToWorker } from './worker';
-import { evaluate, headlineHTML, liveSummary, loadCities, renderCities, type Eval } from './ui';
+import { customQuake, nearestTrench, quake2004, scenarioLibrary, type Quake } from './scenarios';
+import type { FromWorker, ToWorker } from './worker';
+import { T_MAX } from './solver';
+import { evaluate, fmtPeople, gainChartSVG, headlineHTML, liveSummary, loadCities, renderCities, type Eval } from './ui';
 
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -118,7 +121,7 @@ function depthAt(lat: number, lon: number) {
 function addBuoy(lat: number, lon: number, cls = ''): string | null {
   if (buoys.length >= MAX_BUOYS) return `You already have ${MAX_BUOYS} sensors. Remove one first.`;
   const d = depthAt(lat, lon);
-  if (!d || d.depth < MIN_BUOY_DEPTH)
+  if (!d || (d.depth < MIN_BUOY_DEPTH && cls !== 'opt'))
     return `Too shallow here (${d ? Math.max(0, Math.round(d.depth)) : 0} m). DART-style pressure sensors sit on the deep-ocean floor; this tool needs > ${MIN_BUOY_DEPTH} m.`;
   const marker = L.marker([lat, lon], { icon: buoyIcon(buoys.length + 1, cls), draggable: true, keyboard: true, title: 'Sensor (drag to move, right-click to remove)' });
   const buoy: Buoy = { marker, cell: d.cell };
@@ -169,7 +172,7 @@ function refreshWarnings(done: boolean) {
   const ev = evaluate(cities, tArrive, etaMax, buoys.map((x) => x.cell), minutes('tproc'), minutes('tevac'));
   lastEval = ev;
   $('headline').innerHTML = headlineHTML(ev, minutes('tevac'), done);
-  renderCities($('city-rows'), ev, done, buoys.length);
+  renderCities($('city-rows'), ev, done, buoys.length, libHits ?? undefined);
   cityLayer.clearLayers();
   for (const r of ev.rows) {
     const reached = Number.isFinite(r.arrive);
@@ -198,6 +201,114 @@ function toast(msg: string) {
   clearTimeout(toastTimer);
   toastTimer = window.setTimeout(() => (t!.hidden = true), 4000);
 }
+
+// ---- optimizer: scenario library + greedy placement -----------------------------------
+// The library runs on a coarser 256² grid (cells ~39 km): 8× less work per quake, so ~15
+// earthquakes simulate in parallel workers in well under a minute.
+const LIB = { ...INDIAN_OCEAN, N: 256 };
+const libGrid = makeGrid(LIB);
+const libB = new Float32Array(LIB.N * LIB.N);
+for (let j = 0; j < LIB.N; j++)
+  for (let i = 0; i < LIB.N; i++) {
+    const k = 2 * j * N + 2 * i;
+    libB[j * LIB.N + i] = (b[k] + b[k + 1] + b[k + N] + b[k + N + 1]) / 4;
+  }
+keepConnectedOcean(libB, LIB.N, cellOf(libGrid, -20, 80)!);
+// Keep epicentres out of the absorbing sponge at the east edge (112.5°E).
+const library = scenarioLibrary(8.8, 300).filter((q) => q.lon < 110.5);
+$('lib-n').textContent = String(library.length);
+// Candidate sensor sites: every 3rd cell (≈ every 6th at full resolution) deeper than 1000 m,
+// outside the sponge; then the real listed stations, so they can be scored the same way.
+const SPONGE = Math.round((20 * LIB.N) / 512);
+const candCells: number[] = [];
+for (let j = SPONGE; j < LIB.N - SPONGE; j += 3)
+  for (let i = SPONGE; i < LIB.N - SPONGE; i += 3) if (-libB[j * LIB.N + i] > 1000) candCells.push(j * LIB.N + i);
+const nGrid = candCells.length;
+const realBuoys = buoysData.buoys.map((bu) => ({ ...bu, cell: cellOf(libGrid, bu.lat, bu.lon) }));
+for (const rb of realBuoys) candCells.push(rb.cell ? rb.cell.j * LIB.N + rb.cell.i : -1);
+const libCityCells = cities.map((c) => snapToOcean(libGrid, libB, c.lat, c.lon, 50));
+const libPop = cities.map((c) => (c.sheltered ? 0 : c.population));
+let libScen: Scenario[] | null = null;
+let libHits: Map<string, { warned: number; reached: number }> | null = null;
+const libLayer = L.layerGroup();
+
+function runLibrary(): Promise<Scenario[]> {
+  const cells = Int32Array.from([...candCells, ...libCityCells]);
+  const W = Math.max(1, Math.min(4, (navigator.hardwareConcurrency || 2) - 1));
+  let done = 0;
+  const parts = Array.from({ length: W }, (_, w) => library.filter((_, i) => i % W === w));
+  return Promise.all(parts.map((part) => new Promise<Float32Array[]>((resolve) => {
+    const wk = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
+    wk.onmessage = (e: MessageEvent<FromWorker>) => {
+      const m = e.data;
+      if (m.type === 'progress') {
+        done++;
+        $('opt-bar').style.width = `${(100 * done) / library.length}%`;
+        $('opt-status').textContent = `Simulating ${library.length} earthquakes… ${done} / ${library.length}`;
+      } else if (m.type === 'batch-result') { wk.terminate(); resolve(m.tArrive); }
+    };
+    wk.postMessage({ type: 'batch', scenarios: part.map((q) => q.segments), cells, domain: LIB, b: libB } satisfies ToWorker);
+  }))).then((res) => {
+    // undo the round-robin split so scenario order matches `library`
+    const out: Scenario[] = new Array(library.length);
+    res.forEach((arrs, w) => arrs.forEach((tA, k) => {
+      out[k * W + w] = { cand: tA.subarray(0, candCells.length), city: tA.subarray(candCells.length) };
+    }));
+    return out;
+  });
+}
+
+const latLonOfLib = (cell: number) => ({ lat: libGrid.lat[Math.floor(cell / LIB.N)], lon: libGrid.lon[cell % LIB.N] });
+
+async function optimize() {
+  const K = Number($<HTMLSelectElement>('opt-k').value);
+  const btn = $<HTMLButtonElement>('optimize');
+  btn.disabled = true;
+  libLayer.clearLayers().addTo(map);
+  for (const q of library) L.circleMarker([q.lat, q.lon], { radius: 5, color: '#ffb547', weight: 1, fillOpacity: 0.15, interactive: false }).addTo(libLayer);
+  if (!libScen) {
+    $('opt-progress').hidden = false;
+    const t0 = performance.now();
+    libScen = await runLibrary();
+    $('opt-status').textContent = `Simulated ${library.length} earthquakes in ${((performance.now() - t0) / 1000).toFixed(0)} s.`;
+  }
+  const opts = { k: K, tProc: minutes('tproc'), tEvac: minutes('tevac') };
+  const gridOnly = libScen.map((s) => ({ cand: s.cand.subarray(0, nGrid), city: s.city }));
+  const res = greedyPlace(gridOnly, libPop, opts);
+  const S = library.length;
+  // Animate: clear the user's sensors, then drop the optimized ones in pick order.
+  buoyLayer.clearLayers(); buoys = []; renumberBuoys();
+  const gains = res.protectedPeople.map((p, i) => (p - (i ? res.protectedPeople[i - 1] : 0)) / S);
+  $('opt-result').hidden = false;
+  for (let i = 0; i < res.picks.length; i++) {
+    const p = latLonOfLib(candCells[res.picks[i]]);
+    addBuoy(p.lat, p.lon, 'opt');
+    $('gain-chart').innerHTML = gainChartSVG(gains.slice(0, i + 1));
+    await new Promise((r) => setTimeout(r, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 450));
+  }
+  $('gain-chart').setAttribute('aria-label', `Extra people warned per quake for each added sensor: ${gains.map((g) => fmtPeople(Math.round(g))).join(', ')}`);
+  // Score the real network with exactly the same metric.
+  const realIdx = realBuoys.map((_, i) => nGrid + i).filter((i) => candCells[i] >= 0);
+  const reportingIdx = realBuoys.map((rb, i) => (rb.reportingRecently ? nGrid + i : -1)).filter((i) => i >= 0 && candCells[i] >= 0);
+  const best = coverage(libScen, res.picks, libPop, opts);
+  const real = coverage(libScen, realIdx, libPop, opts);
+  const rep = coverage(libScen, reportingIdx, libPop, opts);
+  let reachedPop = 0;
+  for (const s of libScen) s.city.forEach((t, c) => { if (Number.isFinite(t)) reachedPop += libPop[c]; });
+  libHits = new Map(cities.map((c, i) => [c.name, { warned: best.warned[i], reached: best.reached[i] }]));
+  $('opt-compare').innerHTML = `Across ${S} quakes, on average <strong>${fmtPeople(best.people / S)}</strong> of the ${fmtPeople(reachedPop / S)} people in reached cities get ≥ ${opts.tEvac / 60} min with these ${K} sensors.
+    The ${realIdx.length} real stations we have positions for score ${fmtPeople(real.people / S)} (the ${reportingIdx.length} reporting on 24 Nov 2026: ${fmtPeople(rep.people / S)}).
+    Real networks also weigh cost, maintenance, false alarms and politics, and Indonesia's buoys are missing from our data, so this is a teaching comparison, not a verdict.`;
+  btn.disabled = false;
+  refreshWarnings(finished);
+}
+$('optimize').onclick = () => void optimize();
+
+const realLayer = L.layerGroup();
+for (const rb of realBuoys)
+  L.marker([rb.lat, rb.lon], { icon: L.divIcon({ className: 'buoy-marker real', html: '<span></span>', iconSize: [14, 14] }), keyboard: false })
+    .bindTooltip(`${rb.name}<br>${rb.operator} · ${rb.reportingRecently ? 'reporting on 24 Nov 2026' : rb.status === 'historical' ? 'historical' : 'listed, not reporting'}`).addTo(realLayer);
+$<HTMLInputElement>('lyr-real').onchange = (e) => ((e.target as HTMLInputElement).checked ? realLayer.addTo(map) : realLayer.remove());
 
 // ---- tabs -------------------------------------------------------------------------------
 let activeTab = 'quake';

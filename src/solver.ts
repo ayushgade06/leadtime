@@ -21,6 +21,7 @@
 // * Land cells (bed b ≥ 0) are walls: no flux crosses into them (no inundation).
 
 export const G = 9.81; // gravity, m/s²
+export const T_MAX = 12 * 3600; // we simulate 12 hours after the quake
 
 export interface SimOptions {
   /** Cells of absorbing "sponge" at the domain edge so waves leave instead of reflecting (0 = closed box). */
