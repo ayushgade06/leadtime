@@ -463,7 +463,14 @@ for (const id of ['wave', 'max', 'iso'] as const)
     const on = (e.target as HTMLInputElement).checked;
     const layer = { wave: waveLayer, max: maxLayer, iso: isoLayer }[id];
     if (!on) { clear(layer); if (id === 'iso') isoLabels.clearLayers(); } else redrawRecorders();
+    syncLegend();
   };
+function syncLegend() {
+  const max = !layerOn('wave') && layerOn('max');
+  $('legend').dataset.mode = max ? 'max' : 'wave';
+  $('leg-a').textContent = max ? 'highest wave 3 cm' : 'trough';
+  $('leg-b').textContent = max ? '4.5 m' : 'crest';
+}
 
 const mwIn = $<HTMLInputElement>('mw'), strikeIn = $<HTMLInputElement>('strike');
 const syncLabels = () => {

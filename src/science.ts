@@ -69,7 +69,7 @@ export function run2004(domain: Domain, grid: Grid, b: Float32Array, onProgress:
   const deep = obs.stations.map((s) => snapToOcean(grid, b, s.lat, s.lon, 50));
   return new Promise((resolve) => {
     const wk = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
-    onProgress('Simulating 12 h of the 2004 tsunami at full resolution (about 30 s)…');
+    onProgress('Simulating 12 h of the 2004 tsunami at full resolution (under a minute)…');
     wk.onmessage = (e: MessageEvent<FromWorker>) => {
       if (e.data.type !== 'batch-result') return;
       wk.terminate();
