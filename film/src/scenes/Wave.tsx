@@ -1,53 +1,35 @@
 import React from 'react';
-import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {Video} from '@remotion/media';
+import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Backdrop, Badge, Hl, Kicker, Shot, Source} from '../ui';
 import {W} from '../timeline';
 import {FBOX} from './layout';
+import {EV, Take, type Seg} from './take';
 
-// Genuine motion: the app's own playback of 2004 (recorded with a fixed camera, 1× speed),
-// then the 12-hour still once the narration says "twelve hours".
-const CLIP_FRAMES = 325; // 10.8 s of real playback: +00:08 → +03:51 on the app's clock
-
+// Live recording: the app's own playback at 20 simulated min per second, then (sped up 2×, labelled)
+// the rest of the 12 hours after "Max" was pressed.
 export const Wave: React.FC = () => {
 	const f = useCurrentFrame();
-	const start = 0;
-	const cut = Math.max(start + CLIP_FRAMES - 14, W('wave2', 'twelve') - 8);
-	const x = interpolate(f, [cut, cut + 14], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-	const cam: [number, [number, number, number, number]][] = [
-		[0, [30, 240, 1300, 731]],
-		[start + CLIP_FRAMES, [30, 300, 1270, 714]],
+	const {fps} = useVideoConfig();
+	const cut = Math.min(W('wave2', 'twelve') - Math.round(0.3 * fps), Math.round((EV.max.t - EV.replay.t - 0.3) * fps));
+	const segs: Seg[] = [
+		{start: 0, src: EV.replay.t + 0.1, end: EV.max.t - 0.1},
+		{start: cut, src: 26.0, end: EV['lyr-wave_off'].t - 0.2, rate: 2},
 	];
+	const sped = f >= cut;
+	const flash = interpolate(f, [cut - 6, cut, cut + 10], [0, 0.6, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
 	return (
 		<AbsoluteFill>
 			<Backdrop />
 			<Kicker n="01" style={{left: FBOX[0]}}>
 				THE WAVE, ON THE REAL SEAFLOOR
 			</Kicker>
-			<Source style={{right: FBOX[0], top: 62}}>LEADTIME · 2004 REPLAY · 512 × 512 GRID</Source>
-			<div style={{opacity: 1 - x}}>
-				<Shot
-					box={FBOX}
-					keys={cam}
-					media={
-						<div style={{width: 1920, height: 1080}}>
-							{f < CLIP_FRAMES - 1 ? (
-								<Video src={staticFile('clips/wave2004.mp4')} style={{width: 1920, height: 1080}} muted />
-							) : (
-								<Img src={staticFile('shots/wave_clip_last.png')} style={{width: 1920, height: 1080}} />
-							)}
-						</div>
-					}
-				>
-					<Hl at={W('wave1', 'live') - 4} until={W('wave2', 'over') + 30} rect={[36, 880, 160, 70]} label="SIMULATED TIME" dim={0.25} labelSide="top" />
-				</Shot>
-			</div>
-			<div style={{opacity: x}}>
-				<Shot src="shots/wave_end.png" box={FBOX} keys={[[cut, [30, 240, 1300, 731]], [cut + 180, [20, 200, 1380, 776]]]}>
-					<Hl at={cut + 10} rect={[36, 880, 150, 70]} label="12 HOURS LATER" dim={0.3} />
-				</Shot>
-			</div>
-			<Badge at={start + 4}>REAL PLAYBACK · 20 SIMULATED MIN PER SECOND</Badge>
+			<Source style={{right: FBOX[0], top: 62}}>LEADTIME · 2004 REPLAY · LIVE SCREEN RECORDING</Source>
+			<Shot media={<Take segs={segs} />} box={FBOX} keys={[[0, [16, 236, 1344, 756]], [cut, [24, 246, 1320, 743]], [cut + 1, [16, 236, 1344, 756]]]}>
+				<Hl at={W('wave1', 'lyve') - 6} until={cut - 10} rect={[36, 878, 150, 70]} label="SIMULATED TIME" dim={0.2} />
+				<Hl at={cut + 10} rect={[36, 878, 150, 70]} label="TO 12 HOURS" dim={0.2} />
+			</Shot>
+			<div style={{position: 'absolute', left: FBOX[0], top: FBOX[1], width: FBOX[2], height: FBOX[3], borderRadius: 14, background: '#04101c', opacity: flash}} />
+			{sped ? <Badge at={cut} style={{top: FBOX[1] + 18, right: FBOX[0] + 18}}>SPED UP 2× · AFTER PRESSING "MAX"</Badge> : <Badge at={8} style={{top: FBOX[1] + 18, right: FBOX[0] + 18}}>REAL TIME · 20 SIMULATED MIN PER SECOND</Badge>}
 		</AbsoluteFill>
 	);
 };

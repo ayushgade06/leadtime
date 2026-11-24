@@ -1,30 +1,35 @@
-# QA report: LeadTime film
+# QA report: LeadTime film (v2: Ava voice, live 60 fps recording)
 
-File: `out/film.mp4` (captions burned in). Captions are also in `captions/film.srt`. The caption-free render (`out/film_clean.mp4`) was stopped by the system because memory was low; re-run it with `bash scripts/master.sh` when needed.
+File: `out/film.mp4` (captions burned in). Captions are also in `captions/film.srt`.
 
+## How the footage was made
+All product shots come from **one continuous 60 fps screen recording** of the live site (https://leadtime-liard.vercel.app) in a real Brave tab at full screen. The recording used Desktop Duplication + NVENC (`capture/rec/take.mkv`, git-ignored; transcoded to `public/clips/take.mp4`). The demo was driven by a single in-page script launched through Claude in Chrome. That script used the app's real buttons, real smooth scrolling, and a real map-click event at 4.5° N 90.5° E.
+
+Every action was logged with its time, aligned to the video by a magenta sync frame at 3.133 s (`src/take.json`).
+
+Brave's "Claude is debugging this browser" bar was visible for the first 25.8 s, and Claude's "working" glow and pill for the first ~22 s. Every shot from that period is cropped inside the page area (x 16–1400, y ≥ 150), so neither appears in the film. After 25.8 s the screen is completely clean.
+
+The on-screen cursor is drawn by the film at the logged click positions and times, because in-page clicks don't move the OS pointer. Two stretches are sped up and labelled on screen:
+- "SPED UP 2× · AFTER PRESSING MAX"
+- "SPED UP 2× · SIMULATING 15 EARTHQUAKES"
+
+## Checks
 | Check | Method | Result |
 |---|---|---|
-| Format | `ffprobe` | H.264 High, 1920×1080, 30 fps, yuv420p, TV range, bt709; AAC 48 kHz. ✅ |
-| Duration | `ffprobe` | 2:08.8. The rules recommend about 2–3 minutes. ✅ |
-| Every second watched | 1 fps contact sheets of the whole render (`out/qa/contact_1..4.jpg`), read frame by frame | No empty frames, no transition collisions, no clipped text in the final render. Highlights land on their spoken words. ✅ |
-| Black frames | `blackdetect d=0.3 pix_th=0.10` | None (the 1 s fade at the end stays under the detection length). ✅ |
-| Frozen video | `freezedetect n=-60dB d=4` | None. ✅ |
-| Silence | `silencedetect n=-45dB d=2` | None. ✅ |
-| Loudness | `ebur128 peak=true` | −15.9 LUFS integrated, −1.5 dBTP true peak, LRA 4.3 LU. ✅ |
-| Voice vs script | `scripts/asr_check.py` (faster-whisper) | The transcript matches the script. Expected ASR variants: "err" → "air" (correct pronunciation), "Banda Aceh" → "banda ache", "Simeulue" → "simulu", the opening "On" → "the". ✅ |
-| Caption sync | same script, 48 phrases | median +0.03 s, range −0.54…+0.38 s (Whisper's phrase-start jitter is about ±0.5 s). ✅ |
-| Facts | `VOICEOVER_SCRIPT.md` → Fact sources | Every spoken or shown number traces to captured page text (`capture/*.txt`) or the sourced JSON files. ✅ |
+| Format | `ffprobe` | H.264 High, 1920×1080, **60 fps**, yuv420p, TV range, bt709; AAC 48 kHz. ✅ |
+| Duration | `ffprobe` | 2:08.4 (the rules recommend about 2–3 minutes). ✅ |
+| Every second watched | 1 fps contact sheets (`out/qa/c60_1..4.jpg`) | No Claude UI, no empty frames, no transition collisions. The cursor and highlights land on their spoken words. ✅ |
+| Black / frozen / silent | `blackdetect`, `freezedetect d=4`, `silencedetect −45 dB d=2` | None. ✅ |
+| Loudness | `ebur128 peak=true` | −16.0 LUFS integrated, −1.5 dBTP. ✅ |
+| Voice vs script | `scripts/asr_check.py` (faster-whisper) | The transcript matches the script. "err" is heard as "air" (correct pronunciation) and "Simeulue" as "simulu". ✅ |
+| Caption sync | same, 49 phrases | median +0.016 s (range −0.74…+0.23 s; Whisper's phrase-start jitter). ✅ |
+| Facts | `VOICEOVER_SCRIPT.md` → Fact sources | Every number traces to captured page text, the live recording or the sourced JSON files. ✅ |
 
-## Issues found and fixed during the passes
-- **The TTS service refused some wordings.** edge-tts returned no audio for anything containing "coastal" or "Is the physics right?". The lines were reworded ("cities on the coast", "Can you trust the physics?").
-- **Colombo wasn't in view.** The captured table showed Chennai but not Colombo, so the line now quotes Chennai (6.7 M people, 101 min), which is on screen.
-- **Wave camera.** The second camera key cut the app's clock off. Re-framed so the clock stays in view.
-- **Reveal highlight.** It sat 110 px above the guide's headline. Re-measured on the full-size still.
-- **Clipped labels and wrapping.** Three highlight labels clipped at the top of panel crops were moved below. Proof-card text wrapped badly and was resized.
-- **Optimizer number.** "52.9 M" (headless Chromium) vs "53.0 M" (desktop Chrome 158) for the first sensor comes from last-bit floating-point differences between browser builds. The narration says "about 53 million", which is true in both.
+## Render notes
+The full background render was twice stopped by Claude Code because system memory was low. The final film was therefore rendered as six foreground chunks (one process each), joined losslessly, then muxed with a soundtrack. The soundtrack was mixed with ffmpeg from the same narration clips and music bed at the timeline's positions, then mastered (`loudnorm`).
 
-## Known limitations (stated plainly)
-- **The voice is synthetic** (Microsoft Edge neural TTS). Pacing was checked by transcript and timing, **not judged by ear**.
-- **The music and SFX are original** and generated by `scripts/audio.py`. They were checked by meters only, not by ear.
-- **Footage scale.** Panel close-ups are upscaled about 1.2×, and the Banda Aceh map close-up about 1.6×, so it is slightly soft.
-- **Map seam.** The near-field map shows a faint rectangular tile seam in the Esri basemap at that zoom; it comes from the live site, not the film.
+## Known limitations
+- **The voice is synthetic** (Ava, Microsoft Edge neural TTS). Pacing and pronunciation were checked by transcript and spectrogram comparison, **not by ear**.
+- **The music is original** (`scripts/audio.py`) and was checked by meters only.
+- **The optimizer's first-sensor figure** shows 53.0 M in this Brave recording, versus 52.9 M in headless Chromium (last-bit floating-point differences). The narration says "about 53 million".
+- **No caption-free copy yet.** Re-run the chunked render with `--props='{"captions":false}'` if one is needed.

@@ -9,10 +9,10 @@ master() {
     -profile:v high -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 \
     -af "loudnorm=I=-16:TP=-1.5:LRA=11" -c:a aac -b:a 192k -ar 48000 -movflags +faststart "$2"
 }
-npx remotion render Film out/render_raw.mp4 --log=error
+npx remotion render Film out/render_raw.mp4 --log=error --concurrency=3
 master out/render_raw.mp4 out/film.mp4
 if [ "${CLEAN:-1}" = "1" ]; then
-  npx remotion render Film out/render_clean.mp4 --props='{"captions":false}' --log=error
+  npx remotion render Film out/render_clean.mp4 --concurrency=3 --props='{"captions":false}' --log=error
   master out/render_clean.mp4 out/film_clean.mp4
 fi
 echo MASTER_DONE

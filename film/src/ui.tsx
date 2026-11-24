@@ -1,20 +1,23 @@
 import React from 'react';
-import {AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Img, interpolate, random, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {C, F, ease, glide} from './theme';
 
 type Rect = [number, number, number, number];
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
 /** 0→1 eased progress starting at `at`. */
+// Durations are written in 30-fps frames and scaled to the composition's fps.
 export const useIn = (at: number, dur = 18, easing = ease) => {
 	const f = useCurrentFrame();
-	return interpolate(f, [at, at + dur], [0, 1], {...clamp, easing});
+	const k = useVideoConfig().fps / 30;
+	return interpolate(f, [at, at + dur * k], [0, 1], {...clamp, easing});
 };
 
 /** 1→0 progress for exits. */
 export const useOut = (at: number, dur = 14) => {
 	const f = useCurrentFrame();
-	return interpolate(f, [at, at + dur], [1, 0], {...clamp, easing: glide});
+	const k = useVideoConfig().fps / 30;
+	return interpolate(f, [at, at + dur * k], [1, 0], {...clamp, easing: glide});
 };
 
 /** Dark or paper background with slow-moving film grain and a vignette. */
@@ -196,7 +199,8 @@ export const Hl: React.FC<{at: number; until?: number; rect: Rect; dim?: number;
 	labelSide = 'top',
 }) => {
 	const f = useCurrentFrame();
-	const p = interpolate(f, [at, at + 14, until, until + 12], [0, 1, 1, 0], {...clamp, easing: ease});
+	const k = useVideoConfig().fps / 30;
+	const p = interpolate(f, [at, at + 14 * k, until, until + 12 * k], [0, 1, 1, 0], {...clamp, easing: ease});
 	if (p <= 0) return null;
 	const [x, y, w, h] = rect;
 	const grow = (1 - p) * 14;

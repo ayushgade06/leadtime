@@ -1,59 +1,59 @@
 {
- "spoken": "Lead Time. Free, open source, no login. Every minute counts.",
- "voice": "en-US-AndrewMultilingualNeural",
+ "spoken": "Leed Time. Free, open source, no login. Every minute counts.",
+ "voice": "en-US-AvaMultilingualNeural",
  "rate": "-2%",
- "duration": 5.04,
+ "duration": 5.688,
  "words": [
   {
-   "t": 0.089291,
-   "d": 0.165833,
-   "w": "Lead"
+   "t": 0.063791,
+   "d": 0.229583,
+   "w": "Leed"
   },
   {
-   "t": 0.267875,
-   "d": 0.382666,
+   "t": 0.293375,
+   "d": 0.471958,
    "w": "Time"
   },
   {
-   "t": 1.109708,
-   "d": 0.344375,
+   "t": 1.21175,
+   "d": 0.382666,
    "w": "Free"
   },
   {
-   "t": 1.696416,
-   "d": 0.267875,
+   "t": 2.091833,
+   "d": 0.293375,
    "w": "open"
   },
   {
-   "t": 1.964291,
-   "d": 0.535708,
+   "t": 2.397958,
+   "d": 0.510208,
    "w": "source"
   },
   {
-   "t": 2.51275,
-   "d": 0.216833,
+   "t": 2.997458,
+   "d": 0.204083,
    "w": "no"
   },
   {
-   "t": 2.729583,
-   "d": 0.484708,
+   "t": 3.214291,
+   "d": 0.510208,
    "w": "login"
   },
   {
-   "t": 3.635208,
-   "d": 0.191333,
+   "t": 4.119916,
+   "d": 0.306083,
    "w": "Every"
   },
   {
-   "t": 3.839291,
-   "d": 0.216833,
+   "t": 4.426,
+   "d": 0.280625,
    "w": "minute"
   },
   {
-   "t": 4.056125,
-   "d": 0.5995,
+   "t": 4.706625,
+   "d": 0.58675,
    "w": "counts"
   }
  ],
- "hash": "42f1e77e3a"
+ "hash": "d1b6b8b71c"
 }

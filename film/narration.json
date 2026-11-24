@@ -1,8 +1,8 @@
 {
-  "voice": "en-US-AndrewMultilingualNeural",
-  "rate": "+6%",
-  "fps": 30,
-  "transition": 18,
+  "voice": "en-US-AvaMultilingualNeural",
+  "rate": "+4%",
+  "fps": 60,
+  "transition": 36,
   "note": "{display|spoken}: captions show display, the voice says spoken. Every number is checked in VOICEOVER_SCRIPT.md (Fact sources).",
   "clicks": [
     [
@@ -35,8 +35,8 @@
   "scenes": [
     {
       "id": "hook",
-      "lead": 36,
-      "tail": 28,
+      "lead": 72,
+      "tail": 56,
       "lines": [
         {
           "id": "hook1",
@@ -46,12 +46,12 @@
     },
     {
       "id": "problem",
-      "lead": 20,
-      "tail": 26,
+      "lead": 40,
+      "tail": 52,
       "lines": [
         {
           "id": "problem1",
-          "gap": 10,
+          "gap": 20,
           "text": "The tsunami took {2 hours 36 minutes|two hours and thirty-six minutes} to reach Chennai, and almost three hours to reach Colombo."
         },
         {
@@ -63,24 +63,24 @@
     {
       "id": "reveal",
       "reveal": true,
-      "lead": 22,
-      "tail": 22,
+      "lead": 44,
+      "tail": 44,
       "lines": [
         {
           "id": "reveal1",
-          "text": "This is {LeadTime|Lead Time}. It asks one question: how many minutes does a coastal city get to run?"
+          "text": "This is {LeadTime|Leed Time}. It asks one question: how many minutes does a coastal city get to run?"
         }
       ]
     },
     {
       "id": "wave",
-      "lead": 14,
-      "tail": 20,
+      "lead": 28,
+      "tail": 40,
       "lines": [
         {
           "id": "wave1",
-          "gap": 8,
-          "text": "Replay 2004, and a shallow-water solver carries the wave across the real ocean floor, live in your browser."
+          "gap": 16,
+          "text": "Replay 2004, and a shallow-water solver carries the wave across the real ocean floor, {live|lyve} in your browser."
         },
         {
           "id": "wave2",
@@ -90,8 +90,8 @@
     },
     {
       "id": "beam",
-      "lead": 14,
-      "tail": 20,
+      "lead": 28,
+      "tail": 40,
       "lines": [
         {
           "id": "beam1",
@@ -101,12 +101,12 @@
     },
     {
       "id": "cities",
-      "lead": 14,
-      "tail": 20,
+      "lead": 28,
+      "tail": 40,
       "lines": [
         {
           "id": "cities1",
-          "gap": 8,
+          "gap": 16,
           "text": "For {65|sixty-five} cities on the coast, you see when the wave arrives, and how many people live there."
         },
         {
@@ -117,12 +117,12 @@
     },
     {
       "id": "sensor",
-      "lead": 14,
-      "tail": 22,
+      "lead": 28,
+      "tail": 44,
       "lines": [
         {
           "id": "sensor1",
-          "gap": 8,
+          "gap": 16,
           "text": "Now you're the engineer. Drop one deep-ocean sensor west of Sumatra, and {73.1 million|seventy-three point one million} people get at least fifteen minutes to evacuate."
         },
         {
@@ -133,18 +133,18 @@
     },
     {
       "id": "optimizer",
-      "lead": 14,
-      "tail": 22,
+      "lead": 28,
+      "tail": 44,
       "lines": [
         {
           "id": "opt1",
-          "gap": 8,
+          "gap": 16,
           "text": "The optimizer tests {15|fifteen} possible earthquakes along the trenches, and places six sensors."
         },
         {
           "id": "opt2",
           "text": "The first warns about {53 million|fifty-three million} people per quake. The sixth adds nothing.",
-          "gap": 10
+          "gap": 20
         },
         {
           "id": "opt3",
@@ -154,12 +154,12 @@
     },
     {
       "id": "nearfield",
-      "lead": 16,
-      "tail": 22,
+      "lead": 32,
+      "tail": 44,
       "lines": [
         {
           "id": "near1",
-          "gap": 10,
+          "gap": 20,
           "text": "And the honest part: Banda Aceh is hit in {21|twenty-one} minutes. No sensor can save it."
         },
         {
@@ -170,12 +170,12 @@
     },
     {
       "id": "proof",
-      "lead": 16,
-      "tail": 24,
+      "lead": 32,
+      "tail": 48,
       "lines": [
         {
           "id": "proof1",
-          "gap": 10,
+          "gap": 20,
           "text": "Can you trust the physics? Against {13|thirteen} tide gauges from 2004, our arrival times are off by {20|twenty} minutes on average, and mostly early."
         },
         {
@@ -186,13 +186,13 @@
     },
     {
       "id": "close",
-      "lead": 20,
-      "tail": 114,
+      "lead": 40,
+      "tail": 228,
       "lines": [
         {
           "id": "end1",
           "rate": "-2%",
-          "text": "{LeadTime|Lead Time}. Free, open source, no login. Every minute counts."
+          "text": "{LeadTime|Leed Time}. Free, open source, no login. Every minute counts."
         }
       ]
     }
